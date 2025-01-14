@@ -1,15 +1,18 @@
 import './App.css'
+import DropField from './components/Drop Field/DropField'
 
 function App() {
 
   return (
     <>
-      <div className='h-[100vh] w-[100vw] bg-[#fff] text-center flex flex-col items-center justify-center'>
+      <div className='h-[100vh] w-[100vw] bg-[#fff] text-center flex flex-col items-center justify-evenly'>
 
-        <h1 className='text-9xl text-[#66b2b2]'>Tail Tell</h1>
-        <h2 className='text-4xl text-[#b2d8d8]'>By Zane, Christian, Nathaniel, Raed, Stephen, Sam, and Troy</h2>
+        <h1 className='text-9xl text-[#66b2b2]'>TellTail</h1>
+        <DropField />
 
       </div>
+
+
     </>
   )
 }
