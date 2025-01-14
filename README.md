@@ -17,9 +17,6 @@ Upload an image of your cat or dog and we will tell you its breed and more
 ### Tools and Libraries
 - [x] **ESLint**
 - [x] **MaterialUI**
-- [x] **APIs**:
-  - [The Odds API](https://the-odds-api.com/): For fetching odds data
-  - Additional data from Express server with Axios for API requests
 - [x] **Axios**:
 - [x] **dotenv**
 
