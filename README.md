@@ -11,6 +11,8 @@ Upload an image of your cat or dog and we will tell you its breed and more
 
 ### Backend
 - [x] **Python**
+- [x] **Currently based on PyTorch**
+- [ ] A tensorflow implementation is in consideration
 - [] **... and more**
 
 
