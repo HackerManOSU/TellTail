@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Animal Classifier</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet"></script>
+</head>
+<body>
+  <h1>Animal Classifier</h1>
+  <input type="file" id="image-upload" />
+  <img id="selected-image" alt="Preview" style="max-width: 300px;" />
+  <div id="result"></div>
+  <script>
+    document.getElementById('image-upload').addEventListener('change', async (event) => {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      // Display selected image
+      const imgElement = document.getElementById('selected-image');
+      imgElement.src = URL.createObjectURL(file);
+
+      // Wait for the image to load
+      imgElement.onload = async () => {
+        // Load the MobileNet model
+        const model = await mobilenet.load();
+
+        // Classify the image
+        const predictions = await model.classify(imgElement);
+        console.log(predictions);
+
+        // Show predictions
+        const resultDiv = document.getElementById('result');
+        resultDiv.innerHTML = `<h3>Predictions:</h3><pre>${JSON.stringify(predictions, null, 2)}</pre>`;
+      };
+    });
+  </script>
+</body>
+</html>
