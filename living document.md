@@ -355,7 +355,9 @@ The system can be given additional details should they choose to generate a shar
 **E2:** The system encounters an error while trying to determine any potential health conditions. The user is informed after the analysis is complete that there was an error, and the system cannot determine if there are any conditions with the photo provided.
 
 --------------------
-###
+
+### Making well-informed decisions during the adoption process**###
+
 **Actors**
 A potential cat adopter
 
