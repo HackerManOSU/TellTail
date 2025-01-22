@@ -13,9 +13,9 @@
 
 **Justification:** Sam has experience with front end in other languages as well as limited experience with back end. This makes tying the two parts together a great role. Limited experience with model training, but open to learning in order to contribute as much as possible.
 
-**Christian:** UI/UX design, accesibility 
+**Christian:**  General backend development, Machine learning
 
-**Justification:** A well-designed interface and inclusive user experience are crucial to widespread adoption, especially for shelters that need quick, clear workflows. 
+**Justification:** Christian has interest in learning more about machine learning and AI models, and has the most prior experience working with languages that better suit the backend. Also provides the flexibility to assist with any issues that arise on the backend.
 
 **Troy:** Data collection and model evaluation
 
@@ -489,7 +489,7 @@ We’ll share a secure, public staging link with our possible testers (animal sh
 
 ### Week 2: UI/UX Wireframes & Basic Model Baseline
 
-**Christian** (UI/UX) & **Zane** (Frontend) & **Nathaniel (Frontend/QA)**:
+**Christian** (Backend) & **Zane** (Frontend) & **Nathaniel (Frontend/QA)**:
 
 Get general React website outline committed. This should include the dropdown field and welcome page. 
 
@@ -517,7 +517,7 @@ Connect the React frontend to the backend (use Axios to call the dummy endpoint)
 
 React app can upload an image to the backend, and the backend returns a placeholder result (“success” or static classification).
 
-**Raed** & **Troy**:
+**Raed** & **Troy** & **Christian**:
 
 Start refining the model with initial hyperparameter tuning, gather more data if necessary.
 
@@ -545,7 +545,7 @@ A staging URL where we can upload an image and see actual classification results
 
 ### Week 5: UI/UX Refinement & Accessibility
 
-**Christian** (UI/UX) & **Nathaniel** (QA, Frontend) & **Zane** (Frontend):
+**Nathaniel** (QA, Frontend) & **Zane** (Frontend):
 
 Incorporate feedback on UI design, ensuring it meets accessibility guidelines (keyboard navigation, color contrasts, alt-text).
 
@@ -573,7 +573,7 @@ Add logic for multiple-pet detection in the backend and a new UI workflow for di
 
 Uploading an image with 2+ pets returns distinct classifications for each, or a fallback message if detection fails.
 
-**Raed** (ML) & **Troy** (Evaluation) & **Nathaniel** (QA):
+**Raed** (ML) & **Troy** (Evaluation) & **Nathaniel** & **Christian** (Backend) (QA):
 
 Evaluate the false-positive prevention approach; gather additional user feedback or test images.
 
@@ -591,7 +591,7 @@ Implement the feature to generate a shareable adoption profile (link or PDF) fro
 
 A “Generate Profile” button that produces a live link or downloadable file summarizing breed, age, etc.
 
-**Christian** (UI/UX) & **Nathaniel** (QA):
+**Nathaniel** (QA):
 
 Add a “Report Incorrect Classification” workflow and store corrected data (e.g., breed/age) for model retraining.
 
@@ -633,7 +633,7 @@ Model is retrained if enough user feedback data justifies it.
 
 ### Week 10: Final Release and Documentation
 
-**Zane** (Deployment) & **Sam** (API) & **Christian** (UI/UX) & **Nathaniel** (QA):
+**Zane** (Deployment) & **Sam** (API) & **Christian** (Backend) & **Nathaniel** (QA):
 
 Finalize production deployment to the official URL.
 
