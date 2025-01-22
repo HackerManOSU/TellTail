@@ -312,32 +312,47 @@ If the user insists, the system might still attempt classification but tag the r
 **E2:** The system times out or crashes when processing images of extremely large size or unusual file types, prompting the user to try again with a valid file type.
 
 --------------------
-###
+### Health monitoring for dogs/cats
 **Actors**
 
-
+User (can be anyone uploading the image, including but not limited to animal shelters, vet clinics, concerned pet owners, etc.)
 
 **Triggers**
 
-
+The user uploads an image that contains a real cat or dog that, unbeknownst to the user, has underlying health conditions or may have conditions that could result in future health complications.
 
 **Preconditions**
 
-
+The provided image shows enough of the animal to the AI model that it can reasonably determine any imporant health information.
+  - For example, if the animal has a condition on its tail that is hidden in the photo, the AI won't be able to see and determine information from this.
 
 **Postconditions**
 
-
+The health results of the analysis from the AI model are displayed to the user. If there are any potential health conditions, the system will alert the user that their dog or cat may have a condition. If there are no deducible health conditions, then no message/alert will be provided to the user.
 
 **List of steps**
 
+A user wants to check if their dog or cat has any conditions currently.
 
+The user uploads an image of a real dog or cat.
+
+The system (AI models) analyze the image and determine that the dog or cat may have underlying or potential health conditions.
+
+The system completes its analysis of the user's image.
+
+The system returns its analysis and informes the user that their cat may currently have a health condition and also provides important information about any health conditions the dog or cat may be prone to.
 
 **Extensions/variations**
+
+The system can provide additional details should the user choose to generate a shareable "adoption profile" for their dog or cat.
 
 
 
 **Exceptions**
+
+**E1:** The image contains animals outside of cats/dogs, leading to a “cannot classify” response for those animals.
+
+**E2:** The system encounters an error while trying to determine any potential health conditions. The user is informed after the analysis is complete that there was an error, and the system cannot determine if there are any conditions with the photo provided.
 
 --------------------
 ###
