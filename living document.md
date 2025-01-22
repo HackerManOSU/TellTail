@@ -344,7 +344,7 @@ The system returns its analysis and informes the user that their cat may current
 
 **Extensions/variations**
 
-The system can provide additional details should the user choose to generate a shareable "adoption profile" for their dog or cat.
+The system can be given additional details should they choose to generate a shareable "adoption profile" for their dog or cat.
 
 
 
