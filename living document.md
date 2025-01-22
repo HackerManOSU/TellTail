@@ -323,7 +323,7 @@ The user uploads an image that contains a real cat or dog that, unbeknownst to t
 
 **Preconditions**
 
-The provided image shows enough of the animal to the AI model that it can reasonably determine any imporant health information.
+The provided image shows enough of the animal to the AI model that it can reasonably determine any important health information.
   - For example, if the animal has a condition on its tail that is hidden in the photo, the AI won't be able to see and determine information from this.
 
 **Postconditions**
@@ -357,32 +357,41 @@ The system can be given additional details should they choose to generate a shar
 --------------------
 ###
 **Actors**
-
+A potential cat adopter
 
 
 **Triggers**
-
+An adopter wants to adopt a specific cat but is aware that the cat's breed may be a common breed for deaf cats. They are interested in adopting the cat only if it is not deaf.
 
 
 **Preconditions**
-
+The potential adopter is somewhat aware of the type of cat they are looking to adopt but would like confirmation from a reliable external resource.
 
 
 **Postconditions**
-
+The program detects the cat's breed as being prone to deafness. However, the program specifies that not all cats under the breed may be deaf. Given that there is no 100% the cat may be deaf, the potential owner asks the shelter for a vet confirmation of deafness.  
 
 
 **List of steps**
 
+A potential cat adopter is interested in adopting a cat that could be deaf.
 
+The user uploads a picture of the cat and learns that the breed commonly includes deaf cats, however, not all of them are deaf.
+
+The user is able to make an informed request to a vet to confirm if the cat is deaf. 
 
 **Extensions/variations**
+A shelter staff worker could better 
 
+A shelter staff worker could use the application to inform themselves about the cat's attributes and inform others on basic information such as the cat is not 100% likely to be deaf without going past their area of expertise. 
 
 
 **Exceptions**
 
+**E1:** A vet staff might be given the wrong information through a false positive. This may snowball into feeding potential adopters false information. 
 
+**E2:** 
+Given a 98% accuracy goal, there is still a 2% chance the guess could be wrong. There is no clear failure condition as this would be a rare situation where a guess could be wrong.
 
 ## Non-functional Requirements
 
