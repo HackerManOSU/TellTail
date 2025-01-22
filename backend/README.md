@@ -1,5 +1,3 @@
-# PyTorch and MobileNet Setup
-
 ## Installing PyTorch and TorchVision
 To get started with PyTorch and TorchVision, use the following commands:
 
