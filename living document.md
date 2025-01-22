@@ -356,7 +356,7 @@ The system can be given additional details should they choose to generate a shar
 
 --------------------
 
-### Making well-informed decisions during the adoption process**###
+### Making well-informed decisions during the adoption process
 
 **Actors**
 A potential cat adopter
