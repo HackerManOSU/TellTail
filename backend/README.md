@@ -11,7 +11,7 @@ pip install torch torchvision
 ## UPDATE 1/25/26
 Here is the full process to get your GPU to run on TensorFlow. 
 
-- **Prerequisites**: Install Anaconda to PATH and allow permissions https://www.anaconda.com/
+**Prerequisites**: Install Anaconda to PATH and allow permissions https://www.anaconda.com/
 
 Now run in your terminal:
 
