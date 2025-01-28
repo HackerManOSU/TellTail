@@ -1,1 +1,0 @@
-yarn build && npx rollup -c && npm publish
