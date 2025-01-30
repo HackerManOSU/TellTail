@@ -16,28 +16,33 @@ const preprocessImage = async (image: File): Promise<Float32Array | null> => {
   const ctx = canvas.getContext("2d");
   const imgBitmap = await createImageBitmap(image);
 
-  // Set canvas size to model input size
+  // Resize to 299x299
   canvas.width = 299;
   canvas.height = 299;
   ctx?.drawImage(imgBitmap, 0, 0, 299, 299);
 
-  // Extract image data and normalize
+  // Get ImageData and process
   const imageData = ctx?.getImageData(0, 0, 299, 299);
   if (!imageData) return null;
 
-  const { data } = imageData; // RGBA pixel data
-  const inputTensor = new Float32Array(299 * 299 * 3); // Allocate memory for input tensor
-  for (let i = 0; i < data.length; i += 4) {
-    const r = data[i] / 255.0; // Normalize R
-    const g = data[i + 1] / 255.0; // Normalize G
-    const b = data[i + 2] / 255.0; // Normalize B
+  const { data } = imageData; // Add this line to get pixel data
+  const totalPixels = 299 * 299;
+  const inputTensor = new Float32Array(totalPixels * 3);
 
-    inputTensor[(i / 4) * 3] = (r - 0.5) / 0.5; // Subtract mean, divide by std
-    inputTensor[(i / 4) * 3 + 1] = (g - 0.5) / 0.5;
-    inputTensor[(i / 4) * 3 + 2] = (b - 0.5) / 0.5;
+  for (let i = 0; i < data.length; i += 4) {
+    const pixelIndex = i / 4;
+    const r = (data[i] / 255.0 - 0.5) / 0.5;
+    const g = (data[i + 1] / 255.0 - 0.5) / 0.5;
+    const b = (data[i + 2] / 255.0 - 0.5) / 0.5;
+
+    inputTensor[pixelIndex] = r;
+    inputTensor[pixelIndex + totalPixels] = g;
+    inputTensor[pixelIndex + 2 * totalPixels] = b;
   }
+
   return inputTensor;
 };
+
 
 const DropField: React.FC = () => {
   const [file, setFile] = useState<File | null>(null);
