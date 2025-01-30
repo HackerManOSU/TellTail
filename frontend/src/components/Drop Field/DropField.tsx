@@ -16,7 +16,7 @@ const preprocessImage = async (image: File): Promise<Float32Array | null> => {
   const ctx = canvas.getContext("2d");
   const imgBitmap = await createImageBitmap(image);
 
-  // Resize to 299x299
+  // Resize to 299x299 due to training with this resolution
   canvas.width = 299;
   canvas.height = 299;
   ctx?.drawImage(imgBitmap, 0, 0, 299, 299);
@@ -25,7 +25,7 @@ const preprocessImage = async (image: File): Promise<Float32Array | null> => {
   const imageData = ctx?.getImageData(0, 0, 299, 299);
   if (!imageData) return null;
 
-  const { data } = imageData; // Add this line to get pixel data
+  const { data } = imageData;
   const totalPixels = 299 * 299;
   const inputTensor = new Float32Array(totalPixels * 3);
 
@@ -71,7 +71,10 @@ const DropField: React.FC = () => {
 
     const previewUrl = URL.createObjectURL(selectedFile);
     setPreview(previewUrl);
-    setPrediction(null); // Clear previous prediction
+
+    // Clear previous prediction
+    setPrediction(null);
+
   }, []);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -87,7 +90,9 @@ const DropField: React.FC = () => {
     try {
       console.log("Starting preprocessing...");
       const inputTensor = await preprocessImage(file);
+
       if (!inputTensor) throw new Error("Failed to preprocess the image.");
+
       console.log("Preprocessed Tensor:", inputTensor);
 
       console.log("Loading ONNX model...");
