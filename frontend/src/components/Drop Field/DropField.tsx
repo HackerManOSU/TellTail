@@ -4,6 +4,11 @@ import React, { useCallback, useState } from "react";
 /* ++++++++++ DROPZONE ++++++++++ */
 import { useDropzone } from "react-dropzone";
 
+/* ++++++++++ PROFILES ++++++++++ */
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
+
 /* ++++++++++ MATERIAL-UI ++++++++++ */
 import { Table, TableBody, TableCell, TableContainer, TableRow, Paper } from "@mui/material";
 
@@ -45,6 +50,8 @@ const preprocessImage = async (image: File): Promise<Float32Array | null> => {
 
 
 const DropField: React.FC = () => {
+  const navigate = useNavigate();
+
   const [file, setFile] = useState<File | null>(null);
   const [preview, setPreview] = useState<string>("");
   const [isLoading, setIsLoading] = useState(false);
@@ -61,7 +68,7 @@ const DropField: React.FC = () => {
     "Nebelung", "Norwegian Forest Cat", "Ocicat", "Oriental Long Hair", "Oriental Short Hair",
     "Oriental Tabby", "Persian", "Pixiebob", "Ragamuffin", "Ragdoll", "Russian Blue",
     "Scottish Fold", "Selkirk Rex", "Siamese", "Siberian", "Silver", "Singapura", "Snowshoe",
-    "Somali", "Sphynx - Hairless Cat", "Tabby", "Tiger", "Tonkinese", "Torbie", "Tortoiseshell",
+    "Somali", "Sphynx", "Tabby", "Tiger", "Tonkinese", "Torbie", "Tortoiseshell",
     "Turkish Angora", "Turkish Van", "Tuxedo", "York Chocolate"
   ];
 
@@ -116,7 +123,23 @@ const DropField: React.FC = () => {
 
       console.log("Predicted Breed:", predictedBreed);
       setPrediction(predictedBreed); // Set prediction
-      alert(`Predicted Breed: ${predictedBreed}`);
+      // Fetch breed information
+      const response = await axios.get(`https://api.api-ninjas.com/v1/cats?name=${predictedBreed}`, {
+        headers: {
+          'X-Api-Key': import.meta.env.VITE_API_NINJAS_KEY
+        }
+      });
+
+      if (response.data && response.data.length > 0) {
+        const breedInfo = {
+          ...response.data[0],
+          name: predictedBreed,
+          imageUrl: preview // Add the preview image to the breed info
+        };
+        
+        // Navigate to the profile page with the breed information
+        navigate('/cat-profile', { state: { breedInfo } });
+      }
     } catch (error) {
       console.error("Error during prediction:", error);
       alert("An error occurred during the prediction.");
