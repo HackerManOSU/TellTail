@@ -1,5 +1,8 @@
-# TailTell
+# TellTail
 Upload an image of your cat or dog and we will tell you its breed and more
+
+# Trello
+https://trello.com/b/bruFHEAQ/cs-362-group-15-project-board
 
 ## Tech Stack
 
