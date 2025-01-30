@@ -130,8 +130,8 @@ const DropField: React.FC = () => {
       <div
         {...getRootProps()}
         className={`p-8 border-2 border-solid rounded-lg text-center cursor-pointer h-full
-            ${isDragActive || "hover:border-[#66b2b2] hover:bg-[#f0f9f9]"} 
-            ${isDragActive ? "border-[#66b2b2] bg-[#f0f9f9]" : "border-gray-300"}`}
+            ${isDragActive || "hover:border-primary hover:bg-primary-light"} 
+            ${isDragActive ? "border-primary bg-primary-light" : "border-gray-300"}`}
       >
         <input {...getInputProps()} />
         {preview ? (
@@ -179,8 +179,8 @@ const DropField: React.FC = () => {
             disabled={isLoading}
             className={`w-full py-2 px-4 rounded-md text-white
               ${isLoading
-                ? "bg-[#b2d8d8] cursor-not-allowed"
-                : "bg-[#66b2b2] hover:bg-[#539999]"
+                ? "bg-primary cursor-not-allowed"
+                : "bg-primary hover:bg-primary-light"
               } transition-colors`}
           >
             {isLoading ? "Processing..." : "Continue"}
