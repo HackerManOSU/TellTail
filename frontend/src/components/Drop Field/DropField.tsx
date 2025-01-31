@@ -6,8 +6,9 @@ import { useDropzone } from "react-dropzone";
 
 /* ++++++++++ PROFILES ++++++++++ */
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 
+/* ++++++++++ AXIOS ++++++++++ */
+import axios from 'axios';
 
 /* ++++++++++ MATERIAL-UI ++++++++++ */
 import { Table, TableBody, TableCell, TableContainer, TableRow, Paper } from "@mui/material";
@@ -24,11 +25,15 @@ const preprocessImage = async (image: File): Promise<Float32Array | null> => {
   // Resize to 299x299 due to training with this resolution
   canvas.width = 299;
   canvas.height = 299;
+
+  // convert to bitmap to get true data around image
   ctx?.drawImage(imgBitmap, 0, 0, 299, 299);
 
   // Get ImageData and process
   const imageData = ctx?.getImageData(0, 0, 299, 299);
-  if (!imageData) return null;
+
+  if (!imageData)
+    return null;
 
   const { data } = imageData;
   const totalPixels = 299 * 299;
@@ -40,6 +45,7 @@ const preprocessImage = async (image: File): Promise<Float32Array | null> => {
     const g = (data[i + 1] / 255.0 - 0.5) / 0.5;
     const b = (data[i + 2] / 255.0 - 0.5) / 0.5;
 
+    // for each pixel, get the RGB data
     inputTensor[pixelIndex] = r;
     inputTensor[pixelIndex + totalPixels] = g;
     inputTensor[pixelIndex + 2 * totalPixels] = b;
@@ -91,38 +97,59 @@ const DropField: React.FC = () => {
   });
 
   const handleContinue = async () => {
-    if (!file) return;
+
+    // If our file is NULL
+    if (!file)
+      return;
 
     setIsLoading(true);
+
+    // Try deploying the model
     try {
       console.log("Starting preprocessing...");
       const inputTensor = await preprocessImage(file);
 
-      if (!inputTensor) throw new Error("Failed to preprocess the image.");
+      if (!inputTensor)
+        throw new Error("Failed to preprocess the image.");
 
       console.log("Preprocessed Tensor:", inputTensor);
-
       console.log("Loading ONNX model...");
-      ort.env.wasm.wasmPaths = "/"; // Specify path to WASM files
+
+      // Path to WASM files in the public/ directory
+      ort.env.wasm.wasmPaths = "/";
+
+      // Actually load the model with onnxruntime-web 
       const session = await ort.InferenceSession.create("/cat_breed_model.onnx");
       console.log("ONNX model loaded successfully.");
 
+      // Input Tensor we will feed
       const feeds: Record<string, ort.Tensor> = {
         input: new ort.Tensor("float32", inputTensor, [1, 3, 299, 299]),
       };
 
       console.log("Running inference...");
+
+      // Run our model with the defined tensor
       const results = await session.run(feeds);
+
       console.log("Inference Results:", results);
 
       const output = results[Object.keys(results)[0]];
+
+      // Get our probabilities as a float32Array
       const probabilities = output.data as Float32Array;
 
+      // Get the strongest confidence prediction by using Math.max
       const predictedIndex = probabilities.indexOf(Math.max(...probabilities));
+
+      // Use the index to get the predicted breed
       const predictedBreed = classNames[predictedIndex];
 
       console.log("Predicted Breed:", predictedBreed);
-      setPrediction(predictedBreed); // Set prediction
+
+      // Set prediction
+      setPrediction(predictedBreed);
+
       // Fetch breed information
       const response = await axios.get(`https://api.api-ninjas.com/v1/cats?name=${predictedBreed}`, {
         headers: {
@@ -136,14 +163,19 @@ const DropField: React.FC = () => {
           name: predictedBreed,
           imageUrl: preview // Add the preview image to the breed info
         };
-        
+
         // Navigate to the profile page with the breed information
         navigate('/cat-profile', { state: { breedInfo } });
       }
-    } catch (error) {
+    }
+
+    // Catch any errors and report an error if there is an error
+    catch (error) {
       console.error("Error during prediction:", error);
       alert("An error occurred during the prediction.");
-    } finally {
+    }
+
+    finally {
       setIsLoading(false);
     }
   };
