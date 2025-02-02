@@ -45,7 +45,7 @@ https://drive.google.com/file/d/1aQUYL65NAHzgO3qLxj3eLWHvnx3il3UL/view?usp=shari
    cd tailtell/backend
    { insert }
    ```
-3. Run the app:
+3. Run the app (in the "/frontend/" folder):
    ```bash
    npm run dev
 
