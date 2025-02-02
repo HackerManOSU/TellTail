@@ -13,9 +13,9 @@
 
 **Justification:** Sam has experience with front end in other languages as well as limited experience with back end. This makes tying the two parts together a great role. Limited experience with model training, but open to learning in order to contribute as much as possible.
 
-**Christian:**  General backend development, Machine learning
+**Christian:**  General backend and frontend development, Machine learning
 
-**Justification:** Christian has interest in learning more about machine learning and AI models, and has the most prior experience working with languages that better suit the backend. Also provides the flexibility to assist with any issues that arise on the backend.
+**Justification:** Christian has interest in learning more about machine learning and AI models, and has the most prior experience working with languages that better suit the backend. Provides the flexibility to assist with any issues that arise throughout the project, to gain more experience. Also hopes to gain experience working with React and the frontend.
 
 **Troy:** Data collection and model evaluation
 
