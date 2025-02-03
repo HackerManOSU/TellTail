@@ -453,7 +453,7 @@ SWC is used to make build times even quicker for deployment.
 - [x] **Python**
 - [x] **Currently based on PyTorch**
 - [ ] A tensorflow implementation is in consideration
-- [] **... and more**
+- [ ] **... and more**
 
 Python is used for its familiarity within our group, its easy-to-understand syntax for collaboration, and its ability to implement our ML Models using PyTorch and/or Tensorflow
 
@@ -713,17 +713,30 @@ In programming with React files (.jsx or .tsx), Tailwind components are used for
  - etc.
 
 **Describe in detail what data your system stores, and how. If it uses a database, give the high level database schema. If not, describe how you are storing the data and its organization:**
+
 Our program does not store any data? (outside of the AI model itself if this counts as data, which is a built-in/native feature in the app)
 
 **If there are particular assumptions underpinning your chosen architecture, identify and describe them:**
+
 The app works on the basis that the AI model correctly and efficiently communicates back and forth with the frontend. If communication breaks down in any manner (i.e. either the frontend or AI model stops working, communication is slow, etc.), then the core functionality of the program (determining animal breed with the AI model) will break down.
 
 
 ## Software Design
 
 
-## Coding Guideline
+## Coding Guidelines
 
+**React (JSX/TSX)**: Rules of React (https://react.dev/reference/rules)
+- We are choosing to use this guideline for React because it is the official rules from React itself that mandates certain conventions. React specifies that components and "hooks" (a special type of resuable UI logic in React) must be "pure" (consistent and predictable in what they return, and immutable outside of their original context). React specifies that components and hooks should be called only within the JSX context, not calling their functions directly. React hooks should also only be called from React functions (not regular JS functions) and used at the top level of any React function. These guidelines should _always be implemented while developing in React_, but we will still to examine our code weekly in order to check these guidelines are being followed in React and fix any violations of these guidelines as needed.
+
+**TypeScript**: TypeScript Documentation (https://www.typescriptlang.org/docs/handbook/intro.html)
+- We are choosing to use these guidelines because they come from the official website of TypeScript that was created by Microsoft (the original developers of TypeScript). We plan to use the same enforcement of guidelines policy as we are React, where we should be expected to be refering back to these standards as we are implementing and developing in TypeScript, as well as examining our code weekly in order to ensure it meets the guidelines.
+
+**PyTorch**: PEP8 (https://peps.python.org/pep-0008/)
+- We are choosing to use PEP8 as our guidelines for development in PyTorch. PyTorch already utilizes a software called Flake8, which enforces the PEP8 coding style when programming in PyTorch anyways. PEP8 is already the official style guide for Python, and given the fact that PyTorch already enforces this through Flake8, it follows that we will use the PEP8 style. All of the code created for this project pass through and first be checked by Flake8, ensuring that it adheres to PEP8's standards and conventions.
+
+
+- 
 
 ## (Updated) Process Description
 
