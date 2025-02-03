@@ -9,6 +9,18 @@ pip install torch torchvision
 - **`torchvision`**: A package containing datasets, model architectures, and image transformations for computer vision tasks.
 
 ## UPDATE 1/25/26
+
+Install axios for HTTP client requests.
+```bash
+npm install axios
+```
+
+Import dotenv to load environment variables.
+```bash
+import 'dotenv/confid';
+```
+
+## UPDATE 1/25/26
 Here is the full process to get your GPU to run on TensorFlow. 
 
 **Prerequisites**: Install Anaconda to PATH and allow permissions https://www.anaconda.com/
@@ -38,4 +50,5 @@ Install Tensorflow versions below 2.11
 ```bash
 python -m pip install "tensorflow<2.11"
 ```
+
 Your environment is now configured, and you’re ready to run models with GPU support for parallel processing. 🎉
