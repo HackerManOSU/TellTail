@@ -1,0 +1,142 @@
+# Weekly Status Report - 2025/02/05
+
+## Team Report
+
+### 1. Goals from Last Week
+
+- Finalize the feature set.
+- Start integrating backend and frontend.
+- Work on developing the dog age, cat age, and object detection models.
+
+### 2. Progress and Issues
+- **What we did:**
+  - Integrated the backend and frontend upload system for cat breed.
+  - Created pth and onxx files for dog breed/age and cat breed for backend and front end.
+  - Progressed on the object detection model.
+- **What worked well:**
+  - Collaboration between frontend and backend teams.
+  - Integration of feedback into the UI.
+- **What we learned:**
+  - Handling asynchronous data flow between components.
+  - Improved techniques for model fine-tuning and image preprocessing.
+- **Challenges:**
+  - Debugging UI responsiveness and alignment issues.
+  - Connecting the UI to the onxx files for component classifiers.
+  - Adding two different uploads for cats and dogs.
+- **Where we are stuck:**
+  - Optimization of accuracy for the cat age classifier.
+
+### 3. Plans and Goals for Next Week
+- **High-level goals:**
+  - Complete and optimize cat age classifier.
+  - Complete object detection model for release.
+  - Continue improving UI/UX.
+- **Tasks and responsibilities:**
+  - Collecting more data for cat age training (Raed, Christian, Troy)
+  - Object detection model (Raed, Christian)
+  - Connecting dog breed/age to frontend (Troy)
+  - API calls for dog/cat breed for frontend (Troy)
+  - UI Design (Stephen)
+  - Different drop fields for dogs and cats (Raed)
+  - Header cut offs to be fixed (Christian)
+  - Dog profiles (Zane)
+  - Improve accuracy for cat age (Raed)
+  - Add way to save profiles as PDF (Zane)
+  - Home page (Stephen)
+  - Fill in weekly report in reports folder (all)
+  - Work on design architecture and project presentation (all)
+
+---
+
+## Contributions of Individual Team Members
+
+### 1. Goals from Last Week
+
+#### Raed:
+- Start working on the cat age classifier model.
+
+#### Troy:
+- Continue development of the dog age classifier model.
+
+#### Christian:
+- Develop the object detection model to identify dogs and cats in images.
+
+#### Stephen:
+- Integrate backend with the frontend image upload system.
+
+#### Nathaniel:
+- Work on refining the frontend layout and user experience.
+
+#### Sam:
+- Design user input fields for breed verification.
+
+#### Zane:
+- Ensure frontend responsiveness and refine UI.
+
+### 2. Progress and Issues
+
+#### Raed:
+- **What I did:** 
+- **What worked well:** 
+- **What I learned:** 
+- **Challenges:** 
+
+#### Troy:
+- **What I did:** Created ONXX files for dog age/breed for frontend and wrote scripts for classifiers in backend. 
+Also wrote skeleton code for Dog and Cat API calls for more information about their breeds.
+- **What worked well:** Exporting the pth files as onxx files. 
+- **What I learned:** I should've drew a diagram of how the program flows so that I know where to put my files. 
+- **Challenges:** Integrating ONXX files into frontend. Also wondering how to utilize API calls for more info about breed.
+
+#### Christian:
+- **What I did:** 
+- **What worked well:** 
+- **What I learned:** 
+- **Challenges:** 
+
+#### Stephen:
+- **What I did:** 
+- **What worked well:** 
+- **What I learned:** 
+- **Challenges:** 
+
+#### Nathaniel:
+- **What I did:** 
+- **What worked well:** 
+- **What I learned:** 
+- **Challenges:** 
+
+#### Sam:
+- **What I did:** 
+- **What worked well:** 
+- **What I learned:** 
+- **Challenges:** 
+
+#### Zane:
+- **What I did:** 
+- **What worked well:** 
+- **What I learned:** 
+- **Challenges:** 
+
+### 3. Plans and Goals for Next Week
+
+#### Raed:
+- 
+
+#### Troy:
+- Integrate dog classifiers and dog/cat breed info APIs into front end. 
+
+#### Christian:
+- 
+
+#### Stephen:
+- 
+
+#### Nathaniel:
+- 
+
+#### Sam:
+- 
+
+#### Zane:
+- 
