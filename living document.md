@@ -561,7 +561,7 @@ Replace the dummy classification endpoint with a real inference endpoint that us
 
 The backend returns actual classification results (breed/age) for at least one known dog/cat image with success logs.
 
-**Nathaniel** (Testing/QA) & **Zane** (Frontend/Production):
+**Nathaniel** (ing/QA) & **Zane** (Frontend/Production):
 
 Write initial test scripts (frontend component tests, simple backend tests).
 
@@ -678,3 +678,41 @@ Ensure logs and feedback mechanism are stable.
 • **Milestone:**
 
 Final documented accuracy metrics.
+
+# Update 2 - 2/4/25
+## Software Architecture
+**Major Software Components:**
+• React.js
+React is the framework for creating the actual UI (user interface) and frontend for the TailTell program. React efficiently manages the DOM (Document Object Mode) and contains lots of reusable elements that makes web development much easier.
+• TailwindCSS
+TailwindCSS a framework for CSS that helps streamline the styling and formatting of web pages. Essentially, it makes styling rather than manually having to create all of the CSS files. Our program uses the features from TailwindCSS with our development in React.
+• Vite
+Vite is being used to aid with developing and building the app from the ground up, and helps create test builds quickly for our prototypes. It can also be used in order to run the program natively on local machines such as laptops (rather than using the web application).
+• Vercel
+Vercel is being used to actually host and deploy our web app to the internet so that users can access TellTail online by going to the URL https://tail-tell.vercel.app/. 
+• PyTorch
+PyTorch is the framework that we are using to develop and train our model. 
+• MaterialUI
+Material UI is used in our project in order to create pre-built, highly customizable React components that we can re-use throughout our app.
+
+**Interfaces between components:**
+In programming with React files (.jsx or .tsx), Tailwind components are used for styling the web page in line:
+ex. <div className="max-w-6xl mx-auto px-4 py-8 h-screen"> (the className and subsequent styling are from Tailwind and are utilized during React)
+ONNX for the AI <-> frontend comms?
+etc.
+
+**Describe in detail what data your system stores, and how. If it uses a database, give the high level database schema. If not, describe how you are storing the data and its organization:**
+Our program does not store any data? (outside of the AI model itself if this counts as data, which is a built-in/native feature in the app)
+
+**If there are particular assumptions underpinning your chosen architecture, identify and describe them:**
+The app works on the basis that the AI model correctly and efficiently communicates back and forth with the frontend. If communication breaks down in any manner (i.e. either the frontend or AI model stops working, communication is slow, etc.), then the core functionality of the program (determining animal breed with the AI model) will break down.
+
+
+## Software Design
+
+
+## Coding Guideline
+
+
+## (Updated) Process Description
+
