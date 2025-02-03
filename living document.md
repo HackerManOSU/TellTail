@@ -682,24 +682,24 @@ Final documented accuracy metrics.
 # Update 2 - 2/4/25
 ## Software Architecture
 **Major Software Components:**
-• React.js
+- React.js
 React is the framework for creating the actual UI (user interface) and frontend for the TailTell program. React efficiently manages the DOM (Document Object Mode) and contains lots of reusable elements that makes web development much easier.
-• TailwindCSS
+- TailwindCSS
 TailwindCSS a framework for CSS that helps streamline the styling and formatting of web pages. Essentially, it makes styling rather than manually having to create all of the CSS files. Our program uses the features from TailwindCSS with our development in React.
-• Vite
+- Vite
 Vite is being used to aid with developing and building the app from the ground up, and helps create test builds quickly for our prototypes. It can also be used in order to run the program natively on local machines such as laptops (rather than using the web application).
-• Vercel
+- Vercel
 Vercel is being used to actually host and deploy our web app to the internet so that users can access TellTail online by going to the URL https://tail-tell.vercel.app/. 
-• PyTorch
+- PyTorch
 PyTorch is the framework that we are using to develop and train our model. 
-• MaterialUI
+- MaterialUI
 Material UI is used in our project in order to create pre-built, highly customizable React components that we can re-use throughout our app.
 
 **Interfaces between components:**
 In programming with React files (.jsx or .tsx), Tailwind components are used for styling the web page in line:
-ex. <div className="max-w-6xl mx-auto px-4 py-8 h-screen"> (the className and subsequent styling are from Tailwind and are utilized during React)
-ONNX for the AI <-> frontend comms?
-etc.
+ - ex. { <div className="max-w-6xl mx-auto px-4 py-8 h-screen"> } (the className and subsequent styling are from Tailwind and are utilized during React)
+ - ONNX for the AI <-> frontend comms?
+ - etc.
 
 **Describe in detail what data your system stores, and how. If it uses a database, give the high level database schema. If not, describe how you are storing the data and its organization:**
 Our program does not store any data? (outside of the AI model itself if this counts as data, which is a built-in/native feature in the app)
