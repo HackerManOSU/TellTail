@@ -711,7 +711,16 @@ The app works on the basis that the AI model correctly and efficiently communica
 
 **Component #1: Input**
 
-This component itself is likely to consist of many other smaller components, most notably, some sort of drop field component/package that allows the user to enter their image. This component will also incoperate a preprocessing unit/module that will be neceesary get more information on the image and prepare it to be sent to the AI model. A portion of this component also boils down to the implementation, which we are planning on working out later down the road (and won't be covered here because it is beyond the scope of the general software architecture).
+This component itself consists of many other smaller components, most notably, the drop field component/package that allows the user to enter their image. This component also incorporates a preprocessing unit/module that will be neceesary get more information on the image and prepare it to be sent to the AI model. A portion of this component also boils down to the implementation, which we are planning on working out later down the road (and won't be covered here because it is beyond the scope of the general software architecture).
+
+* Drop Field Interface: Implemented using react-dropzone for handling file uploads with drag-and-drop functionality
+* Image Preprocessing Module:
+  * Resizes images to 299x299 pixels for model compatibility
+  * Normalizes pixel values to range [-1, 1]
+  * Converts images to tensor format
+  * Performs basic validation (file type, size, etc.)
+* Upload State Management: Uses React state hooks to track upload progress and status
+
 
 **Component #2: Pet Detection AI**
 
@@ -720,7 +729,7 @@ Our AI model will be built based on the PyTorch library (in Python), which will 
 Additionally, our AI is built as a multi-model architecture, meaning that the AI itself is broken down into a series of models.
 
 1. YOLO Model (pre-existing object detection AI model that narrows the image down to the specific animal, reducing noise
-2. Dog/Cat Identifier Model (AI model that determines whether the animal is a dog or cat)
+2. Dog/Cat Identifier Model (Binary classification AI model that determines whether the animal is a dog or cat)
 3. Breed Identifier Models (AI models that determine what breed the animal is, based on what animal was provided)
 
 These models act as a "pipeline" that the image is passed through, progressively classifying the image and passing down the image with the new information to the next model in order to ensure maximize accuracy. Each animal also has their own decicated AI model for the breed identifier. For example, if the AI determines that it is seeing a dog, then the image will be passed into the Dog Breed AI only (not the Cat Breed AI), and vice versa.
@@ -728,12 +737,31 @@ These models act as a "pipeline" that the image is passed through, progressively
 
 **Component #3: API**
 
-The API component handles both the retrieval and passing on of information from the API. For our API component, we will be using the Axios library/framework. Axios helps simplify down fetch requests to APIs to streamline the process of retrieving information, which streamlines the development process for our app and allows the app to run more efficiently. Based on whatever information it is passed from the AI (whether it is a dog/cat), it will call the correct corresponding API to retrieve information using Axios.
+The API component handles both the retrieval and passing on of information from the API. For our API component, we will be using the Axios library/framework. Axios helps simplify down fetch requests to APIs to streamline the process of retrieving information, which streamlines the development process for our app and allows the app to run more efficiently. Based on whatever information it is passed from the AI (whether it is a dog/cat), it will call the correct corresponding API ("The Dogs API" or "The Cats API", both from APINinjas) to retrieve information using Axios.
+
+* Request Handling:
+  * Configures endpoints for both cat and dog APIs
+  * Manages API keys securely using environment variables
+  * Implements rate limiting and error handling
+
+* Data Processing:
+  * Formats API responses into consistent structure
+  * Merges breed info with model predictions
 
 **Component #4: Output**
 
-The output follows the same logic as the input component, consisting of many smaller components/packages. As mentioned above, the output effectively acts as the gatherer of information from the AI and API components. This will likely contain some sort of parser or components/modules that are able to glean from the information that is being passed from the AI and the API. Like the input, a portion of this component also boils down to the implementation (so this won't really be covered because it isn't a part of the software architecture).
+The output follows the same logic as the input component, consisting of many smaller components/packages. As mentioned above, the output effectively acts as the gatherer of information from the AI and API components.
 
+* Data Aggregation:
+  * Combines AI model predictions with API breed information
+  * Formats health insights and breed characteristics
+  * Generates confidence metrics for display
+
+* UI Components:
+  * Profile generation module
+  * Results display with breed details
+  * Shareable link generation
+  * PDF export functionality
 
 ## Coding Guidelines
 
