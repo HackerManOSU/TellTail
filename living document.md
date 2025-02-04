@@ -681,47 +681,47 @@ Final documented accuracy metrics.
 
 # Update 2 - 2/4/25
 ## Software Architecture
-**Major Software Components:**
-- React.js
-  
-React is the framework for creating the actual UI (user interface) and frontend for the TailTell program. React efficiently manages the DOM (Document Object Mode) and contains lots of reusable elements that makes web development much easier.
+**Identify and describe the major software components and their functionality at a conceptual level.**
 
-- TailwindCSS
-  
-TailwindCSS a framework for CSS that helps streamline the styling and formatting of web pages. Essentially, it makes styling rather than manually having to create all of the CSS files. Our program uses the features from TailwindCSS with our development in React.
+Our software will follow a "Event Driven"-esque architecture. The major components are as follows:
+- An input where the user will initially need to provide some sort of input in the form of an image
+- The Pet Detection AI model which analyses the image to determine the dog/cat breed
+- Dog/Cat API request (if the user has internet) that gets more information on the pet, including pet background details and health insights
+- Output to the user that informs them of the results from the Pet Detector AI
 
-- Vite
+**Specify the interfaces between components.**
 
-Vite is being used to aid with developing and building the app from the ground up, and helps create test builds quickly for our prototypes. It can also be used in order to run the program natively on local machines such as laptops (rather than using the web application).
+- After the user provides an image, the system will grab the users image and pre-process it before it will be handed down to the pet detection AI model.
+- The AI model will communicate to the system its results in order for the system to determine which API to fetch from. The system will format then correct request to fetch from whichever API based on what is most appropriate for the animal determined.
+- The output will pull from _all_ of the data produced from the AI model and the API retrieval previously in order to generate its response to the user.
 
-- Vercel
-  
-Vercel is being used to actually host and deploy our web app to the internet so that users can access TellTail online by going to the URL https://tail-tell.vercel.app/.
+**Describe in detail what data your system stores, and how. If it uses a database, give the high level database schema. If not, describe how you are storing the data and its organization:**
 
+Our system will store a dataset of 100,000+ images locally/natively within the AI itself. This data is used to train the AI itself, but also needs to be stored locally within the AI itself (in other words, it pulls from the images it stores in itself rather than images from the internet when creating a build).
+
+**If there are particular assumptions underpinning your chosen architecture, identify and describe them:**
+
+The app works on the basis that the AI model correctly and efficiently communicates back and forth with the frontend (user interface). If the user is somehow unable to provide a photo to be examined by the AI model, then there is the app won't be able to work, since the "event" of the image being scanned by the AI cannot be triggered. Additionally, if communication breaks down in any manner (i.e. either the frontend or AI model stops working, communication is slow, etc.), then the core functionality of the program (determining animal breed with the AI model) will break down.
+
+
+## Software Design
+
+**Component #1: Input**
+
+This component itself is likely to consist of many other smaller components, most notably, some sort of drop field component/package that allows the user to enter their image. This component will also incoperate a preprocessing unit/module that will be neceesary get more information on the image and prepare it to be sent to the AI model. A portion of this component also boils down to the implementation, which we are planning on working out later down the road (and won't be covered here because it is beyond the scope of the general software architecture).
+
+**Component #2: Pet Detection AI Model**
 - PyTorch
   
 PyTorch is the framework that we are using to develop and train our model. 
 
-- MaterialUI
-  
-Material UI is used in our project in order to create pre-built, highly customizable React components that we can re-use throughout our app.
-
-**Interfaces between components:**
-In programming with React files (.jsx or .tsx), Tailwind components are used for styling the web page in line:
- - ex. <div className="max-w-6xl mx-auto px-4 py-8 h-screen"> (the className and subsequent styling are from Tailwind and are utilized during React)
- - ONNX for the AI <-> frontend comms?
- - etc.
-
-**Describe in detail what data your system stores, and how. If it uses a database, give the high level database schema. If not, describe how you are storing the data and its organization:**
-
-Our program does not store any data? (outside of the AI model itself if this counts as data, which is a built-in/native feature in the app)
-
-**If there are particular assumptions underpinning your chosen architecture, identify and describe them:**
-
-The app works on the basis that the AI model correctly and efficiently communicates back and forth with the frontend. If communication breaks down in any manner (i.e. either the frontend or AI model stops working, communication is slow, etc.), then the core functionality of the program (determining animal breed with the AI model) will break down.
+**Component #3: API**
 
 
-## Software Design
+
+**Component #4: Output**
+
+The output follows the same logic as the input component, consisting of many smaller components/packages. As mentioned above, the output effectively acts as the gather of information from the AI and API components
 
 
 ## Coding Guidelines
@@ -732,11 +732,9 @@ The app works on the basis that the AI model correctly and efficiently communica
 **TypeScript**: TypeScript Documentation (https://www.typescriptlang.org/docs/handbook/intro.html)
 - We are choosing to use these guidelines because they come from the official website of TypeScript that was created by Microsoft (the original developers of TypeScript). We plan to use the same enforcement of guidelines policy as we are React, where we should be expected to be refering back to these standards as we are implementing and developing in TypeScript, as well as examining our code weekly in order to ensure it meets the guidelines.
 
-**PyTorch**: PEP8 (https://peps.python.org/pep-0008/)
+**PyTorch (Python)**: PEP8 (https://peps.python.org/pep-0008/)
 - We are choosing to use PEP8 as our guidelines for development in PyTorch. PyTorch already utilizes a software called Flake8, which enforces the PEP8 coding style when programming in PyTorch anyways. PEP8 is already the official style guide for Python, and given the fact that PyTorch already enforces this through Flake8, it follows that we will use the PEP8 style. All of the code created for this project pass through and first be checked by Flake8, ensuring that it adheres to PEP8's standards and conventions.
 
-
-- 
 
 ## (Updated) Process Description
 
