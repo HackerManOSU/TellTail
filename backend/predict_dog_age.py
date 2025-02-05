@@ -5,6 +5,7 @@ from PIL import Image
 # Define paths and device
 MODEL_PATH = "pth_files/dog_age_model.pth"
 MAX_AGE = 192  # The maximum age in months (16 years)
+
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # Load the model
