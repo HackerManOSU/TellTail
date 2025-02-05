@@ -681,8 +681,8 @@ Final documented accuracy metrics.
 ## Software Architecture
 **Identify and describe the major software components and their functionality at a conceptual level.**
 
-Our software will follow a "Event Driven"-esque architecture. The major components are as follows:
-- An input where the user will initially need to provide some sort of input in the form of an image
+Our software will follow an "Event Driven"-esque architecture. The major components are as follows:
+- An input where the user will initially need to provide some input in the form of an image
 - The Pet Detection AI model which analyses the image to determine the dog/cat breed
 - Dog/Cat API request (if the user has internet) that gets more information on the pet, including pet background details and health insights
 - Output to the user that informs them of the results from the Pet Detector AI
@@ -697,7 +697,7 @@ Our software will follow a "Event Driven"-esque architecture. The major componen
 * Interface Mechanism: Method invocation or message passing with asynchronous handling.
 * Data Format: The AI model expects the preprocessed image as an input tensor.
 
-3. AI Model to API Request: The model identifies whether the image contains a dog or cat and triggers the appropriate API request (if internet is available).
+3. AI Model to API Request: The model identifies whether the image contains a dog or cat and triggers the appropriate API request (if an internet connection is available).
 * Interface Mechanism: Internal message bus or direct API call.
 * Data Exchange: The model provides a JSON object containing the detected breed.
 
@@ -709,13 +709,13 @@ Our software will follow a "Event Driven"-esque architecture. The major componen
 * Interface Mechanism: Rendering engine within the application UI.
 * Data Format: Displayed as formatted text, images, or interactive elements.
 
-**Describe in detail what data your system stores, and how. If it uses a database, give the high level database schema. If not, describe how you are storing the data and its organization:**
+**Describe in detail what data your system stores, and how. If it uses a database, give the high-level database schema. If not, describe how you are storing the data and its organization:**
 
 Our system will store a dataset of 100,000+ images locally/natively within the AI model itself. This dataset is used both for training and for making inferences. The system does not rely on a traditional database for the image data but instead uses a file-based structure that organizes images by category and metadata for efficient access.
 
 **If there are particular assumptions underpinning your chosen architecture, identify and describe them:**
 
-The app works on the basis that the AI model correctly and efficiently communicates back and forth with the frontend (user interface). If the user is somehow unable to provide a photo to be examined by the AI model, then there is the app won't be able to work, since the "event" of the image being scanned by the AI cannot be triggered. Additionally, if communication breaks down in any manner (i.e. either the frontend or AI model stops working, communication is slow, etc.), then the core functionality of the program (determining animal breed with the AI model) will break down.
+The app works on the basis that the AI model correctly and efficiently communicates back and forth with the front end (user interface). If the user is somehow unable to provide a photo to be examined by the AI model, then there is the app won't be able to work, since the "event" of the image being scanned by the AI cannot be triggered. Additionally, if communication breaks down in any manner (i.e. either the frontend or AI model stops working, communication is slow, etc.), then the core functionality of the program (determining animal breed with the AI model) will break down.
 
 In summary:
 - The AI model can efficiently and accurately communicate back and forth with the frotnend.
@@ -728,7 +728,7 @@ In summary:
 1) Layered Architecture
 - In this architecture, our project would have layers such as a presentation layer (handling user input/output), a  logic layer (managing interactions with the AI model), and a data layer (interfacing with any local or API-based data storage).
 - Pros: Makes it easier to maintain and test individual layers, such as updating the API component without affecting the core AI model.
-- Cons: Potential performance overhead due to communication between layers, which could slow down processing of images and result generation.
+- Cons: Potential performance overhead due to communication between layers, which could slow down the processing of images and result generation.
 
 2) Microservices Architecture
 - This architecture would break down the project into independent services, such as a dedicated image processing service, a pet breed/age detection service, and a separate API fetching service.
@@ -741,12 +741,12 @@ Preferably, we would like to go with the layered architecture approach. This all
 
 **Component #1: Input**
 
-This component itself consists of many other smaller components, most notably, the drop field component/package that allows the user to enter their image. This component also incorporates a preprocessing unit/module that will be neceesary get more information on the image and prepare it to be sent to the AI model. A portion of this component also boils down to the implementation, which we are planning on working out later down the road (and won't be covered here because it is beyond the scope of the general software architecture).
+This component itself consists of many other smaller components, most notably, the drop field component/package that allows the user to enter their image. This component also incorporates a preprocessing unit/module that will be necessary to get more information on the image and prepare it to be sent to the AI model. A portion of this component also boils down to the implementation, which we are planning on working out later down the road (and won't be covered here because it is beyond the scope of the general software architecture).
 
 * Drop Field Interface: Implemented using react-dropzone for handling file uploads with drag-and-drop functionality
 * Image Preprocessing Module:
   * Resizes images to 299x299 pixels for model compatibility
-  * Normalizes pixel values to range [-1, 1]
+  * Normalizes pixel values to the range [-1, 1]
   * Converts images to tensor format
   * Performs basic validation (file type, size, etc.)
 * Upload State Management: Uses React state hooks to track upload progress and status
@@ -773,7 +773,7 @@ The API component handles both the retrieval and passing on of information from 
   * Implements rate limiting and error handling
 
 * Data Processing:
-  * Formats API responses into consistent structure
+  * Formats API responses into a consistent structure
   * Merges breed info with model predictions
 
 **Component #4: Output**
@@ -794,10 +794,10 @@ The output follows the same logic as the input component, consisting of many sma
 ## Coding Guidelines
 
 **React (JSX/TSX)**: Rules of React (https://react.dev/reference/rules)
-- We are choosing to use this guideline for React because it is the official rules from React itself that mandates certain conventions. React specifies that components and "hooks" (a special type of resuable UI logic in React) must be "pure" (consistent and predictable in what they return, and immutable outside of their original context). React specifies that components and hooks should be called only within the JSX context, not calling their functions directly. React hooks should also only be called from React functions (not regular JS functions) and used at the top level of any React function. These guidelines should _always be implemented while developing in React_, but we will still to examine our code weekly in order to check these guidelines are being followed in React and fix any violations of these guidelines as needed. We will do weekly code reviews to ensure that it follows the guidelines.
+- We are choosing to use this guideline for React because it is the official rules from React itself that mandate certain conventions. React specifies that components and "hooks" (a special type of reusable UI logic in React) must be "pure" (consistent and predictable in what they return, and immutable outside of their original context). React specifies that components and hooks should be called only within the JSX context, not calling their functions directly. React hooks should also only be called from React functions (not regular JS functions) and used at the top level of any React function. These guidelines should _always be implemented while developing in React_, but we will still to examine our code weekly in order to check these guidelines are being followed in React and fix any violations of these guidelines as needed. We will do weekly code reviews to ensure that it follows the guidelines.
 
 **TypeScript**: TypeScript Documentation (https://www.typescriptlang.org/docs/handbook/intro.html)
-- We are choosing to use these guidelines because they come from the official website of TypeScript that was created by Microsoft (the original developers of TypeScript). Guidelines include: strict adherence to TypeScript’s static typing system, avoiding the any type where possible, and proper use of type guards and type inference. We plan to use the same enforcement of guidelines policy as we are React, where we should be expected to be refering back to these standards as we are implementing and developing in TypeScript, as well as examining our code weekly in order to ensure it meets the guidelines.
+- We are choosing to use these guidelines because they come from the official website of TypeScript which was created by Microsoft (the original developers of TypeScript). Guidelines include: strict adherence to TypeScript’s static typing system, avoiding the any type where possible, and proper use of type guards and type inference. We plan to use the same enforcement of guidelines policy as we are React, where we should be expected to be refering back to these standards as we are implementing and developing in TypeScript, as well as examining our code weekly in order to ensure it meets the guidelines.
 
 **PyTorch (Python)**: PEP8 (https://peps.python.org/pep-0008/)
 - We are choosing to use PEP8 as our guidelines for development in PyTorch. PyTorch already utilizes a software called Flake8, which enforces the PEP8 coding style when programming in PyTorch anyways. PEP8 is already the official style guide for Python, and given the fact that PyTorch already enforces this through Flake8, it follows that we will use the PEP8 style. All of the code created for this project pass through and first be checked by Flake8, ensuring that it adheres to PEP8's standards and conventions.
