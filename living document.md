@@ -804,4 +804,57 @@ The output follows the same logic as the input component, consisting of many sma
 
 ## (Updated) Process Description
 
-<mark>FINISH LATER</mark>
+## Process Description
+
+### i. Risk Assessment
+| **Risk**                          | **Likelihood** | **Impact** | **Evidence**                                                                 | **Mitigation Steps**                                                                                               | **Detection Plan**                                                                                                  | **Mitigation Plan**                                                                                                 |
+|-----------------------------------|----------------|------------|--------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| **API Rate Limits**               | Medium         | High       | The APIs we use have documented rate limits, which may be triggered during heavy usage.          | Implement request throttling and cache responses to minimize excessive API calls.                                 | Monitor API response codes (e.g., HTTP 429 Too Many Requests) using logs and automated alerts.                      | Switch to backup APIs or locally cache breed-related data for commonly requested breeds if the API fails.            |
+| **Model Inaccuracy**              | Medium         | High       | Preliminary tests show model accuracy varies based on image quality and breed diversity.          | Continuously retrain and validate the model on diverse datasets, improve preprocessing (e.g., image augmentation). | Monitor prediction confidence metrics during inference and flag low-confidence predictions.                         | Allow fallback prompts for user confirmation of ambiguous results or request additional user-provided images.       |
+| **Insufficient Test Coverage**    | Medium         | Medium     | Previous projects have shown gaps in unit and system testing during development phases.           | Enforce unit test development alongside code implementation, aim for at least 85% code coverage.                   | Use automated test coverage tools (e.g., Pytest coverage) and conduct regular code reviews focused on test cases.   | Address uncovered code areas before moving to integration testing or deployment.                                    |
+| **File Upload/Processing Errors** | Low            | Medium     | User-uploaded files may be of unsupported types or fail during preprocessing.                     | Validate files (type, size, resolution) before processing and provide clear error messages to users.                | Track upload events and errors using frontend logging and server-side monitoring.                                   | Provide retry mechanisms for failed uploads and suggest corrections to the user.                                    |
+| **Team Availability Issues**      | Low            | High       | Conflicts in team member availability have delayed previous projects during critical phases.      | Schedule regular progress meetings and assign backup members for critical tasks.                                   | Maintain an updated schedule in project management tools (e.g., Trello) and monitor task progress weekly.           | Reallocate tasks or adjust deadlines based on team availability or workload.                                        |
+
+### ii. Project Schedule
+| **Milestone**                      | **Task**                                       | **Effort Estimate** | **Dependencies**                 |
+|-----------------------------------|------------------------------------------------|---------------------|----------------------------------|
+| Requirements Phase                | Finalize requirements with stakeholders        | 1 week              | N/A                              |
+| Design Phase                      | Define architecture and software components    | 2 weeks             | Requirements complete            |
+| Development: Input Component      | Implement image upload and preprocessing       | 1 week              | Design complete                  |
+| Development: AI Component         | Implement multi-model pipeline and training    | 3 weeks             | Input component implementation   |
+| Development: API Component        | Implement API fetch logic with Axios           | 1 week              | AI component implementation      |
+| Integration Testing               | Test interaction between all components        | 2 weeks             | All components developed         |
+| Usability Testing                 | Conduct end-user tests for feedback            | 1 week              | Integration testing complete     |
+| Deployment                        | Deploy system and monitor performance          | 1 week              | Testing complete                 |
+
+### iii. Team Structure
+| **Team Member**      | **Role**                | **Responsibilities**                                                                 |
+|---------------------|-------------------------|--------------------------------------------------------------------------------------|
+| Project Manager     | Oversees project        | Scheduling tasks, monitoring progress, and resolving roadblocks.                     |
+| Frontend Developer  | Implements UI           | Handles image uploads, user interface design, and output display.                    |
+| Backend Developer   | Implements logic        | Implements AI models, API integration, and data processing logic.                    |
+| Tester              | Ensures test coverage   | Develops and runs unit tests, system tests, and tracks issues in GitHub.             |
+| Documentation Lead  | Manages documentation   | Prepares user manuals, developer guides, and internal documentation.                 |
+
+### iv. Test Plan & Bugs
+**Aspects to Test:**
+- **Input Validation:** Test image upload, preprocessing, and validation mechanisms (e.g., supported file types, resolution checks).
+- **AI Model Accuracy:** Test model predictions across a diverse set of breeds.
+- **API Response Handling:** Test API request/response consistency and error-handling mechanisms.
+
+**Strategies:**
+- **Unit Testing:** Verify individual components using Python unit tests and React component tests.
+- **System (Integration) Testing:** Ensure that all components work together as expected by testing end-to-end use cases.
+- **Usability Testing:** Gather feedback from users on system ease of use and interface design.
+
+**Bug Tracking:**  
+We will use **GitHub Issues** to document, prioritize, and address any bugs discovered during development and testing.
+
+### v. Documentation Plan
+**Planned Documentation:**
+- **User Guide:** Describes how users can upload images, understand results, and troubleshoot common issues.
+- **Developer Guide:** Explains system architecture, key components, and setup instructions.
+- **API Documentation:** Provides details on API endpoints, request/response formats, and rate limits.
+- **Test Reports:** Documents test results and coverage.
+- **Wiki:** Collaborative internal resource for team updates and technical discussions.
+
