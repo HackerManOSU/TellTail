@@ -727,7 +727,17 @@ In summary:
 
 **For each of two decisions pertaining to your software architecture, identify and briefly describe an alternative. For each of the two alternatives, discuss its pros and cons compared to your choice.**
 
-<TO BE UPDATED>
+1) Layered Architecture
+- In this architecture, our project would have layers such as a presentation layer (handling user input/output), a  logic layer (managing interactions with the AI model), and a data layer (interfacing with any local or API-based data storage).
+- Pros: Makes it easier to maintain and test individual layers, such as updating the API component without affecting the core AI model.
+- Cons: Potential performance overhead due to communication between layers, which could slow down processing of images and result generation.
+
+2) Microservices Architecture
+- This architecture would break down the project into independent services, such as a dedicated image processing service, a pet breed/age detection service, and a separate API fetching service.
+- Pros: Greater scalability and flexibility, with independent services that could be updated or scaled without affecting the entire system. For example, the API fetch service could be scaled separately if external data requests increased.
+- Cons: Higher complexity in deployment and communication management, as each service would require communication protocols, and monitoring.
+
+Preferably, we would like to go with the layered architecture approach. This allows asynchronous data flow between components, which is critical when handling tasks like image processing and API requests concurrently without delay.
 
 ## Software Design
 
