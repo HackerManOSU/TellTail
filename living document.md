@@ -689,23 +689,23 @@ Our software will follow a "Event Driven"-esque architecture. The major componen
 
 **Specify the interfaces between components.**
 
-- User Input to Preprocessing: When the user provides an image through the interface, the system invokes a preprocessing module to resize, normalize, and format the image before sending it to the AI model.
+1. User Input to Preprocessing: When the user provides an image through the interface, the system invokes a preprocessing module to resize, normalize, and format the image before sending it to the AI model.
 * Interface Mechanism: Direct method call within the local system or event-driven messaging to signal completion.
 * Data Format: The image is converted into a tensor or another suitable format required by the AI model. 
 
-- Preprocessing to AI Model: After preprocessing, the image is fed into the Pet Detection AI model for analysis.
+2. Preprocessing to AI Model: After preprocessing, the image is fed into the Pet Detection AI model for analysis.
 * Interface Mechanism: Method invocation or message passing with asynchronous handling.
 * Data Format: The AI model expects the preprocessed image as an input tensor.
 
-- AI Model to API Request: The model identifies whether the image contains a dog or cat and triggers the appropriate API request (if internet is available).
+3. AI Model to API Request: The model identifies whether the image contains a dog or cat and triggers the appropriate API request (if internet is available).
 * Interface Mechanism: Internal message bus or direct API call.
 * Data Exchange: The model provides a JSON object containing the detected breed.
 
-- API Response to Output Component: The API fetches additional data, including breed background details and returns it to the system.
+4. API Response to Output Component: The API fetches additional data, including breed background details and returns it to the system.
 * Interface Mechanism: RESTful API with JSON responses.
 * Data Handling: The response is parsed and is ready for final output generation.
 
-- Output to User: The system generates a user-friendly output that includes the detected breed and supplementary details.
+5. Output to User: The system generates a user-friendly output that includes the detected breed and supplementary details.
 * Interface Mechanism: Rendering engine within the application UI.
 * Data Format: Displayed as formatted text, images, or interactive elements.
 
