@@ -691,21 +691,43 @@ Our software will follow a "Event Driven"-esque architecture. The major componen
 
 **Specify the interfaces between components.**
 
-- After the user provides an image, the system will grab the users image and pre-process it before it will be handed down to the pet detection AI model.
-- The AI model will communicate to the system its results in order for the system to determine which API to fetch from. The system will format then correct request to fetch from whichever API based on what is most appropriate for the animal determined.
-- The output will pull from _all_ of the data produced from the AI model and the API retrieval previously in order to generate its response to the user.
+- User Input to Preprocessing: When the user provides an image through the interface, the system invokes a preprocessing module to resize, normalize, and format the image before sending it to the AI model.
+* Interface Mechanism: Direct method call within the local system or event-driven messaging to signal completion.
+* Data Format: The image is converted into a tensor or another suitable format required by the AI model. 
+
+- Preprocessing to AI Model: After preprocessing, the image is fed into the Pet Detection AI model for analysis.
+* Interface Mechanism: Method invocation or message passing with asynchronous handling.
+* Data Format: The AI model expects the preprocessed image as an input tensor.
+
+- AI Model to API Request: The model identifies whether the image contains a dog or cat and triggers the appropriate API request (if internet is available).
+* Interface Mechanism: Internal message bus or direct API call.
+* Data Exchange: The model provides a JSON object containing the detected breed.
+
+- API Response to Output Component: The API fetches additional data, including breed background details and returns it to the system.
+* Interface Mechanism: RESTful API with JSON responses.
+* Data Handling: The response is parsed and is ready for final output generation.
+
+- Output to User: The system generates a user-friendly output that includes the detected breed and supplementary details.
+* Interface Mechanism: Rendering engine within the application UI.
+* Data Format: Displayed as formatted text, images, or interactive elements.
 
 **Describe in detail what data your system stores, and how. If it uses a database, give the high level database schema. If not, describe how you are storing the data and its organization:**
 
-Our system will store a dataset of 100,000+ images locally/natively within the AI itself. This data is used to train the AI itself, but also needs to be stored locally within the AI itself (in other words, it pulls from the images it stores in itself rather than images from the internet when creating a build).
+Our system will store a dataset of 100,000+ images locally/natively within the AI model itself. This dataset is used both for training and for making inferences. The system does not rely on a traditional database for the image data but instead uses a file-based structure that organizes images by category and metadata for efficient access.
 
 **If there are particular assumptions underpinning your chosen architecture, identify and describe them:**
 
 The app works on the basis that the AI model correctly and efficiently communicates back and forth with the frontend (user interface). If the user is somehow unable to provide a photo to be examined by the AI model, then there is the app won't be able to work, since the "event" of the image being scanned by the AI cannot be triggered. Additionally, if communication breaks down in any manner (i.e. either the frontend or AI model stops working, communication is slow, etc.), then the core functionality of the program (determining animal breed with the AI model) will break down.
 
+In summary:
+- The AI model can efficiently and accurately communicate back and forth with the frotnend.
+- The user will always provide valid input (i.e., an image that can be processed).
+- An internet connection is assumed to be available when fetching supplementary pet data via the API.
+- System performances assumes that communication between components is minimal
+
 **For each of two decisions pertaining to your software architecture, identify and briefly describe an alternative. For each of the two alternatives, discuss its pros and cons compared to your choice.**
 
-<mark>TO BE COMPLETED</mark>
+<TO BE UPDATED>
 
 ## Software Design
 
@@ -721,7 +743,6 @@ This component itself consists of many other smaller components, most notably, t
   * Performs basic validation (file type, size, etc.)
 * Upload State Management: Uses React state hooks to track upload progress and status
 
-
 **Component #2: Pet Detection AI**
 
 Our AI model will be built based on the PyTorch library (in Python), which will be used for developing and training our AI. The PyTorch library provides a plethora of tools and built-in modules within itself that will be extremely useful for creating accurate models.
@@ -733,7 +754,6 @@ Additionally, our AI is built as a multi-model architecture, meaning that the AI
 3. Breed Identifier Models (AI models that determine what breed the animal is, based on what animal was provided)
 
 These models act as a "pipeline" that the image is passed through, progressively classifying the image and passing down the image with the new information to the next model in order to ensure maximize accuracy. Each animal also has their own decicated AI model for the breed identifier. For example, if the AI determines that it is seeing a dog, then the image will be passed into the Dog Breed AI only (not the Cat Breed AI), and vice versa.
-
 
 **Component #3: API**
 
