@@ -16,19 +16,25 @@ https://trello.com/b/bruFHEAQ/cs-362-group-15-project-board
 
 ### Backend
 - [x] **Python**
-- [x] **Currently based on PyTorch**
-- [ ] A tensorflow implementation is in consideration
-- [] **... and more**
+- [x] PyTorch
+- [x] Cats API
 
+### Model Backbones
+- [x] **ResNet50**
+- [x] **EfficientNetV2**
 
 ### Tools and Libraries
 - [x] **ESLint**
 - [x] **MaterialUI**
 - [x] **Axios**:
 - [x] **dotenv**
+- [x] ONNX Runtime
 
 ### Diagram of TellTail
 https://drive.google.com/file/d/1aQUYL65NAHzgO3qLxj3eLWHvnx3il3UL/view?usp=sharing
+
+### Group Google Doc 
+https://docs.google.com/document/d/1I5ed4LH9b9D_w5H8N8RbtgJrdjqqeIZ3JoOhrqkK7HI/edit?usp=sharing
 
 ## Installation
 1. Clone this repository:
@@ -49,4 +55,15 @@ https://drive.google.com/file/d/1aQUYL65NAHzgO3qLxj3eLWHvnx3il3UL/view?usp=shari
    ```bash
    npm run dev
 
-## Components
+## Project Structure
+
+```
+$PROJECT_ROOT
+│   # Static files for AI models and WASM files
+├── Public
+│   # Main frontend scripts files
+├── src
+│   # Components
+└── public 
+
+
