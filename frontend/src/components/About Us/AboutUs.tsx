@@ -1,3 +1,7 @@
+import './AboutUs.css'
+import nathanielImg from './nathaniel.jpg';
+import portraitImg from './portrait.jpg';
+
 const AboutUs = () => {
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
@@ -18,15 +22,45 @@ const AboutUs = () => {
         We are a group of students at Oregon State University with diverse backgrounds,
         all working together to achieve a common goal.
       </p>
-      <ul className="text-lg text-gray-700 mb-4">
-        <li>Sam Neale</li>
-        <li>Raed Kabir</li>
-        <li>Christian DeVore</li>
-        <li>Nathaniel White</li>
-        <li>Stephen Tsui</li>
-        <li>Troy Diaz</li>
-        <li>Zane Garvey</li>
-      </ul>
+
+      <div className="flex-container">
+        <div className="img-container">
+          <img src={nathanielImg} alt="Nathaniel White"/>
+          <p>Nathaniel White</p>
+        </div>
+
+        <div className="img-container">
+          <img src={portraitImg} alt="Placeholder Name"/>
+          <p>Sam Neale</p>
+        </div>
+
+        <div className="img-container">
+          <img src={portraitImg} alt="Placeholder Name"/>
+          <p>Raed Kabir</p>
+        </div>
+
+        <div className="img-container">
+          <img src={portraitImg} alt="Placeholder Name"/>
+          <p>Christian DeVore</p>
+        </div>
+
+        <div className="img-container">
+          <img src={portraitImg} alt="Placeholder Name"/>
+          <p>Stephen Tsui</p>
+        </div>
+
+        <div className="img-container">
+          <img src={portraitImg} alt="Placeholder Name"/>
+          <p>Troy Diaz</p>
+        </div>
+
+        <div className="img-container">
+          <img src={portraitImg} alt="Placeholder Name"/>
+          <p>Zane Garvey</p>
+        </div>
+      </div>
+
+
     </div>
   )
 }
