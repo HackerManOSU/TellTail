@@ -20,8 +20,10 @@ https://trello.com/b/bruFHEAQ/cs-362-group-15-project-board
 - [x] Cats API
 
 ### Model Backbones
-- [x] **ResNet50**
-- [x] **EfficientNetV2**
+- [x] **ResNet50** 
+- [x] **EfficientNetV2** 
+
+- We are currently using two different backbones; however, we are trying to transition torwards EfficientNetV2
 
 ### Tools and Libraries
 - [x] **ESLint**
@@ -34,7 +36,8 @@ https://trello.com/b/bruFHEAQ/cs-362-group-15-project-board
 https://drive.google.com/file/d/1aQUYL65NAHzgO3qLxj3eLWHvnx3il3UL/view?usp=sharing
 
 ### Group Google Doc 
-https://docs.google.com/document/d/1I5ed4LH9b9D_w5H8N8RbtgJrdjqqeIZ3JoOhrqkK7HI/edit?usp=sharing
+https://docs.google.com/document/d/1I5ed4LH9b9D_w5H8N8RbtgJrdjqqeIZ3JoOhrqkK7HI/edit?usp=sharing 
+
 
 ## Installation
 1. Clone this repository:
@@ -46,10 +49,7 @@ https://docs.google.com/document/d/1I5ed4LH9b9D_w5H8N8RbtgJrdjqqeIZ3JoOhrqkK7HI/
    cd tailtell/frontend
    npm install
    ```
-
       ```bash
-   cd tailtell/backend
-   { insert }
    ```
 3. Run the app (in the "/frontend/" folder):
    ```bash
@@ -59,11 +59,51 @@ https://docs.google.com/document/d/1I5ed4LH9b9D_w5H8N8RbtgJrdjqqeIZ3JoOhrqkK7HI/
 
 ```
 $PROJECT_ROOT
-│   # Static files for AI models and WASM files
-├── Public
-│   # Main frontend scripts files
-├── src
-│   # Components
-└── public 
+├── backend
+│   ├── pth_files
+│   ├── README.md
+│   ├── api.env
+│   ├── catApi.ts
+│   ├── convert to tensorflow.py
+│   ├── dogApi.ts
+│   ├── predict_cat_breed.py
+│   ├── predict_dog_age.py
+│   ├── predict_dog_breed.py
+│   ├── predict_dog_lifestage.py
+│   ├── preliminary_server.py
+│   └── training_cat_breed.py
+│
+├── frontend
+│   ├── public
+│   │   ├── cat_breed_model.onnx
+│   │   ├── dog_age_model.onnx
+│   │   ├── dog_breed_model.onnx
+│   │   ├── dog_lifestage_model.onnx
+│   │   ├── ort-wasm-simd-threaded.jsep.wasm
+│   │   └── ort-wasm-simd-threaded.wasm
+│   │
+│   ├── src
+│   │   ├── components
+│   │   │   ├── About Us
+│   │   │   ├── Drop Field
+│   │   │   ├── Drop Page
+│   │   │   ├── Header
+│   │   │   ├── Home
+│   │   │   ├── Instructions
+│   │   │   └── Profiles
+│   │   │
+│   │   ├── App.css
+│   │   ├── App.tsx
+│   │   ├── index.css
+│   │   ├── main.tsx
+│   │   └── vite-env.d.ts
+│   │
+│   ├── README.md
+│   ├── eslint.config.js
+│   ├── index.html
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── postcss.config.js
+│   └── tailwind.config.js
 
 
