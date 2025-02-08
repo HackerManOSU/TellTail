@@ -1,91 +1,87 @@
-.descriptionLink
-{
-    color: #664C36;
-    text-decoration: underline;
+.descriptionLink {
+  color: #664C36;
+  text-decoration: underline;
 }
 
 .flex-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;  /* This centers all items in each row */
-    gap: 20px;
-    width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  /* This centers all items in each row */
+  gap: 20px;
+  width: 100%;
 }
 
 .img-container {
-    margin: 10px;
-    width: 300px;
-    /* No fixed height here so it can grow with the collapsible content */
+  margin: 10px;
+  width: 300px;
+  /* No fixed height here so it can grow with the collapsible content */
 }
 
 .img-wrapper {
-    width: 100%;
-    aspect-ratio: 3 / 4; /* Maintains a 300x400 ratio */
-    overflow: hidden;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  /* Maintains a 300x400 ratio */
+  overflow: hidden;
 }
 
 .img-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
-  
+
 /* Existing collapsible styles remain unchanged */
-button.collapsible 
-{
-    background-color: #eee;
-    color: #1b1b1b;
-    font-weight: 600;
-    cursor: pointer;
-    padding: 18px;
-    width: 100%;
-    border: none;
-    text-align: left;
-    outline: none;
-    font-size: 15px;
+button.collapsible {
+  background-color: #eee;
+  color: #1b1b1b;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
 }
 
 button.collapsible:after {
-    content: '\02795';
-    font-size: 13px;
-    color: black !important; /* Change this to your desired color */
-    float: right;
-    margin-left: 5px;
+  content: '\02795';
+  font-size: 13px;
+  color: black !important;
+  /* Change this to your desired color */
+  float: right;
+  margin-left: 5px;
 }
-  
+
 button.active:after {
-    content: "\2796";
-    color: black !important;  /* Make sure to set the color here too */
+  content: "\2796";
+  color: black !important;
+  /* Make sure to set the color here too */
 }
 
 .active,
-.collapsible:hover 
-{
-    background-color: #ccc;
+.collapsible:hover {
+  background-color: #ccc;
 }
 
-.description 
-{
-    max-height: 0;
-    transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
-    overflow: hidden;
-    background-color: #f1f1f1;
+.description {
+  max-height: 0;
+  transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
+  overflow: hidden;
+  background-color: #f1f1f1;
 }
 
-.description.open 
-{
-    max-height: 200px; /* Adjust based on your content */
-    padding: 10px;
+.description.open {
+  max-height: 200px;
+  /* Adjust based on your content */
+  padding: 10px;
 }
-
-
-  
-  

@@ -46,7 +46,7 @@ https://docs.google.com/document/d/1I5ed4LH9b9D_w5H8N8RbtgJrdjqqeIZ3JoOhrqkK7HI/
    ```
 2. Install dependencies:
    ```bash
-   cd tailtell/frontend
+   cd TellTail/frontend
    npm install
    ```
       ```bash

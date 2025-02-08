@@ -2,42 +2,43 @@ import './AboutUs.css'
 import Collapsible from './Collapsible';
 import nathanielImg from './nathaniel.jpg';
 import troyImg from './troy.jpg';
+import raedImg from './raed.jpg';
 import portraitImg from './portrait.jpg';
 
 const teamMembers = [
-  { 
+  {
     name: "Nathaniel White", img: nathanielImg,
     description: "Hello! I am a CS major from Southern California, and between cats and dogs, I will choose cats everytime.",
     link: "https://www.linkedin.com/in/nathaniel-white-1371a8278",
   },
-  { 
+  {
     name: "Sam Neale", img: portraitImg,
     description: "",
     link: "",
   },
-  { 
-    name: "Raed Kabir", img: portraitImg,
-    description: "", 
-    link: "",
+  {
+    name: "Raed Kabir", img: raedImg,
+    description: "Hello, I am a Computer Science & Math major from Santa Clara, California. I love both cats and dogs equally :)",
+    link: "https://www.linkedin.com/in/kabirrraed/",
   },
-  { 
+  {
     name: "Christian DeVore", img: portraitImg,
-    description: "", 
+    description: "",
     link: "",
   },
-  { 
+  {
     name: "Stephen Tsui", img: portraitImg,
-    description: "", 
+    description: "",
     link: "",
   },
-  { 
+  {
     name: "Troy Diaz", img: troyImg,
     description: "Hey everyone, I'm a computer science major from Kaua'i, Hawai'i. Dogs are better!", 
     link: "https://www.linkedin.com/in/troykvdiaz?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
   },
-  { 
+  {
     name: "Zane Garvey", img: portraitImg,
-    description: "", 
+    description: "",
     link: "",
   },
 ];

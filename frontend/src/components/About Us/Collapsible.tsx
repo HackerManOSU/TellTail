@@ -10,9 +10,9 @@ const Collapsible: React.FC<CollapsibleProps> = ({ name, children }) => {
 
   return (
     <div>
-      <button 
-        type="button" 
-        className={`collapsible ${isOpen ? "active" : ""}`} 
+      <button
+        type="button"
+        className={`collapsible ${isOpen ? "active" : ""}`}
         onClick={() => setIsOpen(!isOpen)}
       >
         {name}
