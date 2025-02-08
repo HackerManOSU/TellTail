@@ -1,6 +1,46 @@
 import './AboutUs.css'
+import Collapsible from './Collapsible';
 import nathanielImg from './nathaniel.jpg';
+import troyImg from './troy.jpg';
 import portraitImg from './portrait.jpg';
+
+const teamMembers = [
+  { 
+    name: "Nathaniel White", img: nathanielImg,
+    description: "Hello! I am a CS major from Southern California, and between cats and dogs, I will choose cats everytime.",
+    link: "https://www.linkedin.com/in/nathaniel-white-1371a8278",
+  },
+  { 
+    name: "Sam Neale", img: portraitImg,
+    description: "",
+    link: "",
+  },
+  { 
+    name: "Raed Kabir", img: portraitImg,
+    description: "", 
+    link: "",
+  },
+  { 
+    name: "Christian DeVore", img: portraitImg,
+    description: "", 
+    link: "",
+  },
+  { 
+    name: "Stephen Tsui", img: portraitImg,
+    description: "", 
+    link: "",
+  },
+  { 
+    name: "Troy Diaz", img: troyImg,
+    description: "", 
+    link: "",
+  },
+  { 
+    name: "Zane Garvey", img: portraitImg,
+    description: "", 
+    link: "",
+  },
+];
 
 const AboutUs = () => {
   return (
@@ -24,45 +64,20 @@ const AboutUs = () => {
       </p>
 
       <div className="flex-container">
-        <div className="img-container">
-          <img src={nathanielImg} alt="Nathaniel White"/>
-          <p>Nathaniel White</p>
-        </div>
-
-        <div className="img-container">
-          <img src={portraitImg} alt="Placeholder Name"/>
-          <p>Sam Neale</p>
-        </div>
-
-        <div className="img-container">
-          <img src={portraitImg} alt="Placeholder Name"/>
-          <p>Raed Kabir</p>
-        </div>
-
-        <div className="img-container">
-          <img src={portraitImg} alt="Placeholder Name"/>
-          <p>Christian DeVore</p>
-        </div>
-
-        <div className="img-container">
-          <img src={portraitImg} alt="Placeholder Name"/>
-          <p>Stephen Tsui</p>
-        </div>
-
-        <div className="img-container">
-          <img src={portraitImg} alt="Placeholder Name"/>
-          <p>Troy Diaz</p>
-        </div>
-
-        <div className="img-container">
-          <img src={portraitImg} alt="Placeholder Name"/>
-          <p>Zane Garvey</p>
-        </div>
+        {teamMembers.map((member, index) => (
+          <div key={index} className="img-container">
+            <div className="img-wrapper">
+              <img src={member.img} alt={member.name} />
+            </div>
+            <Collapsible name={member.name}>
+              <p>{member.description}</p>
+              <a href={member.link}>See more!</a>
+            </Collapsible>
+          </div>
+        ))}
       </div>
-
-
     </div>
-  )
-}
+  );
+};
 
-export default AboutUs
+export default AboutUs;
