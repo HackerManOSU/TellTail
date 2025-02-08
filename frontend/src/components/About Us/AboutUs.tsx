@@ -71,7 +71,7 @@ const AboutUs = () => {
             </div>
             <Collapsible name={member.name}>
               <p>{member.description}</p>
-              <a href={member.link}>See more!</a>
+              <a className="descriptionLink" href={member.link}>See more!</a>
             </Collapsible>
           </div>
         ))}
