@@ -32,8 +32,8 @@ const teamMembers = [
   },
   { 
     name: "Troy Diaz", img: troyImg,
-    description: "", 
-    link: "",
+    description: "Hey everyone, I'm a computer science major from Kaua'i, Hawai'i. Dogs are better!", 
+    link: "https://www.linkedin.com/in/troykvdiaz?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
   },
   { 
     name: "Zane Garvey", img: portraitImg,
