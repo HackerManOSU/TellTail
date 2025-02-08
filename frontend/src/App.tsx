@@ -10,7 +10,7 @@ import CatProfile from './components/Profiles/CatProfile'
 function App() {
   return (
     <BrowserRouter>
-      <div className='min-h-screen bg-[#fff]'>
+      <div className='min-h-screen bg-[#fff] pt-12'>
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
