@@ -15,15 +15,15 @@
 
 **Christian:**  General backend and frontend development, Machine learning
 
-**Justification:** Christian has interest in learning more about machine learning and AI models, and has the most prior experience working with languages that better suit the backend. Provides the flexibility to assist with any issues that arise throughout the project, to gain more experience. Also hopes to gain experience working with React and the frontend.
+**Justification:** Christian has interest in learning more about machine learning and AI models, and has the most prior experience working with languages that better suit the backend. Provides the flexibility to assist with any issues that arise throughout the project, to gain more experience. Also hopes to gain experience working with React and the front end.
 
 **Troy:** Data collection and model evaluation
 
-**Justification:** Troy has interest in ML and AI. High-quality data is the lifeblood of a successful ML model, and continuous evaluation ensures the model remains accurate over time.
+**Justification:** Troy has an interest in ML and AI. High-quality data is the lifeblood of a successful ML model, and continuous evaluation ensures the model remains accurate over time.
 
 **Stephen:** General backend development
 
-**Justification:** Having someone who can work all over and help whereever necessary on the backend is important as we may need someone helping on different tasks on different days.
+**Justification:** Having someone who can work all over and help wherever necessary on the backend is important as we may need someone helping on different tasks on different days.
 
 **Nathaniel:** Frontend, testing, QA
 
