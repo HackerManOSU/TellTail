@@ -49,8 +49,6 @@ https://docs.google.com/document/d/1I5ed4LH9b9D_w5H8N8RbtgJrdjqqeIZ3JoOhrqkK7HI/
    cd TellTail/frontend
    npm install
    ```
-      ```bash
-   ```
 3. Run the app (in the "/frontend/" folder):
    ```bash
    npm run dev
