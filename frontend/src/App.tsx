@@ -12,7 +12,7 @@ function App() {
     <BrowserRouter>
       <div className='min-h-screen bg-[#fff] pt-12'>
         <Header />
-        <main className="mt-16">
+        <main className="mt-[3vh]">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/upload" element={<DropPage />} />
