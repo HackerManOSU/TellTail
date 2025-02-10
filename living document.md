@@ -15,15 +15,15 @@
 
 **Christian:**  General backend and frontend development, Machine learning
 
-**Justification:** Christian has interest in learning more about machine learning and AI models, and has the most prior experience working with languages that better suit the backend. Provides the flexibility to assist with any issues that arise throughout the project, to gain more experience. Also hopes to gain experience working with React and the frontend.
+**Justification:** Christian has interest in learning more about machine learning and AI models, and has the most prior experience working with languages that better suit the backend. Provides the flexibility to assist with any issues that arise throughout the project, to gain more experience. Also hopes to gain experience working with React and the front end.
 
 **Troy:** Data collection and model evaluation
 
-**Justification:** Troy has interest in ML and AI. High-quality data is the lifeblood of a successful ML model, and continuous evaluation ensures the model remains accurate over time.
+**Justification:** Troy has an interest in ML and AI. High-quality data is the lifeblood of a successful ML model, and continuous evaluation ensures the model remains accurate over time.
 
 **Stephen:** General backend development
 
-**Justification:** Having someone who can work all over and help whereever necessary on the backend is important as we may need someone helping on different tasks on different days.
+**Justification:** Having someone who can work all over and help wherever necessary on the backend is important as we may need someone helping on different tasks on different days.
 
 **Nathaniel:** Frontend, testing, QA
 
@@ -345,8 +345,6 @@ The system returns its analysis and informes the user that their cat may current
 **Extensions/variations**
 
 The system can be given additional details should they choose to generate a shareable "adoption profile" for their dog or cat.
-
-
 
 **Exceptions**
 
@@ -683,44 +681,75 @@ Final documented accuracy metrics.
 ## Software Architecture
 **Identify and describe the major software components and their functionality at a conceptual level.**
 
-Our software will follow a "Event Driven"-esque architecture. The major components are as follows:
-- An input where the user will initially need to provide some sort of input in the form of an image
+Our software will follow an "Event Driven"-esque architecture. The major components are as follows:
+- An input where the user will initially need to provide some input in the form of an image
 - The Pet Detection AI model which analyses the image to determine the dog/cat breed
 - Dog/Cat API request (if the user has internet) that gets more information on the pet, including pet background details and health insights
 - Output to the user that informs them of the results from the Pet Detector AI
 
 **Specify the interfaces between components.**
 
-- After the user provides an image, the system will grab the users image and pre-process it before it will be handed down to the pet detection AI model.
-- The AI model will communicate to the system its results in order for the system to determine which API to fetch from. The system will format then correct request to fetch from whichever API based on what is most appropriate for the animal determined.
-- The output will pull from _all_ of the data produced from the AI model and the API retrieval previously in order to generate its response to the user.
+1. User Input to Preprocessing: When the user provides an image through the interface, the system invokes a preprocessing module to resize, normalize, and format the image before sending it to the AI model.
+* Interface Mechanism: Direct method call within the local system or event-driven messaging to signal completion.
+* Data Format: The image is converted into a tensor or another suitable format required by the AI model. 
 
-**Describe in detail what data your system stores, and how. If it uses a database, give the high level database schema. If not, describe how you are storing the data and its organization:**
+2. Preprocessing to AI Model: After preprocessing, the image is fed into the Pet Detection AI model for analysis.
+* Interface Mechanism: Method invocation or message passing with asynchronous handling.
+* Data Format: The AI model expects the preprocessed image as an input tensor.
 
-Our system will store a dataset of 100,000+ images locally/natively within the AI itself. This data is used to train the AI itself, but also needs to be stored locally within the AI itself (in other words, it pulls from the images it stores in itself rather than images from the internet when creating a build).
+3. AI Model to API Request: The model identifies whether the image contains a dog or cat and triggers the appropriate API request (if an internet connection is available).
+* Interface Mechanism: Internal message bus or direct API call.
+* Data Exchange: The model provides a JSON object containing the detected breed.
+
+4. API Response to Output Component: The API fetches additional data, including breed background details and returns it to the system.
+* Interface Mechanism: RESTful API with JSON responses.
+* Data Handling: The response is parsed and is ready for final output generation.
+
+5. Output to User: The system generates a user-friendly output that includes the detected breed and supplementary details.
+* Interface Mechanism: Rendering engine within the application UI.
+* Data Format: Displayed as formatted text, images, or interactive elements.
+
+**Describe in detail what data your system stores, and how. If it uses a database, give the high-level database schema. If not, describe how you are storing the data and its organization:**
+
+Our system will store a dataset of 100,000+ images locally/natively within the AI model itself. This dataset is used both for training and for making inferences. The system does not rely on a traditional database for the image data but instead uses a file-based structure that organizes images by category and metadata for efficient access.
 
 **If there are particular assumptions underpinning your chosen architecture, identify and describe them:**
 
-The app works on the basis that the AI model correctly and efficiently communicates back and forth with the frontend (user interface). If the user is somehow unable to provide a photo to be examined by the AI model, then there is the app won't be able to work, since the "event" of the image being scanned by the AI cannot be triggered. Additionally, if communication breaks down in any manner (i.e. either the frontend or AI model stops working, communication is slow, etc.), then the core functionality of the program (determining animal breed with the AI model) will break down.
+The app works on the basis that the AI model correctly and efficiently communicates back and forth with the front end (user interface). If the user is somehow unable to provide a photo to be examined by the AI model, then there is the app won't be able to work, since the "event" of the image being scanned by the AI cannot be triggered. Additionally, if communication breaks down in any manner (i.e. either the frontend or AI model stops working, communication is slow, etc.), then the core functionality of the program (determining animal breed with the AI model) will break down.
+
+In summary:
+- The AI model can efficiently and accurately communicate back and forth with the frotnend.
+- The user will always provide valid input (i.e., an image that can be processed).
+- An internet connection is assumed to be available when fetching supplementary pet data via the API.
+- System performances assumes that communication between components is minimal
 
 **For each of two decisions pertaining to your software architecture, identify and briefly describe an alternative. For each of the two alternatives, discuss its pros and cons compared to your choice.**
 
-<mark>TO BE COMPLETED</mark>
+1) Layered Architecture
+- In this architecture, our project would have layers such as a presentation layer (handling user input/output), a  logic layer (managing interactions with the AI model), and a data layer (interfacing with any local or API-based data storage).
+- Pros: Makes it easier to maintain and test individual layers, such as updating the API component without affecting the core AI model.
+- Cons: Potential performance overhead due to communication between layers, which could slow down the processing of images and result generation.
+
+2) Microservices Architecture
+- This architecture would break down the project into independent services, such as a dedicated image processing service, a pet breed/age detection service, and a separate API fetching service.
+- Pros: Greater scalability and flexibility, with independent services that could be updated or scaled without affecting the entire system. For example, the API fetch service could be scaled separately if external data requests increased.
+- Cons: Higher complexity in deployment and communication management, as each service would require communication protocols, and monitoring.
+
+Preferably, we would like to go with the layered architecture approach. This allows asynchronous data flow between components, which is critical when handling tasks like image processing and API requests concurrently without delay.
 
 ## Software Design
 
 **Component #1: Input**
 
-This component itself consists of many other smaller components, most notably, the drop field component/package that allows the user to enter their image. This component also incorporates a preprocessing unit/module that will be neceesary get more information on the image and prepare it to be sent to the AI model. A portion of this component also boils down to the implementation, which we are planning on working out later down the road (and won't be covered here because it is beyond the scope of the general software architecture).
+This component itself consists of many other smaller components, most notably, the drop field component/package that allows the user to enter their image. This component also incorporates a preprocessing unit/module that will be necessary to get more information on the image and prepare it to be sent to the AI model. A portion of this component also boils down to the implementation, which we are planning on working out later down the road (and won't be covered here because it is beyond the scope of the general software architecture).
 
 * Drop Field Interface: Implemented using react-dropzone for handling file uploads with drag-and-drop functionality
 * Image Preprocessing Module:
   * Resizes images to 299x299 pixels for model compatibility
-  * Normalizes pixel values to range [-1, 1]
+  * Normalizes pixel values to the range [-1, 1]
   * Converts images to tensor format
   * Performs basic validation (file type, size, etc.)
 * Upload State Management: Uses React state hooks to track upload progress and status
-
 
 **Component #2: Pet Detection AI**
 
@@ -734,7 +763,6 @@ Additionally, our AI is built as a multi-model architecture, meaning that the AI
 
 These models act as a "pipeline" that the image is passed through, progressively classifying the image and passing down the image with the new information to the next model in order to ensure maximize accuracy. Each animal also has their own decicated AI model for the breed identifier. For example, if the AI determines that it is seeing a dog, then the image will be passed into the Dog Breed AI only (not the Cat Breed AI), and vice versa.
 
-
 **Component #3: API**
 
 The API component handles both the retrieval and passing on of information from the API. For our API component, we will be using the Axios library/framework. Axios helps simplify down fetch requests to APIs to streamline the process of retrieving information, which streamlines the development process for our app and allows the app to run more efficiently. Based on whatever information it is passed from the AI (whether it is a dog/cat), it will call the correct corresponding API ("The Dogs API" or "The Cats API", both from APINinjas) to retrieve information using Axios.
@@ -745,7 +773,7 @@ The API component handles both the retrieval and passing on of information from 
   * Implements rate limiting and error handling
 
 * Data Processing:
-  * Formats API responses into consistent structure
+  * Formats API responses into a consistent structure
   * Merges breed info with model predictions
 
 **Component #4: Output**
@@ -766,15 +794,65 @@ The output follows the same logic as the input component, consisting of many sma
 ## Coding Guidelines
 
 **React (JSX/TSX)**: Rules of React (https://react.dev/reference/rules)
-- We are choosing to use this guideline for React because it is the official rules from React itself that mandates certain conventions. React specifies that components and "hooks" (a special type of resuable UI logic in React) must be "pure" (consistent and predictable in what they return, and immutable outside of their original context). React specifies that components and hooks should be called only within the JSX context, not calling their functions directly. React hooks should also only be called from React functions (not regular JS functions) and used at the top level of any React function. These guidelines should _always be implemented while developing in React_, but we will still to examine our code weekly in order to check these guidelines are being followed in React and fix any violations of these guidelines as needed.
+- We are choosing to use this guideline for React because it is the official rules from React itself that mandate certain conventions. React specifies that components and "hooks" (a special type of reusable UI logic in React) must be "pure" (consistent and predictable in what they return, and immutable outside of their original context). React specifies that components and hooks should be called only within the JSX context, not calling their functions directly. React hooks should also only be called from React functions (not regular JS functions) and used at the top level of any React function. These guidelines should _always be implemented while developing in React_, but we will still to examine our code weekly in order to check these guidelines are being followed in React and fix any violations of these guidelines as needed. We will do weekly code reviews to ensure that it follows the guidelines.
 
 **TypeScript**: TypeScript Documentation (https://www.typescriptlang.org/docs/handbook/intro.html)
-- We are choosing to use these guidelines because they come from the official website of TypeScript that was created by Microsoft (the original developers of TypeScript). We plan to use the same enforcement of guidelines policy as we are React, where we should be expected to be refering back to these standards as we are implementing and developing in TypeScript, as well as examining our code weekly in order to ensure it meets the guidelines.
+- We are choosing to use these guidelines because they come from the official website of TypeScript which was created by Microsoft (the original developers of TypeScript). Guidelines include: strict adherence to TypeScript’s static typing system, avoiding the any type where possible, and proper use of type guards and type inference. We plan to use the same enforcement of guidelines policy as we are React, where we should be expected to be refering back to these standards as we are implementing and developing in TypeScript, as well as examining our code weekly in order to ensure it meets the guidelines.
 
 **PyTorch (Python)**: PEP8 (https://peps.python.org/pep-0008/)
 - We are choosing to use PEP8 as our guidelines for development in PyTorch. PyTorch already utilizes a software called Flake8, which enforces the PEP8 coding style when programming in PyTorch anyways. PEP8 is already the official style guide for Python, and given the fact that PyTorch already enforces this through Flake8, it follows that we will use the PEP8 style. All of the code created for this project pass through and first be checked by Flake8, ensuring that it adheres to PEP8's standards and conventions.
 
-
 ## (Updated) Process Description
 
-<mark>FINISH LATER</mark>
+### i. Risk Assessment
+| **Risk**                          | **Likelihood** | **Impact** | **Evidence**                                                                 | **Mitigation Steps**                                                                                               | **Detection Plan**                                                                                                  | **Mitigation Plan**                                                                                                 |
+|-----------------------------------|----------------|------------|--------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| **API Rate Limits**               | Medium         | High       | The APIs we use have documented rate limits, which may be triggered during heavy usage.          | Implement request throttling and cache responses to minimize excessive API calls.                                 | Monitor API response codes (e.g., HTTP 429 Too Many Requests) using logs and automated alerts.                      | Switch to backup APIs or locally cache breed-related data for commonly requested breeds if the API fails.            |
+| **Model Inaccuracy**              | Medium         | High       | Preliminary tests show model accuracy varies based on image quality and breed diversity.          | Continuously retrain and validate the model on diverse datasets, improve preprocessing (e.g., image augmentation). | Monitor prediction confidence metrics during inference and flag low-confidence predictions.                         | Allow fallback prompts for user confirmation of ambiguous results or request additional user-provided images.       |
+| **Insufficient Test Coverage**    | Medium         | Medium     | There have been instances in previous projects where testing was not comprehensive enough, leading to missed bugs and integration issues during later stages of development.           | Enforce unit test development alongside code implementation, aim for at least 85% code coverage.                   | Use automated test coverage tools (e.g., Pytest coverage) and conduct regular code reviews focused on test cases.   | Address uncovered code areas before moving to integration testing or deployment.                                    |
+| **File Upload/Processing Errors** | Low            | Medium     | User-uploaded files may be of unsupported types or fail during preprocessing.                     | Validate files (type, size, resolution) before processing and provide clear error messages to users.                | Track upload events and errors using frontend logging and server-side monitoring.                                   | Provide retry mechanisms for failed uploads and suggest corrections to the user.                                    |
+| **Team Availability Issues**      | Low            | High       | Conflicts in team member availability have delayed previous projects during critical phases.      | Schedule regular progress meetings and assign backup members for critical tasks.                                   | Maintain an updated schedule in project management tools (e.g., Trello) and monitor task progress weekly.           | Reallocate tasks or adjust deadlines based on team availability or workload.                                        |
+
+### ii. Project Schedule
+| **Milestone**                      | **Task**                                       | **Effort Estimate** | **Dependencies**                 |
+|-----------------------------------|------------------------------------------------|---------------------|----------------------------------|
+| Requirements Phase                | Finalize requirements with stakeholders        | 1 week              | N/A                              |
+| Design Phase                      | Define architecture and software components    | 2 weeks             | Requirements complete            |
+| Development: Input Component      | Implement image upload and preprocessing       | 1 week              | Design complete                  |
+| Development: AI Component         | Implement multi-model pipeline and training    | 3 weeks             | Input component implementation   |
+| Development: API Component        | Implement API fetch logic with Axios           | 1 week              | AI component implementation      |
+| Integration Testing               | Test interaction between all components        | 2 weeks             | All components developed         |
+| Usability Testing                 | Conduct end-user tests for feedback            | 1 week              | Integration testing complete     |
+| Deployment                        | Deploy system and monitor performance          | 1 week              | Testing complete                 |
+
+### iii. Team Structure
+| **Team Member**      | **Role**                | **Responsibilities**                                                                 |
+|---------------------|-------------------------|--------------------------------------------------------------------------------------|
+| Project Manager     | Oversees project        | Scheduling tasks, monitoring progress, and resolving roadblocks.                     |
+| Frontend Developer  | Implements UI           | Handles image uploads, user interface design, and output display.                    |
+| Backend Developer   | Implements logic        | Implements AI models, API integration, and data processing logic.                    |
+| Tester              | Ensures test coverage   | Develops and runs unit tests, system tests, and tracks issues in GitHub.             |
+| Documentation Lead  | Manages documentation   | Prepares user manuals, developer guides, and internal documentation.                 |
+
+### iv. Test Plan & Bugs
+**Aspects to Test:**
+- **Input Validation:** Test image upload, preprocessing, and validation mechanisms (e.g., supported file types, resolution checks).
+- **AI Model Accuracy:** Test model predictions across a diverse set of breeds.
+- **API Response Handling:** Test API request/response consistency and error-handling mechanisms.
+
+**Strategies:**
+- **Unit Testing:** Verify individual components using Python unit tests and React component tests.
+- **System (Integration) Testing:** Ensure that all components work together as expected by testing end-to-end use cases.
+- **Usability Testing:** Gather feedback from users on system ease of use and interface design.
+
+**Bug Tracking:**  
+We will use **GitHub Issues** to document, prioritize, and address any bugs discovered during development and testing.
+
+### v. Documentation Plan
+**Planned Documentation:**
+- **User Guide:** Describes how users can upload images, understand results, and troubleshoot common issues.
+- **Developer Guide:** Explains system architecture, key components, and setup instructions.
+- **API Documentation:** Provides details on API endpoints, request/response formats, and rate limits.
+- **Test Reports:** Documents test results and coverage.
+- **Wiki:** Collaborative internal resource for team updates and technical discussions.
+

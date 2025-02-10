@@ -44,9 +44,9 @@ const CatProfile: React.FC = () => {
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-primary mb-2">{breedInfo.name} </h1>
           {breedInfo.imageUrl && (
-            <img 
-              src={breedInfo.imageUrl} 
-              alt={breedInfo.name} 
+            <img
+              src={breedInfo.imageUrl}
+              alt={breedInfo.name}
               className="w-full max-w-md mx-auto rounded-lg shadow-lg mb-6"
             />
           )}
@@ -92,7 +92,7 @@ const CatProfile: React.FC = () => {
                     <span>{trait.value}/5</span>
                   </div>
                   <div className="w-full bg-gray-200 rounded-full h-2.5">
-                    <div 
+                    <div
                       className="bg-primary rounded-full h-2.5 transition-all duration-300"
                       style={{ width: `${(trait.value / 5) * 100}%` }}
                     />

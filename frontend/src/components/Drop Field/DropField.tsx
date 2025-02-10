@@ -26,7 +26,7 @@ const preprocessImage = async (image: File): Promise<Float32Array | null> => {
   canvas.width = 299;
   canvas.height = 299;
 
-  // convert to bitmap to get true data around image
+  // Convert to bitmap to get true data around image
   ctx?.drawImage(imgBitmap, 0, 0, 299, 299);
 
   // Get ImageData and process

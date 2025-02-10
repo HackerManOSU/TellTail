@@ -6,7 +6,7 @@ const Home = () => {
           <p className="text-center text-9xl text-primary font-bold underline decoration-tertiary"> TellTail</p>
         </div>
 
-        <div className= "border-8 border-orange-200 rounded-3xl p-8 mt-4 flex flex-col items-center font-semibold">
+        <div className="border-8 border-orange-200 rounded-3xl p-8 mt-4 flex flex-col items-center font-semibold">
           <p className="text-4xl">Identify Your Pets</p>
 
           <ul className="text-4xl mt-4 text-center">
@@ -26,12 +26,10 @@ const Home = () => {
             <p>Find out more about your pet anywhere with our offline access</p>
           </div>
         </div>
+        
+    </div>
 
+  )
+}
 
-
-      </div>
-
-    )
-  }
-  
-  export default Home
+export default Home
