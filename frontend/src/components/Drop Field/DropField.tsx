@@ -16,6 +16,10 @@ import { Table, TableBody, TableCell, TableContainer, TableRow, Paper } from "@m
 /* ++++++++++ ONNX Runtime ++++++++++ */
 import * as ort from "onnxruntime-web";
 
+/* ++++++++++ UTILITIES ++++++++++ */
+import { generateProfileId } from '../../utils/profileUtils';
+
+
 // Utility for image preprocessing
 const preprocessImage = async (image: File): Promise<Float32Array | null> => {
   const canvas = document.createElement("canvas");
@@ -158,14 +162,28 @@ const DropField: React.FC = () => {
       });
 
       if (response.data && response.data.length > 0) {
-        const breedInfo = {
-          ...response.data[0],
-          name: predictedBreed,
-          imageUrl: preview // Add the preview image to the breed info
-        };
+      // Generate a unique ID
+      const uniqueId = generateProfileId();
+      
+      const breedInfo = {
+        ...response.data[0],
+        name: predictedBreed,
+        imageUrl: preview,
+        id: uniqueId,
+        timestamp: Date.now()
+      };
 
-        // Navigate to the profile page with the breed information
-        navigate('/cat-profile', { state: { breedInfo } });
+      // Store in session storage with unique key
+      const storageKey = `cat-profile-${uniqueId}`;
+      sessionStorage.setItem(storageKey, JSON.stringify(breedInfo));
+
+      // Navigate with the unique ID
+      navigate(`/cat-profile/${uniqueId}`, { 
+        state: { 
+          breedInfo,
+          fromUpload: true 
+        }
+      });
       }
     }
 

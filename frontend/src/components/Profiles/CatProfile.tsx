@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 /* ++++++++++ ROUTING ++++++++++ */
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useParams, useLocation, useNavigate } from 'react-router-dom';
 
 /* ++++++++++ UI/UX ++++++++++ */
 import { Paper, Grid } from '@mui/material';
@@ -31,12 +31,15 @@ const CatProfile: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const breedInfo = location.state?.breedInfo as CatBreedInfo;
+  // Sharable profiles
+  const { id } = useParams();
+  const [breedInfo, setBreedInfo] = useState<CatBreedInfo | null>(null);
 
   const handleUploadAnother = () => {
     navigate('/upload');
   };
 
+  /* ++++++++++ PDF GENERATION ++++++++++ */
   const generatePDF = () => {
     if (!breedInfo) return;
   
@@ -103,23 +106,47 @@ const CatProfile: React.FC = () => {
     pdf.save(`${breedInfo.name.toLowerCase()}-profile.pdf`);
   };
 
+  /* ++++++++++ SHAREABLE PROFILE ++++++++++ */
+  useEffect(() => {
+    // If we have state, store it
+    if (location.state?.breedInfo) {
+      const profile = location.state.breedInfo as CatBreedInfo;
+      sessionStorage.setItem(`cat-profile-${id}`, JSON.stringify(profile));
+      setBreedInfo(profile);
+    } 
+    // Otherwise try to load from storage
+    else if (id) {
+      const stored = sessionStorage.getItem(`cat-profile-${id}`);
+      if (stored) {
+        setBreedInfo(JSON.parse(stored));
+      }
+    }
+  }, [id, location]);
+
   const handleShare = async () => {
+    if (!breedInfo) return;
+
+    const shareUrl = `${window.location.origin}/cat-profile/${id}`;
+    
     if (navigator.share) {
       try {
         await navigator.share({
           title: `${breedInfo.name} Cat Profile`,
           text: `Check out this ${breedInfo.name} cat from TellTail!`,
-          url: window.location.href,
+          url: shareUrl,
         });
       } catch (error) {
         console.error('Error sharing:', error);
       }
     } else {
-      // Fallback for browsers that don't support Web Share API
-      alert('Sharing is not supported on this browser');
+      // Fallback - copy to clipboard
+      navigator.clipboard.writeText(shareUrl)
+        .then(() => alert('Profile link copied to clipboard!'))
+        .catch(() => alert('Failed to copy link'));
     }
   };
 
+  /* ++++++++++ FALLBACK ++++++++++ */
   if (!breedInfo) {
     return (
       <div className="max-w-6xl mx-auto px-4 py-8">
@@ -128,6 +155,7 @@ const CatProfile: React.FC = () => {
     );
   }
 
+  /* ++++++++++ RENDER ++++++++++ */
   return (
     <div className="max-w-6xl mx-auto px-4 py-8 mt-16">
       <Paper className="p-6 shadow-md">

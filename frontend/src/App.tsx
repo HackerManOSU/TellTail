@@ -19,6 +19,7 @@ function App() {
             <Route path="/instructions" element={<Instructions />} />
             <Route path="/about" element={<AboutUs />} />
             <Route path="/cat-profile" element={<CatProfile />} />
+            <Route path="/cat-profile/:id" element={<CatProfile />} />
           </Routes>
         </main>
       </div>
