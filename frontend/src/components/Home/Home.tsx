@@ -1,9 +1,6 @@
 const Home = () => {
     return (
       <div className="max-w-6xl mx-auto px-4 py-8 h-screen">
-        <h1 className="text-4xl font-bold text-primary mb-6">Home</h1>
-
-        
 
         <div >
           <p className="text-center text-9xl text-primary font-bold underline decoration-tertiary"> TellTail</p>

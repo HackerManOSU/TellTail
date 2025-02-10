@@ -12,13 +12,15 @@ function App() {
     <BrowserRouter>
       <div className='min-h-screen bg-[#fff]'>
         <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/upload" element={<DropPage />} />
-          <Route path="/instructions" element={<Instructions />} />
-          <Route path="/about" element={<AboutUs />} />
-          <Route path="/cat-profile" element={<CatProfile />} />
-        </Routes>
+        <main className="mt-16">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/upload" element={<DropPage />} />
+            <Route path="/instructions" element={<Instructions />} />
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/cat-profile" element={<CatProfile />} />
+          </Routes>
+        </main>
       </div>
     </BrowserRouter>
   )
