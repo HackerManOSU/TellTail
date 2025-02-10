@@ -814,16 +814,23 @@ The output follows the same logic as the input component, consisting of many sma
 | **Team Availability Issues**      | Low            | High       | Conflicts in team member availability have delayed previous projects during critical phases.      | Schedule regular progress meetings and assign backup members for critical tasks.                                   | Maintain an updated schedule in project management tools (e.g., Trello) and monitor task progress weekly.           | Reallocate tasks or adjust deadlines based on team availability or workload.                                        |
 
 ### ii. Project Schedule
-| **Milestone**                      | **Task**                                       | **Effort Estimate** | **Dependencies**                 |
-|-----------------------------------|------------------------------------------------|---------------------|----------------------------------|
-| Requirements Phase                | Finalize requirements with stakeholders        | 1 week              | N/A                              |
-| Design Phase                      | Define architecture and software components    | 2 weeks             | Requirements complete            |
-| Development: Input Component      | Implement image upload and preprocessing       | 1 week              | Design complete                  |
-| Development: AI Component         | Implement multi-model pipeline and training    | 3 weeks             | Input component implementation   |
-| Development: API Component        | Implement API fetch logic with Axios           | 1 week              | AI component implementation      |
-| Integration Testing               | Test interaction between all components        | 2 weeks             | All components developed         |
-| Usability Testing                 | Conduct end-user tests for feedback            | 1 week              | Integration testing complete     |
-| Deployment                        | Deploy system and monitor performance          | 1 week              | Testing complete                 |
+
+| Milestone | Tasks (1-person-week each) | Dependencies |
+|-----------|---------------------------|--------------|
+| Requirements Phase | - Finalize feature list<br>- Finalize use cases<br>- Confirm tech stack | None |
+| Design Phase | - Define data flows <br> - Wireframes for UI<br>-  Define architecture and software components<br>- Create baseline code for next phase | Requirements Phase completed |
+| Development | **Frontend**<br>- Basic layout, routing, navigation, and user input forms<br>- UI validations and error checks<br>- Implement image upload and preprocessing<br>**Backend**<br>- Data modeling and API endpoints<br>- Implement API fetch logic with Axios<br>**AI/ML**<br>- Model selection<br>- Model training<br>- Model integration<br>- Implement multi-model pipeline | Design Phase completed |
+| Integration and Testing | - Integrate all components (frontend, backend, AI)<br>- Build automated test suites (unit, integration)<br>- Test interaction between all components\n- Resolve all available bugs (cross module, etc.) | All core development tasks must be complete |
+| Usability Testing and Refinement | - Conduct user tests and surveys<br>- Triage and implement UI/UX improvements<br>- Improve training data based on feedback | Integration Testing completed |
+| Final Release | - Deploy production version<br>- Monitor system performance<br>- Publish final documentation | Usability Testing completed |
+
+## Timeline Overview
+- Requirements Phase: 1 week
+- Design Phase: 2 weeks
+- Development Phase: ~5 weeks (concurrent development possible)
+- Integration and Testing: 2 weeks
+- Usability Testing: 1 week
+- Final Release: 1 week
 
 ### iii. Team Structure
 | **Team Member**      | **Role**                | **Responsibilities**                                                                 |
