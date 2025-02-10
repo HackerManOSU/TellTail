@@ -851,8 +851,11 @@ We will use **GitHub Issues** to document, prioritize, and address any bugs disc
 ### v. Documentation Plan
 **Planned Documentation:**
 - **User Guide:** Describes how users can upload images, understand results, and troubleshoot common issues.
+- **FAQs:** An FAQ page to help answer common pain points for users
 - **Developer Guide:** Explains system architecture, key components, and setup instructions.
 - **API Documentation:** Provides details on API endpoints, request/response formats, and rate limits.
 - **Test Reports:** Documents test results and coverage.
 - **Wiki:** Collaborative internal resource for team updates and technical discussions.
+
+
 
