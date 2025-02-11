@@ -39,16 +39,16 @@ const preprocessImage = async (image: File): Promise<Float32Array | null> => {
   const totalPixels = 384 * 384;
   const inputTensor = new Float32Array(3 * totalPixels); // Channels-first
 
-  // 2. USE CORRECT NORMALIZATION (ImageNet stats)
+  // USE CORRECT NORMALIZATION (ImageNet stats)
   for (let i = 0; i < data.length; i += 4) {
     const pixelIndex = i / 4;
-    
+
     // Normalize with ImageNet mean/std (from your training script)
     const r = (data[i] / 255.0 - 0.485) / 0.229;
     const g = (data[i + 1] / 255.0 - 0.456) / 0.224;
     const b = (data[i + 2] / 255.0 - 0.406) / 0.225;
 
-    // 3. CHANNELS-FIRST ORDER (matches EfficientNetV2)
+    // CHANNELS-FIRST ORDER (matches EfficientNetV2)
     inputTensor[pixelIndex] = r;                // Red channel
     inputTensor[pixelIndex + totalPixels] = g;  // Green channel
     inputTensor[pixelIndex + 2 * totalPixels] = b; // Blue channel
@@ -161,28 +161,28 @@ const DropField: React.FC = () => {
       });
 
       if (response.data && response.data.length > 0) {
-      // Generate a unique ID
-      const uniqueId = generateProfileId();
-      
-      const breedInfo = {
-        ...response.data[0],
-        name: predictedBreed,
-        imageUrl: preview,
-        id: uniqueId,
-        timestamp: Date.now()
-      };
+        // Generate a unique ID
+        const uniqueId = generateProfileId();
 
-      // Store in session storage with unique key
-      const storageKey = `cat-profile-${uniqueId}`;
-      sessionStorage.setItem(storageKey, JSON.stringify(breedInfo));
+        const breedInfo = {
+          ...response.data[0],
+          name: predictedBreed,
+          imageUrl: preview,
+          id: uniqueId,
+          timestamp: Date.now()
+        };
 
-      // Navigate with the unique ID
-      navigate(`/cat-profile/${uniqueId}`, { 
-        state: { 
-          breedInfo,
-          fromUpload: true 
-        }
-      });
+        // Store in session storage with unique key
+        const storageKey = `cat-profile-${uniqueId}`;
+        sessionStorage.setItem(storageKey, JSON.stringify(breedInfo));
+
+        // Navigate with the unique ID
+        navigate(`/cat-profile/${uniqueId}`, {
+          state: {
+            breedInfo,
+            fromUpload: true
+          }
+        });
       }
     }
 
