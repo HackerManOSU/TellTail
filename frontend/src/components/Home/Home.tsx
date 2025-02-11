@@ -29,9 +29,9 @@ const Home = () => {
             </div>
             
             <div className="flex justify-center lg:w-1/2 h-1/2"> 
-              <img src="src\components\Home\scottishfold.jpg" alt="cat" className="w-1/3  mt-8 rounded-lg  " />
-              <img src="src\components\Home\goldenretriever.jpg" alt="dog" className="w-1/3 mt-8 rounded-lg " />
-              <img src="src\components\Home\cat2.jpg" alt="dog" className="w-1/3  mt-8 rounded-lg" />
+              <img src="./scottishfold.jpg" alt="cat" className="w-1/3  mt-8 rounded-lg  " />
+              <img src="./goldenretriever.jpg" alt="dog" className="w-1/3 mt-8 rounded-lg " />
+              <img src="./cat2.jpg" alt="dog" className="w-1/3  mt-8 rounded-lg" />
             </div>
           </div>
 
@@ -51,7 +51,7 @@ const Home = () => {
 
         <div className="flex justify-between mt-12 bg-tertiary rounded-lg text-white mt-20">
           <div className="w-1/2 p-4">
-            <img src="src\components\Home\profile.jpg" alt="profile" className="w-full rounded-lg" />
+            <img src="./profile.jpg" alt="profile" className="w-full rounded-lg" />
           </div>
           <div className="w-1/2 p-4 flex flex-col justify-center">
             <h2 className="text-3xl font-bold mb-4">Learn More About Your Pet</h2>
