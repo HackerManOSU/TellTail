@@ -16,39 +16,42 @@ import { Table, TableBody, TableCell, TableContainer, TableRow, Paper } from "@m
 /* ++++++++++ ONNX Runtime ++++++++++ */
 import * as ort from "onnxruntime-web";
 
-// Utility for image preprocessing
+/* ++++++++++ UTILITIES ++++++++++ */
+import { generateProfileId } from '../../utils/profileUtils';
+
+
 const preprocessImage = async (image: File): Promise<Float32Array | null> => {
   const canvas = document.createElement("canvas");
   const ctx = canvas.getContext("2d");
   const imgBitmap = await createImageBitmap(image);
 
-  // Resize to 299x299 due to training with this resolution
-  canvas.width = 299;
-  canvas.height = 299;
+  canvas.width = 384;  // Changed from 299
+  canvas.height = 384; // Changed from 299
 
-  // Convert to bitmap to get true data around image
-  ctx?.drawImage(imgBitmap, 0, 0, 299, 299);
+  // Draw image with aspect-ratio preserved
+  ctx?.drawImage(imgBitmap, 0, 0, 384, 384);
 
-  // Get ImageData and process
-  const imageData = ctx?.getImageData(0, 0, 299, 299);
+  // Get pixel data
+  const imageData = ctx?.getImageData(0, 0, 384, 384);
+  if (!imageData) return null;
 
-  if (!imageData)
-    return null;
+  const { data } = imageData; // RGBA array (384x384x4)
+  const totalPixels = 384 * 384;
+  const inputTensor = new Float32Array(3 * totalPixels); // Channels-first
 
-  const { data } = imageData;
-  const totalPixels = 299 * 299;
-  const inputTensor = new Float32Array(totalPixels * 3);
-
+  // 2. USE CORRECT NORMALIZATION (ImageNet stats)
   for (let i = 0; i < data.length; i += 4) {
     const pixelIndex = i / 4;
-    const r = (data[i] / 255.0 - 0.5) / 0.5;
-    const g = (data[i + 1] / 255.0 - 0.5) / 0.5;
-    const b = (data[i + 2] / 255.0 - 0.5) / 0.5;
+    
+    // Normalize with ImageNet mean/std (from your training script)
+    const r = (data[i] / 255.0 - 0.485) / 0.229;
+    const g = (data[i + 1] / 255.0 - 0.456) / 0.224;
+    const b = (data[i + 2] / 255.0 - 0.406) / 0.225;
 
-    // for each pixel, get the RGB data
-    inputTensor[pixelIndex] = r;
-    inputTensor[pixelIndex + totalPixels] = g;
-    inputTensor[pixelIndex + 2 * totalPixels] = b;
+    // 3. CHANNELS-FIRST ORDER (matches EfficientNetV2)
+    inputTensor[pixelIndex] = r;                // Red channel
+    inputTensor[pixelIndex + totalPixels] = g;  // Green channel
+    inputTensor[pixelIndex + 2 * totalPixels] = b; // Blue channel
   }
 
   return inputTensor;
@@ -124,7 +127,7 @@ const DropField: React.FC = () => {
 
       // Input Tensor we will feed
       const feeds: Record<string, ort.Tensor> = {
-        input: new ort.Tensor("float32", inputTensor, [1, 3, 299, 299]),
+        input: new ort.Tensor("float32", inputTensor, [1, 3, 384, 384]), // [batch, channels, height, width]
       };
 
       console.log("Running inference...");
@@ -158,14 +161,28 @@ const DropField: React.FC = () => {
       });
 
       if (response.data && response.data.length > 0) {
-        const breedInfo = {
-          ...response.data[0],
-          name: predictedBreed,
-          imageUrl: preview // Add the preview image to the breed info
-        };
+      // Generate a unique ID
+      const uniqueId = generateProfileId();
+      
+      const breedInfo = {
+        ...response.data[0],
+        name: predictedBreed,
+        imageUrl: preview,
+        id: uniqueId,
+        timestamp: Date.now()
+      };
 
-        // Navigate to the profile page with the breed information
-        navigate('/cat-profile', { state: { breedInfo } });
+      // Store in session storage with unique key
+      const storageKey = `cat-profile-${uniqueId}`;
+      sessionStorage.setItem(storageKey, JSON.stringify(breedInfo));
+
+      // Navigate with the unique ID
+      navigate(`/cat-profile/${uniqueId}`, { 
+        state: { 
+          breedInfo,
+          fromUpload: true 
+        }
+      });
       }
     }
 

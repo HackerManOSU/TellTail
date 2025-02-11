@@ -34,7 +34,7 @@ const Header = () => {
     <>
       <header className={`bg-primary p-4 text-white fixed top-0 left-0 right-0 z-50 ${isOpen ? 'bg-opacity-100' : ''
         }`}>
-        <nav className="max-w-6xl mx-auto flex justify-between items-center">
+        <nav className="max-w-6xl mx-auto h-[5vh] min-h-[35px] flex justify-between items-center">
           <Link to="/" className="text-2xl font-bold hover:text-[#f0f9f9]">
             TellTail
           </Link>

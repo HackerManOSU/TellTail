@@ -15,6 +15,7 @@
     "@mui/material": "^6.4.0",
     "axios": "^1.7.9",
     "canvas": "^3.1.0",
+    "jspdf": "^2.5.2",
     "onnxruntime-web": "^1.20.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

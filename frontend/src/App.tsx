@@ -12,13 +12,14 @@ function App() {
     <BrowserRouter>
       <div className='min-h-screen bg-[#fff] pt-12'>
         <Header />
-        <main className="mt-16">
+        <main className="mt-[3vh]">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/upload" element={<DropPage />} />
             <Route path="/instructions" element={<Instructions />} />
             <Route path="/about" element={<AboutUs />} />
             <Route path="/cat-profile" element={<CatProfile />} />
+            <Route path="/cat-profile/:id" element={<CatProfile />} />
           </Routes>
         </main>
       </div>
