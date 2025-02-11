@@ -3,6 +3,7 @@ import Collapsible from './Collapsible';
 import nathanielImg from './nathaniel.jpg';
 import troyImg from './troy.jpg';
 import raedImg from './raed.jpg';
+import christianImg from './christian.jpg';
 import portraitImg from './portrait.jpg';
 
 const teamMembers = [
@@ -22,9 +23,9 @@ const teamMembers = [
     link: "https://www.linkedin.com/in/kabirrraed/",
   },
   {
-    name: "Christian DeVore", img: portraitImg,
-    description: "",
-    link: "",
+    name: "Christian DeVore", img: christianImg,
+    description: "Hi, my name is Christian! I'm currently a junior majoring in Computer Science at Oregon State University, and I'm from Portland, OR. I grew up a cat person but I've definitely grown to love dogs as well!",
+    link: "https://www.linkedin.com/in/christian-devore/",
   },
   {
     name: "Stephen Tsui", img: portraitImg,
