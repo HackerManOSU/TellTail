@@ -23,7 +23,7 @@ const Home = () => {
 
           <div className="p-8 mt-4 flex lg:flex-row items-left font-semibold h-screen flex-col fade" style={{ opacity }}>
 
-            <div className="flex flex-col items-left lg:w-1/2">
+            <div className="flex flex-col items-left lg:w-1/2 pt-8">
               <p className="text-7xl">Identify Your Pets</p>
               <p className="mt-8 text-3xl font-light">Quick, Easy, Anywhere</p>
             </div>
