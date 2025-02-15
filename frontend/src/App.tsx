@@ -6,6 +6,7 @@ import DropPage from './components/Drop Page/DropPage'
 import Instructions from './components/Instructions/Instructions'
 import AboutUs from './components/About Us/AboutUs'
 import CatProfile from './components/Profiles/CatProfile'
+import Upload from './components/Upload/Upload'
 
 function App() {
   return (
@@ -15,7 +16,9 @@ function App() {
         <main className="mt-[3vh]">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/upload" element={<DropPage />} />
+            <Route path="/upload" element={<Upload />} />
+            <Route path="/upload/cat" element={<DropPage title="Cat"/>} />
+            <Route path="/upload/dog" element={<DropPage title="Dog"/>} />
             <Route path="/instructions" element={<Instructions />} />
             <Route path="/about" element={<AboutUs />} />
             <Route path="/cat-profile" element={<CatProfile />} />

@@ -58,7 +58,7 @@ const preprocessImage = async (image: File): Promise<Float32Array | null> => {
 };
 
 
-const DropField: React.FC = () => {
+const CatDropField: React.FC = () => {
   const navigate = useNavigate();
 
   const [file, setFile] = useState<File | null>(null);
@@ -269,4 +269,4 @@ const DropField: React.FC = () => {
   );
 };
 
-export default DropField;
+export default CatDropField;
