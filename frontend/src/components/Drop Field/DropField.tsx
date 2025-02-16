@@ -43,7 +43,9 @@ const preprocessImage = async (image: File): Promise<Float32Array | null> => {
   for (let i = 0; i < data.length; i += 4) {
     const pixelIndex = i / 4;
 
-    // Normalize with ImageNet mean/std (from your training script)
+    // Normalize with ImageNet mean/std  
+    //
+    // Normalization needs to match what you used during training
     const r = (data[i] / 255.0 - 0.485) / 0.229;
     const g = (data[i + 1] / 255.0 - 0.456) / 0.224;
     const b = (data[i + 2] / 255.0 - 0.406) / 0.225;
