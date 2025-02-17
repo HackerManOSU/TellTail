@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
-import cat from './calico-cat.jpg'
-import dog from './dog.jpg'
+import cat from './cat-upload-image.png'
+import dog from './dog-upload-image.png'
 
 const Upload = () => {
 

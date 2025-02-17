@@ -1,87 +1,171 @@
 /* ++++++++++ IMPORTS ++++++++++ */
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState } from "react";
 
 /* ++++++++++ DROPZONE ++++++++++ */
-import { useDropzone } from 'react-dropzone';
+import { useDropzone } from "react-dropzone";
+
+/* ++++++++++ PROFILES ++++++++++ */
+import { useNavigate } from "react-router-dom";
 
 /* ++++++++++ MATERIAL-UI ++++++++++ */
-import { Table, TableBody, TableCell, TableContainer, TableRow, Paper } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableRow, Paper } from "@mui/material";
 
-/* +++++++++ AXIOS ++++++++++ */
-import axios from 'axios';
+/* ++++++++++ ONNX Runtime ++++++++++ */
+import * as ort from "onnxruntime-web";
 
-const DropField: React.FC = () => {
+/* ++++++++++ UTILITIES ++++++++++ */
+import { generateProfileId } from "../../utils/profileUtils";
+
+// Utility for image preprocessing (adjusted for dog model)
+const preprocessImage = async (image: File): Promise<Float32Array | null> => {
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d");
+  const imgBitmap = await createImageBitmap(image);
+
+  // Resize to 224x224 (adjusted for the dog breed model)
+  canvas.width = 224;
+  canvas.height = 224;
+
+  ctx?.drawImage(imgBitmap, 0, 0, 224, 224);
+  const imageData = ctx?.getImageData(0, 0, 224, 224);
+
+  if (!imageData) return null;
+
+  const { data } = imageData;
+  const totalPixels = 224 * 224;
+  const inputTensor = new Float32Array(totalPixels * 3);
+
+  for (let i = 0; i < data.length; i += 4) {
+    const pixelIndex = i / 4;
+    inputTensor[pixelIndex] = (data[i] / 255.0 - 0.485) / 0.229;
+    inputTensor[pixelIndex + totalPixels] = (data[i + 1] / 255.0 - 0.456) / 0.224;
+    inputTensor[pixelIndex + 2 * totalPixels] = (data[i + 2] / 255.0 - 0.406) / 0.225;
+  }
+  return inputTensor;
+};
+
+const DogDropField: React.FC = () => {
+  const navigate = useNavigate();
+
   const [file, setFile] = useState<File | null>(null);
-  const [preview, setPreview] = useState<string>('');
+  const [preview, setPreview] = useState<string>("");
   const [isLoading, setIsLoading] = useState(false);
+  const [prediction, setPrediction] = useState<string | null>(null);
+
+  /* ++++++++++ DOG BREEDS LIST ++++++++++ */
+  const dogBreeds = [
+    "Chihuahua", "Japanese Spaniel", "Maltese Dog", "Pekinese", "Shih-Tzu", "Blenheim Spaniel", "Papillon",
+    "Toy Terrier", "Rhodesian Ridgeback", "Afghan Hound", "Basset", "Beagle", "Bloodhound", "Bluetick",
+    "Black-and-Tan Coonhound", "Walker Hound", "English Foxhound", "Redbone", "Borzoi", "Irish Wolfhound",
+    "Italian Greyhound", "Whippet", "Ibizan Hound", "Norwegian Elkhound", "Otterhound", "Saluki",
+    "Scottish Deerhound", "Weimaraner", "Staffordshire Bullterrier", "American Staffordshire Terrier",
+    "Bedlington Terrier", "Border Terrier", "Kerry Blue Terrier", "Irish Terrier", "Norfolk Terrier",
+    "Norwich Terrier", "Yorkshire Terrier", "Wire-haired Fox Terrier", "Lakeland Terrier",
+    "Sealyham Terrier", "Airedale", "Cairn", "Australian Terrier", "Dandie Dinmont", "Boston Bull",
+    "Miniature Schnauzer", "Giant Schnauzer", "Standard Schnauzer", "Scotch Terrier", "Tibetan Terrier",
+    "Silky Terrier", "Soft-coated Wheaten Terrier", "West Highland White Terrier", "Lhasa",
+    "Flat-coated Retriever", "Curly-coated Retriever", "Golden Retriever", "Labrador Retriever",
+    "Chesapeake Bay Retriever", "German Short-haired Pointer", "Vizsla", "English Setter", "Irish Setter",
+    "Gordon Setter", "Brittany Spaniel", "Clumber", "English Springer", "Welsh Springer Spaniel",
+    "Cocker Spaniel", "Sussex Spaniel", "Irish Water Spaniel", "Kuvasz", "Schipperke", "Groenendael",
+    "Malinois", "Briard", "Kelpie", "Komondor", "Old English Sheepdog", "Shetland Sheepdog",
+    "Collie", "Border Collie", "Bouvier des Flandres", "Rottweiler", "German Shepherd", "Doberman",
+    "Miniature Pinscher", "Greater Swiss Mountain Dog", "Bernese Mountain Dog", "Appenzeller",
+    "EntleBucher", "Boxer", "Bull Mastiff", "Tibetan Mastiff", "French Bulldog", "Great Dane",
+    "Saint Bernard", "Eskimo Dog", "Malamute", "Siberian Husky", "Affenpinscher", "Basenji",
+    "Pug", "Leonberg", "Newfoundland", "Great Pyrenees", "Samoyed", "Pomeranian", "Chow", "Keeshond",
+    "Brabancon Griffon", "Pembroke", "Cardigan", "Toy Poodle", "Miniature Poodle", "Standard Poodle",
+    "Mexican Hairless", "Dingo", "Dhole", "African Hunting Dog"
+  ];
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     const selectedFile = acceptedFiles[0];
     setFile(selectedFile);
-    
-    // Create preview URL for the image
-    const previewUrl = URL.createObjectURL(selectedFile);
-    setPreview(previewUrl);
+    setPreview(URL.createObjectURL(selectedFile));
+    setPrediction(null);
   }, []);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
-    accept: {
-      'image/*': ['.jpeg', '.jpg', '.png']
-    },
-    multiple: false
+    accept: { "image/*": [".jpeg", ".jpg", ".png"] },
+    multiple: false,
   });
-
-  const formatFileSize = (bytes: number): string => {
-    if (bytes < 1024) return bytes + ' B';
-    if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
-    return (bytes / 1048576).toFixed(1) + ' MB';
-  };
 
   const handleContinue = async () => {
     if (!file) return;
-
     setIsLoading(true);
-    const formData = new FormData();
-    formData.append('image', file);
-
+  
     try {
-      // CHANGE TO BACKEND URL WHEN WE HAVE
-      const response = await axios.post('/api/upload', formData, {
+      const inputTensor = await preprocessImage(file);
+      if (!inputTensor) throw new Error("Failed to preprocess the image.");
+  
+      ort.env.wasm.wasmPaths = "/";
+      const session = await ort.InferenceSession.create("/dog_breed_model.onnx");
+  
+      const feeds: Record<string, ort.Tensor> = {
+        input: new ort.Tensor("float32", inputTensor, [1, 3, 224, 224]),
+      };
+  
+      const results = await session.run(feeds);
+      const output = results[Object.keys(results)[0]];
+      const probabilities = output.data as Float32Array;
+  
+      const predictedIndex = probabilities.indexOf(Math.max(...probabilities));
+      const predictedBreed = dogBreeds[predictedIndex];
+  
+      setPrediction(predictedBreed);
+      
+      const apiKey = import.meta.env.VITE_API_NINJAS_KEY;
+      // Fetch dog breed information
+      const response = await fetch(`https://api.api-ninjas.com/v1/dogs?name=${predictedBreed}`, {
         headers: {
-          'Content-Type': 'multipart/form-data'
+          'X-Api-Key': apiKey
         }
       });
-      console.log('Upload successful:', response.data);
-      // Handle successful upload (e.g., navigate to results page)
+  
+      if (response.ok) {
+        const breedData = await response.json();
+  
+        // Generate a unique ID
+        const uniqueId = generateProfileId();
+  
+        const breedInfo = {
+          ...breedData[0],
+          name: predictedBreed,
+          imageUrl: preview,
+          id: uniqueId,
+          timestamp: Date.now()
+        };
+  
+        // Store in session storage
+        const storageKey = `dog-profile-${uniqueId}`;
+        sessionStorage.setItem(storageKey, JSON.stringify(breedInfo));
+  
+        // Navigate to dog profile page
+        navigate(`/dog-profile/${uniqueId}`, {
+          state: {
+            breedInfo,
+            fromUpload: true
+          }
+        });
+      }
     } catch (error) {
-      console.error('Upload failed:', error);
-      // Handle error (show error message to user)
+      console.error("Error during prediction:", error);
+      alert("An error occurred during the prediction.");
     } finally {
       setIsLoading(false);
     }
   };
+  
 
   return (
-    <div className="w-[75%] max-w-[1000px] h-[33%]">
-      <div
-        {...getRootProps()}
-        className={`p-8 border-2 border-solid rounded-lg text-center cursor-pointer h-full
-            ${isDragActive || 'hover:border-[#66b2b2] hover:bg-[#f0f9f9]'} 
-            ${isDragActive ? 'border-[#66b2b2] bg-[#f0f9f9]' : 'border-gray-300'}`}
-      >
+    <div className="w-[75%] max-w-[1000px] mx-auto text-center">
+      <div {...getRootProps()} className="p-8 border-2 border-solid rounded-lg text-center cursor-pointer">
         <input {...getInputProps()} />
         {preview ? (
-          <div className="space-y-4">
-            <img 
-              src={preview} 
-              alt="Preview" 
-              className="max-h-48 mx-auto"
-            />
-            <p className="text-sm text-gray-500">Click or drag to change image</p>
-          </div>
+          <img src={preview} alt="Preview" className="max-h-48 mx-auto" />
         ) : (
-          <div className="space-y-2 h-full  flex flex-col items-center text-center justify-center">
+          <div className="space-y-2 h-full flex flex-col items-center text-center justify-center">
             <p className="text-lg">Drag and drop your pet image here</p>
             <p className="text-sm text-gray-500">or click to select a file</p>
           </div>
@@ -94,42 +178,30 @@ const DropField: React.FC = () => {
             <Table size="small">
               <TableBody>
                 <TableRow>
-                  <TableCell component="th" sx={{ fontWeight: 'bold', width: '30%' }}>
-                    File Name
-                  </TableCell>
+                  <TableCell component="th">File Name</TableCell>
                   <TableCell>{file.name}</TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell component="th" sx={{ fontWeight: 'bold' }}>
-                    Size
-                  </TableCell>
-                  <TableCell>{formatFileSize(file.size)}</TableCell>
+                  <TableCell component="th">Size</TableCell>
+                  <TableCell>{(file.size / 1024).toFixed(2)} KB</TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell component="th" sx={{ fontWeight: 'bold' }}>
-                    Type
-                  </TableCell>
+                  <TableCell component="th">Type</TableCell>
                   <TableCell>{file.type}</TableCell>
                 </TableRow>
               </TableBody>
             </Table>
           </TableContainer>
-          
-          <button
-            onClick={handleContinue}
-            disabled={isLoading}
-            className={`w-full py-2 px-4 rounded-md text-white
-              ${isLoading 
-                ? 'bg-[#b2d8d8] cursor-not-allowed' 
-                : 'bg-[#66b2b2] hover:bg-[#539999]'
-              } transition-colors`}
-          >
-            {isLoading ? 'Processing...' : 'Continue'}
+
+          <button onClick={handleContinue} disabled={isLoading} className="w-full py-2 px-4 rounded-md bg-primary text-white">
+            {isLoading ? "Processing..." : "Continue"}
           </button>
+
+          {prediction && <p className="mt-4 text-lg">Prediction: <strong>{prediction}</strong></p>}
         </div>
       )}
     </div>
   );
 };
 
-export default DropField;
+export default DogDropField;
