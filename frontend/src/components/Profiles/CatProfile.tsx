@@ -236,12 +236,12 @@ const CatProfile: React.FC = () => {
             Download Profile as PDF
           </button>
           
-          {/* <button
+          <button
             onClick={handleShare}
             className="bg-tertiary hover:bg-tertiary-light text-primary font-bold py-2 px-6 rounded-md transition-colors duration-200"
           >
             Share Profile
-          </button> */}
+          </button>
 
         </div>
       </Paper>

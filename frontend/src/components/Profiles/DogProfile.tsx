@@ -59,7 +59,7 @@ const DogProfile: React.FC = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log("Fetched Data:", data); 
-        const match = data.find((item: any) => item.name.toLowerCase().trim() === breedInfo.name.toLowerCase().trim());
+        const match = data.find((item: DogBreedInfo) => item.name.toLowerCase().trim() === breedInfo.name.toLowerCase().trim());
         console.log("Matched Breed:", match); 
         if (match) {
           setAdditionalData({
