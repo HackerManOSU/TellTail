@@ -22,7 +22,11 @@ const Home = () => {
     };
   }, []);
 
+
   return (
+
+    
+
     <div className="max-w-6xl mx-auto px-4 py-8">
 
       <div className="p-8 mt-4 flex lg:flex-row items-left font-semibold h-screen flex-col fade" style={{ opacity }}>
@@ -66,13 +70,9 @@ const Home = () => {
       </div>
 
 
-
-
     </div>
 
   )
 }
 
 export default Home
-
-

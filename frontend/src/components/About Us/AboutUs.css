@@ -7,7 +7,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  /* This centers all items in each row */
+  
   gap: 20px;
   width: 100%;
 }
@@ -15,13 +15,13 @@
 .img-container {
   margin: 10px;
   width: 300px;
-  /* No fixed height here so it can grow with the collapsible content */
+ 
 }
 
 .img-wrapper {
   width: 100%;
   aspect-ratio: 3 / 4;
-  /* Maintains a 300x400 ratio */
+ 
   overflow: hidden;
 }
 
@@ -39,9 +39,9 @@ img {
   display: block;
 }
 
-/* Existing collapsible styles remain unchanged */
+
 button.collapsible {
-  background-color: #eee;
+  background-color: #E9D0B8;
   color: #1b1b1b;
   font-weight: 600;
   cursor: pointer;
@@ -57,7 +57,7 @@ button.collapsible:after {
   content: '\02795';
   font-size: 13px;
   color: black !important;
-  /* Change this to your desired color */
+  
   float: right;
   margin-left: 5px;
 }
@@ -65,23 +65,23 @@ button.collapsible:after {
 button.active:after {
   content: "\2796";
   color: black !important;
-  /* Make sure to set the color here too */
+  
 }
 
 .active,
 .collapsible:hover {
-  background-color: #ccc;
+  background-color: #E9D0B8;
 }
 
 .description {
   max-height: 0;
   transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
   overflow: hidden;
-  background-color: #f1f1f1;
+  background-color: #E9D0B8;
 }
 
 .description.open {
   max-height: 200px;
-  /* Adjust based on your content */
+ 
   padding: 10px;
 }

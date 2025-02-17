@@ -1,10 +1,11 @@
-import './AboutUs.css'
+import './AboutUs.css';
 import Collapsible from './Collapsible';
 import nathanielImg from './nathaniel.jpg';
 import troyImg from './troy.jpg';
 import raedImg from './raed.jpg';
 import christianImg from './christian.jpg';
 import portraitImg from './portrait.jpg';
+import samImg from './sam.png';
 
 const teamMembers = [
   {
@@ -13,8 +14,8 @@ const teamMembers = [
     link: "https://www.linkedin.com/in/nathaniel-white-1371a8278",
   },
   {
-    name: "Sam Neale", img: portraitImg,
-    description: "",
+    name: "Sam Neale", img: samImg,
+    description: "Hi! I am Computer Sceince major from Spokane, Washington. I am a big fan of both cats and dogs.",
     link: "",
   },
   {
@@ -46,12 +47,12 @@ const teamMembers = [
 
 const AboutUs = () => {
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8">
+    <div className="min-h-screen bg-backround max-w-6xl mx-auto px-4 py-8">
       <h1 className="text-4xl font-bold text-primary mb-6">About Us</h1>
 
       <p className="text-lg text-gray-700 mb-4">
         Welcome to our site! We are dedicated to helping you learn more about your pet,
-        from its breed to other potentional insights!
+        from its breed to other potential insights!
       </p>
       <h2 className="text-2xl font-semibold text-primary mt-6 mb-4">Our Mission</h2>
       <p className="text-lg text-gray-700 mb-4">

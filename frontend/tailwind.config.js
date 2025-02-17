@@ -7,18 +7,23 @@ export default {
   theme: {
     extend: {
       colors: {
+        backround: {
+          DEFAULT: '#E9D0B8',
+          light:'#fff',
+          dark: '#6fff',
+        },
         primary: {
-          DEFAULT: '#331C08',
+          DEFAULT: '#664C36',
           light: '#814918',
           dark: '#fff',
         },
         secondary: {
-          DEFAULT: '#664C36',
+          DEFAULT: '#FFD3AC',
           light: '#fff',
           dark: '#fff',
         },
         tertiary: {
-          DEFAULT: '#ccBEB1',
+          DEFAULT: '#664C36',
           light: '#fff',
           dark: '#fff',
         },
