@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
-import cat from './cat-upload-image.png'
-import dog from './dog-upload-image.png'
+import cat from './cat-upload-image.webp'
+import dog from './dog-upload-image.webp'
 
 const Upload = () => {
 
