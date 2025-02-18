@@ -94,27 +94,27 @@ const DogDropField: React.FC = () => {
   const handleContinue = async () => {
     if (!file) return;
     setIsLoading(true);
-  
+
     try {
       const inputTensor = await preprocessImage(file);
       if (!inputTensor) throw new Error("Failed to preprocess the image.");
-  
+
       ort.env.wasm.wasmPaths = "/";
       const session = await ort.InferenceSession.create("/dog_breed_model.onnx");
-  
+
       const feeds: Record<string, ort.Tensor> = {
         input: new ort.Tensor("float32", inputTensor, [1, 3, 224, 224]),
       };
-  
+
       const results = await session.run(feeds);
       const output = results[Object.keys(results)[0]];
       const probabilities = output.data as Float32Array;
-  
+
       const predictedIndex = probabilities.indexOf(Math.max(...probabilities));
       const predictedBreed = dogBreeds[predictedIndex];
-  
+
       setPrediction(predictedBreed);
-      
+
       const apiKey = import.meta.env.VITE_API_NINJAS_KEY;
       // Fetch dog breed information
       const response = await fetch(`https://api.api-ninjas.com/v1/dogs?name=${predictedBreed}`, {
@@ -122,13 +122,13 @@ const DogDropField: React.FC = () => {
           'X-Api-Key': apiKey
         }
       });
-  
+
       if (response.ok) {
         const breedData = await response.json();
-  
+
         // Generate a unique ID
         const uniqueId = generateProfileId();
-  
+
         const breedInfo = {
           ...breedData[0],
           name: predictedBreed,
@@ -136,11 +136,11 @@ const DogDropField: React.FC = () => {
           id: uniqueId,
           timestamp: Date.now()
         };
-  
+
         // Store in session storage
         const storageKey = `dog-profile-${uniqueId}`;
         sessionStorage.setItem(storageKey, JSON.stringify(breedInfo));
-  
+
         // Navigate to dog profile page
         navigate(`/dog-profile/${uniqueId}`, {
           state: {
@@ -156,7 +156,7 @@ const DogDropField: React.FC = () => {
       setIsLoading(false);
     }
   };
-  
+
 
   return (
     <div className="w-[75%] max-w-[1000px] mx-auto text-center">

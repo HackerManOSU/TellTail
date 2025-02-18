@@ -24,7 +24,7 @@ interface DogBreedInfo {
   drooling: number;
   coat_length: number;
   good_with_children: number;
-  good_with_other_dogs: number; 
+  good_with_other_dogs: number;
   good_with_strangers: number;
   playfulness: number;
   imageUrl?: string;
@@ -54,13 +54,13 @@ const DogProfile: React.FC = () => {
 
   useEffect(() => {
     if (!breedInfo) return;
-  
+
     fetch("/dog_breeds_origin_health.json")
       .then((res) => res.json())
       .then((data) => {
-        console.log("Fetched Data:", data); 
+        console.log("Fetched Data:", data);
         const match = data.find((item: DogBreedInfo) => item.name.toLowerCase().trim() === breedInfo.name.toLowerCase().trim());
-        console.log("Matched Breed:", match); 
+        console.log("Matched Breed:", match);
         if (match) {
           setAdditionalData({
             origin: match.origin,
@@ -69,22 +69,22 @@ const DogProfile: React.FC = () => {
         }
       })
       .catch((error) => console.error("Error fetching breed details:", error));
-  }, [breedInfo]);  
-  
+  }, [breedInfo]);
+
 
   const handleDownloadPDF = () => {
     if (!breedInfo) return;
     const pdf = new jsPDF();
-    
+
     pdf.setFontSize(20);
     pdf.text(`${breedInfo.name} Profile`, 20, 20);
     let currentY = 30;
-  
+
     if (breedInfo.imageUrl) {
       pdf.addImage(breedInfo.imageUrl, "JPEG", 20, currentY, 120, 80);
       currentY += 90;
     }
-  
+
     pdf.setFontSize(12);
     pdf.text("Basic Information:", 20, currentY);
     currentY += 10;
@@ -107,7 +107,7 @@ const DogProfile: React.FC = () => {
 
     pdf.text("Characteristics:", 20, currentY);
     currentY += 10;
-  
+
     const characteristics = [
       { label: "Shedding", value: breedInfo.shedding },
       { label: "Barking", value: breedInfo.barking },
@@ -121,15 +121,15 @@ const DogProfile: React.FC = () => {
       { label: "Good With Strangers", value: breedInfo.good_with_strangers },
       { label: "Playfulness", value: breedInfo.playfulness },
     ];
-  
+
     characteristics.forEach(({ label, value }) => {
       pdf.text(`${label}: ${value}/5`, 30, currentY);
       currentY += 8;
     });
-  
+
     pdf.save(`${breedInfo.name.toLowerCase()}-profile.pdf`);
   };
-  
+
 
   // const handleShare = async () => {
   //   if (!breedInfo) return;
@@ -177,8 +177,8 @@ const DogProfile: React.FC = () => {
           <Grid item xs={12} md={6}>
             <h2 className="text-xl font-semibold mb-4 text-primary">Basic Information</h2>
             <div className="space-y-3">
-            <div><span className="font-medium">Origin: </span>{additionalData.origin || "Unknown"}</div>
-              <div><span className ="font-medium">Common Health Issues: </span>{additionalData.health_issues || "No known issues"}</div>
+              <div><span className="font-medium">Origin: </span>{additionalData.origin || "Unknown"}</div>
+              <div><span className="font-medium">Common Health Issues: </span>{additionalData.health_issues || "No known issues"}</div>
               <div><span className="font-medium">Life Expectancy: </span>{breedInfo.min_life_expectancy} - {breedInfo.max_life_expectancy} years</div>
               <div><span className="font-medium">Male Weight: </span>{breedInfo.min_weight_male} - {breedInfo.max_weight_male} lbs</div>
               <div><span className="font-medium">Male Height: </span>{breedInfo.min_height_male} - {breedInfo.max_height_male} inches</div>

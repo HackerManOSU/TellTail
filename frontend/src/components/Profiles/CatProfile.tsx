@@ -9,7 +9,6 @@ import { Paper, Grid } from '@mui/material';
 /* ++++++++++ PDF Download ++++++++++ */
 import jsPDF from 'jspdf';
 
-
 interface CatBreedInfo {
   name: string;
   length: string;
@@ -42,21 +41,21 @@ const CatProfile: React.FC = () => {
   /* ++++++++++ PDF GENERATION ++++++++++ */
   const generatePDF = () => {
     if (!breedInfo) return;
-  
+
     const pdf = new jsPDF();
-    
+
     // Add title
     pdf.setFontSize(20);
     pdf.text(`${breedInfo.name} Profile`, 20, 20);
-    
+
     let currentY = 30; // Start position after title
-  
+
     // Add image at the top if available
     if (breedInfo.imageUrl) {
       pdf.addImage(breedInfo.imageUrl, 'JPEG', 20, currentY, 120, 80);
       currentY += 90; // Move down past the image
     }
-    
+
     // Add basic information
     pdf.setFontSize(12);
     pdf.text('Basic Information:', 20, currentY);
@@ -69,11 +68,11 @@ const CatProfile: React.FC = () => {
     currentY += 8;
     pdf.text(`Coat Length: ${breedInfo.length}`, 30, currentY);
     currentY += 15;
-  
+
     // Add characteristics with bar charts
     pdf.text('Characteristics (out of 5):', 20, currentY);
     currentY += 10;
-    
+
     const traits = [
       { label: "Intelligence", value: breedInfo.intelligence },
       { label: "Family Friendly", value: breedInfo.family_friendly },
@@ -82,26 +81,26 @@ const CatProfile: React.FC = () => {
       { label: "Shedding Level", value: breedInfo.shedding },
       { label: "General Health", value: breedInfo.general_health }
     ];
-  
+
     const barWidth = 100; // Width of the full bar
     const barHeight = 5; // Height of the bar
     const spacing = 15; // Reduced spacing between bars
-  
+
     traits.forEach(trait => {
       // Draw label and value
       pdf.text(`${trait.label}: ${trait.value}/5`, 30, currentY);
-      
+
       // Draw background bar (gray)
       pdf.setFillColor(229, 231, 235); // Light gray
       pdf.rect(30, currentY + 2, barWidth, barHeight, 'F');
-      
+
       // Draw filled bar (primary color)
       pdf.setFillColor(51, 28, 8); // Your primary color (#331C08)
       pdf.rect(30, currentY + 2, (trait.value / 5) * barWidth, barHeight, 'F');
-      
+
       currentY += spacing;
     });
-  
+
     // Save the PDF
     pdf.save(`${breedInfo.name.toLowerCase()}-profile.pdf`);
   };
@@ -113,7 +112,7 @@ const CatProfile: React.FC = () => {
       const profile = location.state.breedInfo as CatBreedInfo;
       sessionStorage.setItem(`cat-profile-${id}`, JSON.stringify(profile));
       setBreedInfo(profile);
-    } 
+    }
     // Otherwise try to load from storage
     else if (id) {
       const stored = sessionStorage.getItem(`cat-profile-${id}`);
@@ -127,7 +126,7 @@ const CatProfile: React.FC = () => {
     if (!breedInfo) return;
 
     const shareUrl = `${window.location.origin}/cat-profile/${id}`;
-    
+
     if (navigator.share) {
       try {
         await navigator.share({
@@ -235,7 +234,7 @@ const CatProfile: React.FC = () => {
           >
             Download Profile as PDF
           </button>
-          
+
           <button
             onClick={handleShare}
             className="bg-tertiary hover:bg-tertiary-light text-primary font-bold py-2 px-6 rounded-md transition-colors duration-200"
