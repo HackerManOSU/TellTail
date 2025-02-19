@@ -38,6 +38,8 @@ https://drive.google.com/file/d/1aQUYL65NAHzgO3qLxj3eLWHvnx3il3UL/view?usp=shari
 ### Group Google Doc 
 https://docs.google.com/document/d/1I5ed4LH9b9D_w5H8N8RbtgJrdjqqeIZ3JoOhrqkK7HI/edit?usp=sharing 
 
+### UI Wireframe
+https://www.figma.com/proto/9pO4CqLVWCrOygnr24prP4/Untitled?node-id=0-1&t=yrwT2gFLRzfkS8Ax-1
 
 ## Installation
 1. Clone this repository:
