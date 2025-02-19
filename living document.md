@@ -902,7 +902,9 @@ We will use **GitHub Issues** to document, prioritize, and address any bugs disc
      ```
 
 ### Running the Software 🎯
-- How to start the system 
+- Navigate to our site's webpage https://tail-tell.vercel.app/
+- Click on either the dog or cat depending on which you plan to upload
+- Click upload and then select which image you want to upload
 
 ### Using the Software ✅ - Covered in Use Cases where the section describes workflows for uploading images, viewing results, and generating adoption profiles.
 - Uploading images
