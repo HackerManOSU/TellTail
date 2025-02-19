@@ -84,11 +84,15 @@ $PROJECT_ROOT
 │   │   ├── components
 │   │   │   ├── About Us
 │   │   │   ├── Drop Field
+│   │   │   │   ├── CatDropField.tsx
+│   │   │   │   └── DogDropField.tsx
 │   │   │   ├── Drop Page
 │   │   │   ├── Header
 │   │   │   ├── Home
 │   │   │   ├── Instructions
 │   │   │   └── Profiles
+│   │   │       ├── CatProfiles.tsx
+│   │   │       └── DogProfile.tsx
 │   │   │
 │   │   ├── App.css
 │   │   ├── App.tsx

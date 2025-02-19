@@ -1,0 +1,587 @@
+[
+  {
+    "name":"Labrador Retriever",
+    "origin":"Canada",
+    "health_issues":"Hip dysplasia, obesity, ear infections"
+  },
+  {
+    "name":"German Shepherd",
+    "origin":"Germany",
+    "health_issues":"Hip dysplasia, elbow dysplasia, pancreatitis"
+  },
+  {
+    "name":"Bulldog",
+    "origin":"England",
+    "health_issues":"Skin allergies, respiratory issues, obesity"
+  },
+  {
+    "name":"Poodle",
+    "origin":"France",
+    "health_issues":"Hip dysplasia, epilepsy, bladder stones"
+  },
+  {
+    "name":"Beagle",
+    "origin":"England",
+    "health_issues":"Ear infections, hip dysplasia, epilepsy"
+  },
+  {
+    "name":"Chihuahua",
+    "origin":"Mexico",
+    "health_issues":"Dental problems, eye issues, respiratory issues"
+  },
+  {
+    "name":"Boxer",
+    "origin":"Germany",
+    "health_issues":"Hip dysplasia, cancer, heart conditions"
+  },
+  {
+    "name":"Golden Retriever",
+    "origin":"Scotland",
+    "health_issues":"Hip dysplasia, cancer, skin allergies"
+  },
+  {
+    "name":"Pug",
+    "origin":"China",
+    "health_issues":"Eye problems, respiratory issues, obesity"
+  },
+  {
+    "name":"Rottweiler",
+    "origin":"Germany",
+    "health_issues":"Hip dysplasia, cancer, elbow dysplasia"
+  },
+  {
+    "name":"Siberian Husky",
+    "origin":"Russia",
+    "health_issues":"Hip dysplasia, eye problems, hereditary myopathy"
+  },
+  {
+    "name":"Dachshund",
+    "origin":"Germany",
+    "health_issues":"Intervertebral disc disease, hip dysplasia, diabetes"
+  },
+  {
+    "name":"Shih Tzu",
+    "origin":"China",
+    "health_issues":"Dental problems, respiratory issues, eye problems"
+  },
+  {
+    "name":"Bichon Frise",
+    "origin":"France",
+    "health_issues":"Dental problems, eye problems, bladder stones"
+  },
+  {
+    "name":"Australian Shepherd",
+    "origin":"Australia",
+    "health_issues":"Hip dysplasia, eye problems, epilepsy"
+  },
+  {
+    "name":"Basset Hound",
+    "origin":"France",
+    "health_issues":"Dental problems, ear infections, obesity"
+  },
+  {
+    "name":"Cocker Spaniel",
+    "origin":"England",
+    "health_issues":"Ear infections, hip dysplasia, eye problems"
+  },
+  {
+    "name":"French Bulldog",
+    "origin":"France",
+    "health_issues":"Breathing problems, eye problems, hip dysplasia"
+  },
+  {
+    "name":"Pomeranian",
+    "origin":"Germany",
+    "health_issues":"Dental problems, eye problems, obesity"
+  },
+  {
+    "name":"Great Dane",
+    "origin":"Germany",
+    "health_issues":"Hip dysplasia, cancer, heart conditions"
+  },
+  {
+    "name":"Mastiff",
+    "origin":"England",
+    "health_issues":"Hip dysplasia, heart conditions, cancer"
+  },
+  {
+    "name":"Newfoundland",
+    "origin":"Canada",
+    "health_issues":"Hip dysplasia, heart conditions, cancer"
+  },
+  {
+    "name":"Saint Bernard",
+    "origin":"Switzerland",
+    "health_issues":"Hip dysplasia, cancer, heart conditions"
+  },
+  {
+    "name":"Old English Sheepdog",
+    "origin":"England",
+    "health_issues":"Hip dysplasia, eye problems, skin allergies"
+  },
+  {
+    "name":"Irish Wolfhound",
+    "origin":"Ireland",
+    "health_issues":"Hip dysplasia, heart conditions, cancer"
+  },
+  {
+    "name":"Greyhound",
+    "origin":"England",
+    "health_issues":"Hip dysplasia, eye problems, heart conditions"
+  },
+  {
+    "name":"Scottish Deerhound",
+    "origin":"Scotland",
+    "health_issues":"Hip dysplasia, heart conditions, cancer"
+  },
+  {
+    "name":"Great Pyrenees",
+    "origin":"France",
+    "health_issues":"Hip dysplasia, cancer, skin allergies"
+  },
+  {
+    "name":"Shar Pei",
+    "origin":"China",
+    "health_issues":"Skin allergies, eye problems, hip dysplasia"
+  },
+  {
+    "name":"Doberman Pinscher",
+    "origin":"Germany",
+    "health_issues":"Hip dysplasia, heart conditions, cancer"
+  },
+  {
+    "name":"Weimaraner",
+    "origin":"Germany",
+    "health_issues":"Hip dysplasia, eye problems, cancer"
+  },
+  {
+    "name":"Belgian Malinois",
+    "origin":"Belgium",
+    "health_issues":"Hip dysplasia, eye problems, skin allergies"
+  },
+  {
+    "name":"Rhodesian Ridgeback",
+    "origin":"Rhodesia",
+    "health_issues":"Hip dysplasia, eye problems, cancer"
+  },
+  {
+    "name":"English Setter",
+    "origin":"England",
+    "health_issues":"Hip dysplasia, eye problems, cancer"
+  },
+  {
+    "name":"Pointer",
+    "origin":"England",
+    "health_issues":"Hip dysplasia, eye problems, cancer"
+  },
+  {
+    "name":"Gordon Setter",
+    "origin":"Scotland",
+    "health_issues":"Hip dysplasia, eye problems, cancer"
+  },
+  {
+    "name":"Irish Setter",
+    "origin":"Ireland",
+    "health_issues":"Hip dysplasia, eye problems, cancer"
+  },
+  {
+    "name":"Papillon",
+    "origin":"France",
+    "health_issues":"Dental problems, eye problems, bladder stones"
+  },
+  {
+    "name":"Pekingese",
+    "origin":"China",
+    "health_issues":"Dental problems, respiratory issues, eye problems"
+  },
+  {
+    "name":"Toy Poodle",
+    "origin":"France",
+    "health_issues":"Hip dysplasia, epilepsy, bladder stones"
+  },
+  {
+    "name":"Miniature Poodle",
+    "origin":"France",
+    "health_issues":"Hip dysplasia, epilepsy, bladder stones"
+  },
+  {
+    "name":"Standard Poodle",
+    "origin":"France",
+    "health_issues":"Hip dysplasia, epilepsy, bladder stones"
+  },
+  {
+    "name":"Affenpinscher",
+    "origin":"Germany",
+    "health_issues":"Dental problems, eye problems, skin allergies"
+  },
+  {
+    "name":"Boston Terrier",
+    "origin":"United States",
+    "health_issues":"Eye problems, respiratory issues, skin allergies"
+  },
+  {
+    "name":"Brussels Griffon",
+    "origin":"Belgium",
+    "health_issues":"Dental problems, eye problems, respiratory issues"
+  },
+  {
+    "name":"Cairn Terrier",
+    "origin":"Scotland",
+    "health_issues":"Dental problems, eye problems, skin allergies"
+  },
+  {
+    "name":"Chinese Crested",
+    "origin":"China",
+    "health_issues":"Dental problems, eye problems, skin allergies"
+  },
+  {
+    "name":"Miniature Schnauzer",
+    "origin":"Germany",
+    "health_issues":"Dental problems, pancreatitis, diabetes"
+  },
+  {
+    "name":"Standard Schnauzer",
+    "origin":"Germany",
+    "health_issues":"Dental problems, pancreatitis, diabetes"
+  },
+  {
+    "name":"West Highland White Terrier",
+    "origin":"Scotland",
+    "health_issues":"Dental problems, skin allergies, hip dysplasia"
+  },
+  {
+    "name":"Australian Terrier",
+    "origin":"Australia",
+    "health_issues":"Dental problems, skin allergies, hip dysplasia"
+  },
+  {
+    "name":"Border Terrier",
+    "origin":"England",
+    "health_issues":"Dental problems, skin allergies, hip dysplasia"
+  },
+  {
+    "name":"Coton de Tulear",
+    "origin":"Madagascar",
+    "health_issues":"Dental problems, skin allergies, hip dysplasia"
+  },
+  {
+    "name":"English Toy Spaniel",
+    "origin":"England",
+    "health_issues":"Dental problems, skin allergies, hip dysplasia"
+  },
+  {
+    "name":"Australian Stumpy Tail Cattle Dog",
+    "origin":"Australia",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Pug",
+    "origin":"China",
+    "health_issues":"Dental problems, respiratory issues, eye problems"
+  },
+  {
+    "name":"American Eskimo Dog",
+    "origin":"United States",
+    "health_issues":"Dental problems, skin allergies, hip dysplasia"
+  },
+  {
+    "name":"Australian Cattle Dog",
+    "origin":"Australia",
+    "health_issues":"Dental problems, skin allergies, hip dysplasia"
+  },
+  {
+    "name":"Basset Hound",
+    "origin":"France",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Australian Kelpie",
+    "origin":"Australia",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Bloodhound",
+    "origin":"England",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Border Collie",
+    "origin":"England",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Australian Shepherd",
+    "origin":"Australia",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"American Bulldog",
+    "origin":"United States",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Australian Shepherd",
+    "origin":"Australia",
+    "health_issues":"Dental problems, skin allergies, hip dysplasia"
+  },
+  {
+    "name":"Borzoi",
+    "origin":"Russia",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Bull Terrier",
+    "origin":"England",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Cane Corso",
+    "origin":"Italy",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Cardigan Welsh Corgi",
+    "origin":"Wales",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Chesapeake Bay Retriever",
+    "origin":"United States",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Saluki",
+    "origin":"Middle East",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"English Setter",
+    "origin":"England",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"English Springer Spaniel",
+    "origin":"England",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Field Spaniel",
+    "origin":"England",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Finnish Spitz",
+    "origin":"Finland",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Flat-Coated Retriever",
+    "origin":"England",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Australian Terrier",
+    "origin":"Australia",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Giant Schnauzer",
+    "origin":"Germany",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Golden Retriever",
+    "origin":"Scotland",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Gordon Setter",
+    "origin":"Scotland",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Australian Cattle Dog",
+    "origin":"Australia",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Greyhound",
+    "origin":"England",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Harrier",
+    "origin":"England",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Irish Setter",
+    "origin":"Ireland",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Irish Terrier",
+    "origin":"Ireland",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Irish Water Spaniel",
+    "origin":"Ireland",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Irish Wolfhound",
+    "origin":"Ireland",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Italian Greyhound",
+    "origin":"Italy",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Jack Russell Terrier",
+    "origin":"England",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Japanese Chin",
+    "origin":"Japan",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Keeshond",
+    "origin":"Netherlands",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Kerry Blue Terrier",
+    "origin":"Ireland",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Kuvasz",
+    "origin":"Hungary",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Lhasa Apso",
+    "origin":"Tibet",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Maltese",
+    "origin":"Malta",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Miniature Pinscher",
+    "origin":"Germany",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Samoyed",
+    "origin":"Russia",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Shetland Sheepdog",
+    "origin":"Scotland",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Staffordshire Bull Terrier",
+    "origin":"England",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Vizsla",
+    "origin":"Hungary",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Anatolian Shepherd",
+    "origin":"Turkey",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Welsh Corgi",
+    "origin":"Wales",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Welsh Springer Spaniel",
+    "origin":"Wales",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Welsh Terrier",
+    "origin":"Wales",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"West Highland White Terrier",
+    "origin":"Scotland",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Whippet",
+    "origin":"England",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Wirehaired Pointing Griffon",
+    "origin":"Belgium",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Xoloitzcuintli",
+    "origin":"Mexico",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Yorkshire Terrier",
+    "origin":"England",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Akita",
+    "origin":"Japan",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Africanis",
+    "origin":"Africa",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Basenji",
+    "origin":"Congo",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Catahoula Leopard Dog",
+    "origin":"United States",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Cocker Spaniel",
+    "origin":"England",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Miniature Shiba Inu",
+    "origin":"Japan",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Belgian Tervuren",
+    "origin":"Belgium",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  },
+  {
+    "name":"Pharaoh Hound",
+    "origin":"Malta",
+    "health_issues":"Dental problems, eye issues, skin allergies"
+  }
+]

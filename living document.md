@@ -864,5 +864,105 @@ We will use **GitHub Issues** to document, prioritize, and address any bugs disc
 - **Test Reports:** Documents test results and coverage.
 - **Wiki:** Collaborative internal resource for team updates and technical discussions.
 
+# Update - 2/18/25
+## Project Implementation and Documentation
+
+## 1. Project Progress ✅
+- Contribution to GitHub repository ✅ - Team Process Description outlines GitHub usage, testing and CI best practices.
+- Version control and CI usage ✅ - Covered in Risk Assessment. 
+- Code testing, comments, and reviews
+
+## 2. User Documentation ✅
+### High-Level Description ✅ - Covered in Abstract and Goal. They both provide a high-level overview of the system and why users would use it.
+- Overview of system functionality 
+- Why users would use it
+
+### Installation Instructions ✅
+- **Prerequisites and dependencies:**
+  - Node.js (v18+)
+  - Python (v3.8+)
+  - ONNX Runtime
+  - Git
+  - A modern web browser (Chrome, Firefox, Edge)
+- **Step-by-step installation guide:**
+  1. Clone the repository:
+     ```sh
+     git clone https://github.com/HackerManOSU/TailTell.git
+     cd TailTell
+     ```
+  2. Install frontend dependencies:
+     ```sh
+     cd frontend
+     npm install
+     ```
+  3. Install backend dependencies:
+     ```sh
+     cd ../backend
+     pip install -r requirements.txt
+     ```
+
+### Running the Software 🎯
+- Navigate to our site's webpage https://tail-tell.vercel.app/
+- Click on either the dog or cat depending on which you plan to upload
+- Click upload and then select which image you want to upload
+
+### Using the Software ✅ - Covered in Use Cases where the section describes workflows for uploading images, viewing results, and generating adoption profiles.
+- Uploading images
+- Viewing classification results
+- Generating adoption profiles
+
+### Reporting Bugs ✅
+- **How to submit issues:**
+  - Go to [GitHub Issues](https://github.com/HackerManOSU/TailTell/issues).
+  - Click **New Issue**.
+- **What information to include:**
+  - Steps to reproduce the bug
+  - Expected vs. actual results
+  - Screenshots (if applicable)
+  - Browser/device info
+
+### Known Bugs & Work in Progress ✅ - Covered in Risk Assessment, on-functional Requirements, and Work-in-Progress Features sections. They list current limitations and ongoing developments.
+- List of current limitations 
+- Features still under development
+
+## 3. Developer Documentation 
+### Obtaining the Source Code ✅ - Covered in Git Repository Link and project Setup sections. They explain how to clone and access the code.
+- Repository and submodules setup
+
+### Directory Structure ✅ - The Software Architecture section describes major folders and their purposes.
+- Explanation of folders and files
+
+### Building the Software 🎯
+- Build system and setup instructions
+
+  
+- **For locally building the app :**
+  - In tailtell/frontend: `npm run dev` (runs Vite)
+  - Navigate to `localhost:5173/` on your browser.
+- **For building the app to be pushed to deployment:**
+  - Build and push the app to the GitHub:
+    - Fetch and merge all updates from other developers: `git pull origin main`
+    - Stage all updated files:  `git add <filename>`
+    - Commit all files with a descriptive message: `git commit -m <message>`
+    - Push these changes to the GitHub repo: `git push`
+  - After pushing, GitHub actions should **automatically** build the app for you, assuming the code is functional.
+
+### Testing the Software ✅
+- **Running test cases:**
+  - Frontend: `npm test`
+  - Backend: `pytest tests/`
+- **Accessing data sources:**
+  - Ensure correct environment variables are set in `api.env` for API keys and endpoints.
+
+### Adding New Tests 🎯
+- Naming conventions and test harness
+
+### Building a Release ✅
+- All tasks with regards to building (and deploying) are already automated using Vercel and GitHub actions.
+- As of right now, we are not employing the version number system until we have a full usable beta release (v1.0.0 in GitHub). Our version numbers for releases will be incremented according to the rules of "Semantic Versioning" (see the following article from GeeksForGeeks: https://www.geeksforgeeks.org/introduction-semantic-versioning/), so this should be refered back to on a case-by-case basis when updating the version number for releases.
+- **Sanity checks after building a release:**
+  - Scan and click through all links in the app/website to ensure everything is functioning as intended.
+  - Check the Cat AI model with any test image(s) to ensure it is working without issues.
+  - Check the Dog AI model with any test image(s) to ensure it is working without issues.
 
 
