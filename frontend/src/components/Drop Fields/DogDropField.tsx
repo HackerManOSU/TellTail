@@ -85,7 +85,7 @@ const DogDropField: React.FC = () => {
     setPrediction(null);
   }, []);
 
-  const { getRootProps, getInputProps } = useDropzone({
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: { "image/*": [".jpeg", ".jpg", ".png"] },
     multiple: false,
@@ -159,8 +159,13 @@ const DogDropField: React.FC = () => {
 
 
   return (
-    <div className="w-[75%] max-w-[1000px] mx-auto text-center">
-      <div {...getRootProps()} className="p-8 border-2 border-solid rounded-lg text-center cursor-pointer">
+    <div className="w-[75%] max-w-[1000px] h-[33%]">
+      <div
+        {...getRootProps()}
+        className={`p-8 border-2 border-solid rounded-lg text-center cursor-pointer h-full
+            ${isDragActive || "hover:border-primary hover:bg-primary-light"} 
+            ${isDragActive ? "border-primary bg-primary-light" : "border-gray-300"}`}
+      >
         <input {...getInputProps()} />
         {preview ? (
           <img src={preview} alt="Preview" className="max-h-48 mx-auto" />
