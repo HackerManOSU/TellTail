@@ -933,6 +933,18 @@ We will use **GitHub Issues** to document, prioritize, and address any bugs disc
 ### Building the Software 🎯
 - Build system and setup instructions
 
+  
+- **For locally building the app :**
+  - In tailtell/frontend: `npm run dev` (runs Vite)
+  - Navigate to `localhost:5173/` on your browser.
+- **For building the app to be pushed to deployment:**
+  - Build and push the app to the GitHub:
+    - Fetch and merge all updates from other developers: `git pull origin main`
+    - Stage all updated files:  `git add <filename>`
+    - Commit all files with a descriptive message: `git commit -m <message>`
+    - Push these changes to the GitHub repo: `git push`
+  - After pushing, GitHub actions should **automatically** build the app for you, assuming the code is functional.
+
 ### Testing the Software ✅
 - **Running test cases:**
   - Frontend: `npm test`
@@ -943,7 +955,12 @@ We will use **GitHub Issues** to document, prioritize, and address any bugs disc
 ### Adding New Tests 🎯
 - Naming conventions and test harness
 
-### Building a Release 🎯
-- Updating version numbers
-- Sanity checks before release
+### Building a Release ✅
+- All tasks with regards to building (and deploying) are already automated using Vercel and GitHub actions.
+- As of right now, we are not employing the version number system until we have a full usable beta release (v1.0.0 in GitHub). Our version numbers for releases will be incremented according to the rules of "Semantic Versioning" (see the following article from GeeksForGeeks: https://www.geeksforgeeks.org/introduction-semantic-versioning/), so this should be refered back to on a case-by-case basis when updating the version number for releases.
+- **Sanity checks after building a release:**
+  - Scan and click through all links in the app/website to ensure everything is functioning as intended.
+  - Check the Cat AI model with any test image(s) to ensure it is working without issues.
+  - Check the Dog AI model with any test image(s) to ensure it is working without issues.
+
 
