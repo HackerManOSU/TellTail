@@ -864,5 +864,86 @@ We will use **GitHub Issues** to document, prioritize, and address any bugs disc
 - **Test Reports:** Documents test results and coverage.
 - **Wiki:** Collaborative internal resource for team updates and technical discussions.
 
+# Update - 2/18/25
+## Project Implementation and Documentation
 
+## 1. Project Progress ✅
+- Contribution to GitHub repository ✅ - Team Process Description outlines GitHub usage, testing and CI best practices.
+- Version control and CI usage ✅ - Covered in Risk Assessment. 
+- Code testing, comments, and reviews
+
+## 2. User Documentation ✅
+### High-Level Description ✅ - Covered in Abstract and Goal. They both provide a high-level overview of the system and why users would use it.
+- Overview of system functionality 
+- Why users would use it
+
+### Installation Instructions ✅
+- **Prerequisites and dependencies:**
+  - Node.js (v18+)
+  - Python (v3.8+)
+  - ONNX Runtime
+  - Git
+  - A modern web browser (Chrome, Firefox, Edge)
+- **Step-by-step installation guide:**
+  1. Clone the repository:
+     ```sh
+     git clone https://github.com/HackerManOSU/TailTell.git
+     cd TailTell
+     ```
+  2. Install frontend dependencies:
+     ```sh
+     cd frontend
+     npm install
+     ```
+  3. Install backend dependencies:
+     ```sh
+     cd ../backend
+     pip install -r requirements.txt
+     ```
+
+### Running the Software 🎯
+- How to start the system 
+
+### Using the Software ✅ - Covered in Use Cases where the section describes workflows for uploading images, viewing results, and generating adoption profiles.
+- Uploading images
+- Viewing classification results
+- Generating adoption profiles
+
+### Reporting Bugs ✅
+- **How to submit issues:**
+  - Go to [GitHub Issues](https://github.com/HackerManOSU/TailTell/issues).
+  - Click **New Issue**.
+- **What information to include:**
+  - Steps to reproduce the bug
+  - Expected vs. actual results
+  - Screenshots (if applicable)
+  - Browser/device info
+
+### Known Bugs & Work in Progress ✅ - Covered in Risk Assessment, on-functional Requirements, and Work-in-Progress Features sections. They list current limitations and ongoing developments.
+- List of current limitations 
+- Features still under development
+
+## 3. Developer Documentation 
+### Obtaining the Source Code ✅ - Covered in Git Repository Link and project Setup sections. They explain how to clone and access the code.
+- Repository and submodules setup
+
+### Directory Structure ✅ - The Software Architecture section describes major folders and their purposes.
+- Explanation of folders and files
+
+### Building the Software 🎯
+- Build system and setup instructions
+
+### Testing the Software ✅
+- **Running test cases:**
+  - Frontend: `npm test`
+  - Backend: `pytest tests/`
+- **Accessing data sources:**
+  - Ensure correct environment variables are set in `api.env` for API keys and endpoints.
+
+### Adding New Tests 🎯
+- Naming conventions and test harness
+
+### Building a Release 🎯
+- Updating version numbers
+- Sanity checks before release
 
