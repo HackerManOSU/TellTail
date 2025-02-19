@@ -6,6 +6,7 @@ import raedImg from './raed.jpg';
 import christianImg from './christian.jpg';
 import portraitImg from './portrait.jpg';
 import samImg from './sam.png';
+import zaneImg from './zane.jpg';
 
 const teamMembers = [
   {
@@ -39,9 +40,9 @@ const teamMembers = [
     link: "https://www.linkedin.com/in/troykvdiaz?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
   },
   {
-    name: "Zane Garvey", img: portraitImg,
-    description: "",
-    link: "",
+    name: "Zane Garvey", img: zaneImg,
+    description: "Hellur! I am a Junior Computer Science major from Milwaukie, Oregon. Dogs are definitely better!",
+    link: "https://www.linkedin.com/in/zane-garvey",
   },
 ];
 
