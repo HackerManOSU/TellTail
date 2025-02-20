@@ -48,39 +48,44 @@ const teamMembers = [
 
 const AboutUs = () => {
   return (
-    <div className="min-h-screen bg-backround max-w-6xl mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold text-primary mb-6">About Us</h1>
+    <div className='w-screen h-screen bg-background'>
 
-      <p className="text-lg text-gray-700 mb-4">
-        Welcome to our site! We are dedicated to helping you learn more about your pet,
-        from its breed to other potential insights!
-      </p>
-      <h2 className="text-2xl font-semibold text-primary mt-6 mb-4">Our Mission</h2>
-      <p className="text-lg text-gray-700 mb-4">
-        Our mission is to provide a quick and easy way to learn more about your
-        cat or dog. We aim to provide accurate information on your pet's breed,
-        age, and potential health information.
-      </p>
-      <h2 className="text-2xl font-semibold text-primary mt-6 mb-4">Our Team</h2>
-      <p className="text-lg text-gray-700 mb-4">
-        We are a group of students at Oregon State University with diverse backgrounds,
-        all working together to achieve a common goal.
-      </p>
+      <div className="min-h-screen bg-backround max-w-6xl mx-auto px-4 py-8">
+        <h1 className="text-4xl font-bold text-primary mb-6">About Us</h1>
 
-      <div className="flex-container">
-        {teamMembers.map((member, index) => (
-          <div key={index} className="img-container">
-            <div className="img-wrapper">
-              <img src={member.img} alt={member.name} />
+        <p className="text-lg text-gray-700 mb-4">
+          Welcome to our site! We are dedicated to helping you learn more about your pet,
+          from its breed to other potential insights!
+        </p>
+        <h2 className="text-2xl font-semibold text-primary mt-6 mb-4">Our Mission</h2>
+        <p className="text-lg text-gray-700 mb-4">
+          Our mission is to provide a quick and easy way to learn more about your
+          cat or dog. We aim to provide accurate information on your pet's breed,
+          age, and potential health information.
+        </p>
+        <h2 className="text-2xl font-semibold text-primary mt-6 mb-4">Our Team</h2>
+        <p className="text-lg text-gray-700 mb-4">
+          We are a group of students at Oregon State University with diverse backgrounds,
+          all working together to achieve a common goal.
+        </p>
+
+        <div className="flex-container">
+          {teamMembers.map((member, index) => (
+            <div key={index} className="img-container">
+              <div className="img-wrapper">
+                <img src={member.img} alt={member.name} />
+              </div>
+              <Collapsible name={member.name}>
+                <p>{member.description}</p>
+                <a className="descriptionLink" href={member.link}>See more!</a>
+              </Collapsible>
             </div>
-            <Collapsible name={member.name}>
-              <p>{member.description}</p>
-              <a className="descriptionLink" href={member.link}>See more!</a>
-            </Collapsible>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
+
     </div>
+
   );
 };
 
