@@ -883,7 +883,9 @@ We will use **GitHub Issues** to document, prioritize, and address any bugs disc
   - Python (v3.8+)
   - ONNX Runtime
   - Git
+  - PyTorch
   - A modern web browser (Chrome, Firefox, Edge)
+
 - **Step-by-step installation guide:**
   1. Clone the repository:
      ```sh
@@ -911,48 +913,63 @@ We will use **GitHub Issues** to document, prioritize, and address any bugs disc
 - Viewing classification results
 - Generating adoption profiles
 
-### Reporting Bugs ✅
-- **How to submit issues:**
+### Reporting Bugs and Feature Suggestions ✅
+- **How to submit issues or suggestions:**
   - Go to [GitHub Issues](https://github.com/HackerManOSU/TailTell/issues).
   - Click **New Issue**.
-- **What information to include:**
-  - Steps to reproduce the bug
-  - Expected vs. actual results
-  - Screenshots (if applicable)
-  - Browser/device info
 
-### Known Bugs & Work in Progress ✅ - Covered in Risk Assessment, on-functional Requirements, and Work-in-Progress Features sections. They list current limitations and ongoing developments.
+- **If reporting a bug, be sure to include:**
+  - Steps to reproduce the bug
+  - Expected vs. Actual results
+  - Screenshots (if applicable)
+  - Browser and device info 
+
+- **If suggesting a feature, be sure to:**
+  - Mark your issue as an **enhancement**
+  - Justify why this feature would be helpful
+  
+    
+### Most Known Bugs & Work in Progress are ✅ - Covered in Risk Assessment, on-functional Requirements, and Work-in-Progress Features sections. They list current limitations and ongoing developments.
 - List of current limitations 
-- Features still under development
+- Features still under development 
+
+### Bugs not covered in Risk Assessment 
+- Sometimes onnxruntime-web can break randomly, causing the user to reupload their image. 
+- Some issues with prediction stability may be due to browser type. We are currently trying to 
+  replicate this issue with different browsers. 
+- Currently, the website's mobile navbar can be clip with other website elements
 
 ## 3. Developer Documentation 
 ### Obtaining the Source Code ✅ - Covered in Git Repository Link and project Setup sections. They explain how to clone and access the code.
 - Repository and submodules setup
 
-### Directory Structure ✅ - The Software Architecture section describes major folders and their purposes.
+### Directory Structure ✅ - The Software Architecture section describes major folders and their purposes. This information is also found in the README with a full project tree.
 - Explanation of folders and files
 
 ### Building the Software 🎯
 - Build system and setup instructions
 
-  
 - **For locally building the app :**
   - In tailtell/frontend: `npm run dev` (runs Vite)
   - Navigate to `localhost:5173/` on your browser.
+
 - **For building the app to be pushed to deployment:**
+  - First insure that your build works locally!
+
   - Build and push the app to the GitHub:
     - Fetch and merge all updates from other developers: `git pull origin main`
     - Stage all updated files:  `git add <filename>`
     - Commit all files with a descriptive message: `git commit -m <message>`
     - Push these changes to the GitHub repo: `git push`
-  - After pushing, GitHub actions should **automatically** build the app for you, assuming the code is functional.
+
+  - After pushing, GitHub actions should **automatically** build the app for you, assuming the code is functional. Again, make sure your build works locally before deploying!
 
 ### Testing the Software ✅
 - **Running test cases:**
   - Frontend: `npm test`
   - Backend: `pytest tests/`
 - **Accessing data sources:**
-  - Ensure correct environment variables are set in `api.env` for API keys and endpoints.
+  - Ensure correct environment variables are set in `api.env` for API keys and endpoints. 
 
 ### Adding New Tests 🎯
 - Naming conventions and test harness
@@ -963,6 +980,8 @@ We will use **GitHub Issues** to document, prioritize, and address any bugs disc
 - **Sanity checks after building a release:**
   - Scan and click through all links in the app/website to ensure everything is functioning as intended.
   - Check the Cat AI model with any test image(s) to ensure it is working without issues.
-  - Check the Dog AI model with any test image(s) to ensure it is working without issues.
+  - Check the Dog AI model with any test image(s) to ensure it is working without issues. 
+  - Check for any warnings and ensure they are avoidable before deploying. 
+
 
 
