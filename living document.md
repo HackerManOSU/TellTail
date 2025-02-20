@@ -938,7 +938,7 @@ We will use **GitHub Issues** to document, prioritize, and address any bugs disc
 ### Obtaining the Source Code ✅ - Covered in Git Repository Link and project Setup sections. They explain how to clone and access the code.
 - Repository and submodules setup
 
-### Directory Structure ✅ - The Software Architecture section describes major folders and their purposes.
+### Directory Structure ✅ - The Software Architecture section describes major folders and their purposes. This information is also found in the README with a full project tree.
 - Explanation of folders and files
 
 ### Building the Software 🎯
@@ -971,8 +971,8 @@ We will use **GitHub Issues** to document, prioritize, and address any bugs disc
 - **Sanity checks after building a release:**
   - Scan and click through all links in the app/website to ensure everything is functioning as intended.
   - Check the Cat AI model with any test image(s) to ensure it is working without issues.
-  - Check the Dog AI model with any test image(s) to ensure it is working without issues.
+  - Check the Dog AI model with any test image(s) to ensure it is working without issues. 
+  - Check for any warnings and ensure they are avoidable before deploying. 
 
-# Developer Documentation 
 
 
