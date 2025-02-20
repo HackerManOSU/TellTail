@@ -15,6 +15,7 @@ interface CatBreedInfo {
   origin: string;
   intelligence: number;
   family_friendly: number;
+  playfulness: number;
   shedding: number;
   general_health: number;
   grooming: number;
@@ -70,12 +71,14 @@ const CatProfile: React.FC = () => {
     currentY += 15;
 
     // Add characteristics with bar charts
+
     pdf.text('Characteristics (out of 5):', 20, currentY);
     currentY += 10;
 
     const traits = [
       { label: "Intelligence", value: breedInfo.intelligence },
       { label: "Family Friendly", value: breedInfo.family_friendly },
+      { label: "Playfulness", value: breedInfo.playfulness },
       { label: "Children Friendly", value: breedInfo.children_friendly },
       { label: "Grooming Needs", value: breedInfo.grooming },
       { label: "Shedding Level", value: breedInfo.shedding },
@@ -175,6 +178,7 @@ const CatProfile: React.FC = () => {
               {[
                 { label: "Intelligence", value: breedInfo.intelligence },
                 { label: "Family Friendly", value: breedInfo.family_friendly },
+                { label: "Playfulness", value: breedInfo.playfulness },
                 { label: "Children Friendly", value: breedInfo.children_friendly },
                 { label: "Grooming Needs", value: breedInfo.grooming },
                 { label: "Shedding Level", value: breedInfo.shedding },
