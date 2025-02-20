@@ -973,7 +973,7 @@ We will use **GitHub Issues** to document, prioritize, and address any bugs disc
 
 ### Adding New Tests 🎯
 
-Naming Conventions Tests
+**Naming Conventions Tests**
 
 Functional Tests: should be expected behavior followed by context
 
@@ -990,7 +990,8 @@ User Experience Tests: should be user action followed by the expected result
 Example: 
 The test should verify that an error message is displayed when an invalid file type is uploaded
 
-Test Harness
+
+**Test Harness**
 Test Runner: Frontend and backend tests and reports on performance
 What we will use: npm test (frontend), pytest (backend)
 
@@ -998,6 +999,7 @@ End to End Testing: Test the application from a user perspective, showing that a
 What we will use: Cypress
 
 Continuous Integration: Implement CI to run tests automatically on code updates.
+
 
 By establishing naming conventions and an extensive test harness, TellTail can be reliable and at the quality we are looking to provide. These tests give us the confidence to best help shelters and pet owners alike. 
 
