@@ -130,27 +130,6 @@ const DogProfile: React.FC = () => {
     pdf.save(`${breedInfo.name.toLowerCase()}-profile.pdf`);
   };
 
-
-  // const handleShare = async () => {
-  //   if (!breedInfo) return;
-  //   const shareUrl = `${window.location.origin}/dog-profile/${id}`;
-  //   if (navigator.share) {
-  //     try {
-  //       await navigator.share({
-  //         title: `${breedInfo.name} Dog Profile`,
-  //         text: `Check out this ${breedInfo.name} dog from TellTail!`,
-  //         url: shareUrl,
-  //       });
-  //     } catch (error) {
-  //       console.error("Error sharing:", error);
-  //     }
-  //   } else {
-  //     navigator.clipboard.writeText(shareUrl)
-  //       .then(() => alert("Profile link copied to clipboard!"))
-  //       .catch(() => alert("Failed to copy link"));
-  //   }
-  // };
-
   if (!breedInfo) {
     return (
       <div className="max-w-6xl mx-auto px-4 py-8">

@@ -9,10 +9,17 @@ interface DropPageProps {
 
 const DropPage: React.FC<DropPageProps> = ({ title }) => {
   return (
-    <div className='h-[95vh] w-[100vw] bg-[#fff] text-center flex flex-col items-center justify-evenly'>
-      <h1 className='text-9xl text-primary'>Upload a {title}</h1>
-      {(title == "Cat") ? <CatDropField />
-        : <DogDropField />}
+    <div className='h-[90vh] w-[100vw] bg-[#fff] text-center flex flex-col items-center'>
+
+      <div className='absolute top-[15dvh]'>
+
+        <h1 className='text-9xl text-primary'>Upload a {title}</h1>
+
+      </div>
+      
+      <div className='w-full h-full flex items-center justify-center'>
+        {(title == "Cat") ? <CatDropField /> : <DogDropField />}
+      </div>
     </div>
   )
 }

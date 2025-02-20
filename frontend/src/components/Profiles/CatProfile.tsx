@@ -122,29 +122,6 @@ const CatProfile: React.FC = () => {
     }
   }, [id, location]);
 
-  const handleShare = async () => {
-    if (!breedInfo) return;
-
-    const shareUrl = `${window.location.origin}/cat-profile/${id}`;
-
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: `${breedInfo.name} Cat Profile`,
-          text: `Check out this ${breedInfo.name} cat from TellTail!`,
-          url: shareUrl,
-        });
-      } catch (error) {
-        console.error('Error sharing:', error);
-      }
-    } else {
-      // Fallback - copy to clipboard
-      navigator.clipboard.writeText(shareUrl)
-        .then(() => alert('Profile link copied to clipboard!'))
-        .catch(() => alert('Failed to copy link'));
-    }
-  };
-
   /* ++++++++++ FALLBACK ++++++++++ */
   if (!breedInfo) {
     return (
@@ -230,18 +207,10 @@ const CatProfile: React.FC = () => {
 
           <button
             onClick={generatePDF}
-            className="bg-tertiary hover:bg-tertiary-light text-primary font-bold py-2 px-6 rounded-md transition-colors duration-200"
+            className="bg-secondary hover:bg-tertiary-light text-primary font-bold py-2 px-6 rounded-md transition-colors duration-200"
           >
             Download Profile as PDF
           </button>
-
-          <button
-            onClick={handleShare}
-            className="bg-tertiary hover:bg-tertiary-light text-primary font-bold py-2 px-6 rounded-md transition-colors duration-200"
-          >
-            Share Profile
-          </button>
-
         </div>
       </Paper>
     </div>
