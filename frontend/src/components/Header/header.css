@@ -35,9 +35,6 @@
   width: 100%;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   margin-top: -1px;
-  /* Remove gap between header and dropdown */
-  background-color: #331C08;
-  /* Match exact primary color from your theme */
 }
 
 @keyframes slideDown {

@@ -72,7 +72,7 @@ const Header = () => {
       {/* Mobile Dropdown Menu */}
       {isOpen && (
         <div className="md:hidden fixed top-[60px] left-0 right-0 z-40">
-          <ul className="header-mobile bg-primary bg-opacity-90 text-white text-center py-4 space-y-4 dropdown-enter dropdown-menu">
+          <ul className="header-mobile bg-primary text-white text-center py-4 space-y-4 dropdown-enter dropdown-menu">
             <li>
               <Link
                 to="/"
