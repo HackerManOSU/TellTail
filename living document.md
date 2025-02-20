@@ -883,7 +883,9 @@ We will use **GitHub Issues** to document, prioritize, and address any bugs disc
   - Python (v3.8+)
   - ONNX Runtime
   - Git
+  - PyTorch
   - A modern web browser (Chrome, Firefox, Edge)
+
 - **Step-by-step installation guide:**
   1. Clone the repository:
      ```sh
@@ -921,9 +923,16 @@ We will use **GitHub Issues** to document, prioritize, and address any bugs disc
   - Screenshots (if applicable)
   - Browser/device info
 
-### Known Bugs & Work in Progress ✅ - Covered in Risk Assessment, on-functional Requirements, and Work-in-Progress Features sections. They list current limitations and ongoing developments.
+    
+### Most Known Bugs & Work in Progress are ✅ - Covered in Risk Assessment, on-functional Requirements, and Work-in-Progress Features sections. They list current limitations and ongoing developments.
 - List of current limitations 
-- Features still under development
+- Features still under development 
+
+### Bugs not covered in Risk Assessment 
+- Sometimes onnxruntime-web can break randomly, causing the user to reupload their image. 
+- Some issues with prediction stability may be due to browser type. We are currently trying to 
+  replicate this issue with different browsers. 
+- Currently, the website's mobile navbar can be clip with other website elements
 
 ## 3. Developer Documentation 
 ### Obtaining the Source Code ✅ - Covered in Git Repository Link and project Setup sections. They explain how to clone and access the code.
@@ -935,7 +944,6 @@ We will use **GitHub Issues** to document, prioritize, and address any bugs disc
 ### Building the Software 🎯
 - Build system and setup instructions
 
-  
 - **For locally building the app :**
   - In tailtell/frontend: `npm run dev` (runs Vite)
   - Navigate to `localhost:5173/` on your browser.
@@ -964,5 +972,7 @@ We will use **GitHub Issues** to document, prioritize, and address any bugs disc
   - Scan and click through all links in the app/website to ensure everything is functioning as intended.
   - Check the Cat AI model with any test image(s) to ensure it is working without issues.
   - Check the Dog AI model with any test image(s) to ensure it is working without issues.
+
+# Developer Documentation 
 
 
