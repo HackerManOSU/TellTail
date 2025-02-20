@@ -976,16 +976,19 @@ We will use **GitHub Issues** to document, prioritize, and address any bugs disc
 Naming Conventions Tests
 
 Functional Tests: should be expected behavior followed by context
+
 Example: 
 
 The test should check that the application can identify a dog breed when a valid image is uploaded
 
 Performance Tests: should be performance goal followed by context 
+
 Example : 
 
 The test should ensure that the app responds in under five seconds when an image is uploaded
 
 User Experience Tests: should be user action followed by the expected result
+
 Example: 
 
 The test should verify that an error message is displayed when an invalid file type is uploaded
