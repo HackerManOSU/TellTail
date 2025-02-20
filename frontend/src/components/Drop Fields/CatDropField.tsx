@@ -66,6 +66,13 @@ const CatDropField: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [prediction, setPrediction] = useState<string | null>(null);
 
+  // Display prediction if available
+  React.useEffect(() => {
+    if (prediction) {
+      console.log(`Predicted breed: ${prediction}`);
+    }
+  }, [prediction]);
+
   const classNames = [
     "Abyssinian", "American Bobtail", "American Curl", "American Shorthair", "American Wirehair",
     "Applehead Siamese", "Balinese", "Bengal", "Birman", "Bombay", "British Shorthair",
@@ -255,14 +262,15 @@ const CatDropField: React.FC = () => {
                 : "bg-primary hover:bg-primary-light"
               } transition-colors`}
           >
-            {isLoading ? "Processing..." : "Continue"}
+            {isLoading ? (
+              <div className="flex items-center justify-center">
+                <div className="w-6 h-6 border-4 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                Processing...
+              </div>
+            ) : (
+              "Continue"
+            )}
           </button>
-
-          {prediction && (
-            <div className="mt-4 text-lg text-center">
-              <p>Prediction: <strong>{prediction}</strong></p>
-            </div>
-          )}
         </div>
       )}
     </div>

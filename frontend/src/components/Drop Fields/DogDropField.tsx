@@ -52,6 +52,13 @@ const DogDropField: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [prediction, setPrediction] = useState<string | null>(null);
 
+  // Display prediction if available
+  React.useEffect(() => {
+    if (prediction) {
+      console.log(`Predicted breed: ${prediction}`);
+    }
+  }, [prediction]);
+
   /* ++++++++++ DOG BREEDS LIST ++++++++++ */
   const dogBreeds = [
     "Chihuahua", "Japanese Spaniel", "Maltese Dog", "Pekinese", "Shih-Tzu", "Blenheim Spaniel", "Papillon",
@@ -198,11 +205,24 @@ const DogDropField: React.FC = () => {
             </Table>
           </TableContainer>
 
-          <button onClick={handleContinue} disabled={isLoading} className="w-full py-2 px-4 rounded-md bg-primary text-white">
-            {isLoading ? "Processing..." : "Continue"}
+          <button
+            onClick={handleContinue}
+            disabled={isLoading}
+            className={`w-full py-2 px-4 rounded-md text-white
+              ${isLoading
+                ? "bg-primary cursor-not-allowed"
+                : "bg-primary hover:bg-primary-light"
+              } transition-colors`}
+          >
+            {isLoading ? (
+              <div className="flex items-center justify-center">
+                <div className="w-6 h-6 border-4 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                Processing...
+              </div>
+            ) : (
+              "Continue"
+            )}
           </button>
-
-          {prediction && <p className="mt-4 text-lg">Prediction: <strong>{prediction}</strong></p>}
         </div>
       )}
     </div>
