@@ -12,6 +12,11 @@ export default {
           light:'#fff',
           dark: '#6fff',
         },
+        background: {
+          DEFAULT: '#E9D0B8',
+          light:'#fff',
+          dark: '#6fff',
+        },
         primary: {
           DEFAULT: '#664C36',
           light: '#814918',
