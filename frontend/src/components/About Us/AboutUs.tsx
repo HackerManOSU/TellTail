@@ -15,7 +15,7 @@ const teamMembers = [
   },
   {
     name: "Sam Neale", img: samImg,
-    description: "Hi! I am Computer Sceince major from Spokane, Washington. I am a big fan of both cats and dogs.",
+    description: "Hi! I am Computer Science major from Spokane, Washington. I am a big fan of both cats and dogs.",
     link: "",
   },
   {
@@ -30,12 +30,12 @@ const teamMembers = [
   },
   {
     name: "Stephen Tsui", img: stephenImg,
-    description: "Hi! I'm a computer science major from Belmont, California. I'm a dog person but I also like cats.",
+    description: "Hi! I'm a Computer Science major from Belmont, California. I'm a dog person but I also like cats.",
     link: "",
   },
   {
     name: "Troy Diaz", img: troyImg,
-    description: "Hey everyone, I'm a computer science major from Kaua'i, Hawai'i. Dogs are better!",
+    description: "Hey everyone, I'm a Computer Science major from Kaua'i, Hawai'i. Dogs are better!",
     link: "https://www.linkedin.com/in/troykvdiaz?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
   },
   {
