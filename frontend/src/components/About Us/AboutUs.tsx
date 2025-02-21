@@ -3,9 +3,9 @@ import nathanielImg from './nathaniel.jpg';
 import troyImg from './troy.jpg';
 import raedImg from './raed.jpg';
 import christianImg from './christian.jpg';
-import portraitImg from './portrait.jpg';
 import samImg from './sam.png';
 import zaneImg from './zane.jpg';
+import stephenImg from './stephen.jpg';
 
 const teamMembers = [
   {
@@ -29,8 +29,8 @@ const teamMembers = [
     link: "https://www.linkedin.com/in/christian-devore/",
   },
   {
-    name: "Stephen Tsui", img: portraitImg,
-    description: "",
+    name: "Stephen Tsui", img: stephenImg,
+    description: "Hi! I'm a computer science major from Belmont, California. I'm a dog person but I also like cats.",
     link: "",
   },
   {
