@@ -47,7 +47,7 @@ const teamMembers = [
 
 const AboutUs = () => {
   return (
-    <div className="w-screen h-screen bg-background">
+    <div className="w-screen min-h-screen bg-background">
       <div className="min-h-screen bg-backround max-w-6xl mx-auto px-4 py-8">
         <h1 className="text-4xl font-bold text-primary mb-6">About Us</h1>
 
