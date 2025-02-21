@@ -1,4 +1,3 @@
-import './AboutUs.css';
 import Collapsible from './Collapsible';
 import nathanielImg from './nathaniel.jpg';
 import troyImg from './troy.jpg';
@@ -48,8 +47,7 @@ const teamMembers = [
 
 const AboutUs = () => {
   return (
-    <div className='w-screen h-screen bg-background'>
-
+    <div className="w-screen h-screen bg-background">
       <div className="min-h-screen bg-backround max-w-6xl mx-auto px-4 py-8">
         <h1 className="text-4xl font-bold text-primary mb-6">About Us</h1>
 
@@ -65,27 +63,34 @@ const AboutUs = () => {
         </p>
         <h2 className="text-2xl font-semibold text-primary mt-6 mb-4">Our Team</h2>
         <p className="text-lg text-gray-700 mb-4">
-          We are a group of students at Oregon State University with diverse backgrounds,
+          We are a group of students at Oregon State University with diverse backgrounds, 
           all working together to achieve a common goal.
         </p>
 
-        <div className="flex-container">
+        <div className="flex flex-wrap justify-center gap-5 w-full">
           {teamMembers.map((member, index) => (
-            <div key={index} className="img-container">
-              <div className="img-wrapper">
-                <img src={member.img} alt={member.name} />
+            <div key={index} className="m-[10px] w-[300px]">
+              <div className="w-full aspect-[3/4] overflow-hidden">
+                <img
+                  src={member.img}
+                  alt={member.name}
+                  className="w-full h-full object-cover block"
+                />
               </div>
               <Collapsible name={member.name}>
                 <p>{member.description}</p>
-                <a className="descriptionLink" href={member.link}>See more!</a>
+                <a
+                  className="text-[#664C36] underline"
+                  href={member.link}
+                >
+                  See more!
+                </a>
               </Collapsible>
             </div>
           ))}
         </div>
       </div>
-
     </div>
-
   );
 };
 
