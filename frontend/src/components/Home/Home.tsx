@@ -4,6 +4,7 @@ import cat1 from './scottishfold.jpg';
 import cat2 from './cat2.jpg';
 import dog1 from './goldenretriever.jpg';
 import profile1 from './profile.jpg';
+import { Link } from 'react-router-dom'
 
 const Home = () => {
   const [opacity, setOpacity] = useState(1);
@@ -25,28 +26,34 @@ const Home = () => {
 
   return (
 
-    
-
     <div className="max-w-6xl mx-auto px-4 py-8">
-
+      
       <div className="p-8 mt-4 flex lg:flex-row items-left font-semibold h-screen flex-col fade" style={{ opacity }}>
-
         <div className="flex flex-col items-left lg:w-1/2 pt-8">
           <p className="text-7xl">Identify Your Pets</p>
           <p className="mt-8 text-3xl font-light">Quick, Easy, Anywhere</p>
+          
+          <Link to="/upload" className="flex flex-col items-center mt-8 p-1 lg:mt-20 lg:w-3/4 bg-secondary rounded-full">
+              <p className="p-2 text-3xl">Get Started</p>
+          </Link>
         </div>
 
-        <div className="flex justify-center lg:w-1/2 h-1/2">
-          <img src={cat1} alt="cat" className="w-1/3  mt-8 rounded-lg  " />
-          <img src={dog1} alt="dog" className="w-1/3 mt-8 rounded-lg " />
-          <img src={cat2} alt="dog" className="w-1/3  mt-8 rounded-lg" />
-        </div>
+        <div className="flex justify-center lg:w-1/2 flex-grow">
+          <img src={cat1} alt="cat" className="w-1/3 h-1/2  mt-8 rounded-lg object-cover" />
+          <img src={dog1} alt="dog" className="w-1/3 h-1/2  mt-8 rounded-lg object-cover" />
+          <img src={cat2} alt="dog" className="w-1/3 h-1/2 mt-8 rounded-lg object-cover" />
+        </div>      
       </div>
+
 
       <div className="flex justify-between">
         <div className="w-1/2 p-4 border-4 border-tertiary rounded-lg mr-2">
           <h2 className="text-3xl font-bold mb-4">Easily Identify Your Pets</h2>
-          <p className="text-lg">Upload a picture and get quickly results</p>
+          <p className="text-lg">Upload a picture and get results quickly</p>
+
+          <Link to="/instructions" className="flex flex-col items-center p-1 mt-5 lg:w-1/3 bg-secondary rounded-full">
+              <p className="p-1 text-md">Learn More</p>
+          </Link>
         </div>
         <div className="w-1/2 p-4 border-4 border-tertiary rounded-lg ml-2">
           <h2 className="text-3xl font-bold mb-4">Access Anywhere</h2>
@@ -54,11 +61,11 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="flex justify-between mt-12 bg-tertiary rounded-lg text-white mt-20">
-        <div className="w-1/2 p-4">
-          <img src={profile1} alt="profile" className="w-full rounded-lg" />
+      <div className="flex flex-col lg:flex-row justify-between mt-12 bg-tertiary rounded-lg text-white mt-20">
+        <div className="lg:w-1/2 p-4">
+          <img src={profile1} alt="profile" className="w-full object-cover rounded-lg" />
         </div>
-        <div className="w-1/2 p-4 flex flex-col justify-center">
+        <div className="lg:w-1/2 p-4 flex flex-col justify-center">
           <h2 className="text-3xl font-bold mb-4">Learn More About Your Pet</h2>
           <p className="text-lg">Get a profile for your specific pet's breed to learn more about them.</p>
         </div>
