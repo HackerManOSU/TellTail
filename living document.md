@@ -1018,14 +1018,27 @@ By establishing naming conventions and an extensive test harness, TellTail can b
 
 # Update - 2/21/25
 ## Our Test Automation and CI Plan
-- As part of our test plan, we will be using the following test-automation infrastructure:
-  - Jest? (for React testing)
-  - _insert others_
+As part of our test plan, we will be using the following test-automation infrastructure:
+
+**Frontend Testing:**
+- Vitest (and @testing-library/react and @testing-library/user-event to run the tests)
+- Justification: This allows for easy integration into our Vite development server, it has ESM support, 
+- New tests can be added to the code base by creating a component in the same directory as the code you want to test and append it with .test.tsx.
+
+  _Example:_ We want to test Component.tsx, so in the same folder, we make a file called Component.test.tsx
+
+**Backend Testing:**
+- _insert_
 - Justification:
-  
 - New tests can be added to the code base by ...
-- **UPDATE THIS PART:** For our CI service, we opted to move forward with Vercel and GitHub Actions. Vercel integrates with GitHub Actions to automatically recompile the app when any changes are made to the GitHub repo. The primary reason that we chose to use Vercel is that it automatically and seamlessly handles both Continuous Integration (on top of the tests we've already developed) and Continuous Deployment when used with GitHub actions, providing us a full CI/CD pipeline. This means that whenever we push to the TailTell repo, we can almost instantly view the changes in the real app, not just our local version.
-- 3 other CI services that we considered were:
+
+**Our CI service and how the repository is linked:** For our CI service, we opted to move forward with Vercel and GitHub Actions. Vercel integrates with GitHub Actions to automatically recompile the app when any changes are made to the GitHub repo. The primary reason that we chose to use Vercel is that it automatically and seamlessly handles both Continuous Integration (on top of the tests we've already developed) and Continuous Deployment when used with GitHub actions, providing us a full CI/CD pipeline. This means that whenever we push to the TailTell repo, we can almost instantly view the changes in the real app, not just our local version.
+
+  As a part of the CI/CD pipeline, when npm run build is ran by Vercel (on pushes), npm run test is run as a part of it, which is the command for running vitest. This means if the tests fail, so will the build, and it will not push to production. The failue will be logged in the Vercel logs to help resolve the issue.
+
+**Why we chose Vercel:** We chose Vercel because it integrates seemlessly and easily with Github and we have experience using it in the past.
+
+**3 other CI services that we considered were:**
   **1.**
     Pros:
     Cons:
@@ -1035,7 +1048,10 @@ By establishing naming conventions and an extensive test harness, TellTail can b
   **3.**
     Pros:
     Cons:
-- The following tests will be executed in a CI build:
-    - _insert here_
-- Any pushes to the repository (regardless of their nature) will result in the CI system (GitHub Actions + Vercel) being triggered.
+  
+**The tests that will be executed in a CI build are:**
+    - Unit tests
+    - _more_
+**Which development actions trigger a CI build:**
+Any pushes to the repository (regardless of their nature) will result in the CI system (GitHub Actions + Vercel) being triggered. This is because each push causes a build to be ran, and any npm run build command also runs npm run test (vitest).
 
