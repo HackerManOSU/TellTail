@@ -1019,7 +1019,8 @@ By establishing naming conventions and an extensive test harness, TellTail can b
 # Update - 2/21/25
 ## Our Test Automation and CI Plan
 - As part of our test plan, we will be using the following test-automation infrastructure:
-  - _insert here_
+  - Jest? (for React testing)
+  - _insert others_
 - Justification:
   
 - New tests can be added to the code base by ...
