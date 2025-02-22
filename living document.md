@@ -1016,5 +1016,25 @@ By establishing naming conventions and an extensive test harness, TellTail can b
   - Check the Dog AI model with any test image(s) to ensure it is working without issues. 
   - Check for any warnings and ensure they are avoidable before deploying. 
 
-
+# Update - 2/21/25
+## Our Test Automation and CI Plan
+- As part of our test plan, we will be using the following test-automation infrastructure:
+  - _insert here_
+- Justification:
+  
+- New tests can be added to the code base by ...
+- **UPDATE THIS PART:** For our CI service, we opted to move forward with Vercel and GitHub Actions. Vercel integrates with GitHub Actions to automatically recompile the app when any changes are made to the GitHub repo. The primary reason that we chose to use Vercel is that it automatically and seamlessly handles both Continuous Integration (on top of the tests we've already developed) and Continuous Deployment when used with GitHub actions, providing us a full CI/CD pipeline. This means that whenever we push to the TailTell repo, we can almost instantly view the changes in the real app, not just our local version.
+- 3 other CI services that we considered were:
+  **1.**
+    Pros:
+    Cons:
+  **2.**
+    Pros:
+    Cons:
+  **3.**
+    Pros:
+    Cons:
+- The following tests will be executed in a CI build:
+    - _insert here_
+- Any pushes to the repository (regardless of their nature) will result in the CI system (GitHub Actions + Vercel) being triggered.
 
