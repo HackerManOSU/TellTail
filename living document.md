@@ -972,7 +972,40 @@ We will use **GitHub Issues** to document, prioritize, and address any bugs disc
   - Ensure correct environment variables are set in `api.env` for API keys and endpoints. 
 
 ### Adding New Tests 🎯
-- Naming conventions and test harness
+
+**Naming Conventions Tests**
+
+Functional Tests: should be expected behavior followed by context
+
+Example: 
+The test should check that the application can identify a dog breed when a valid image is uploaded
+
+Performance Tests: should be performance goal followed by context 
+
+Example : 
+The test should ensure that the app responds in under five seconds when an image is uploaded
+
+User Experience Tests: should be user action followed by the expected result
+
+Example: 
+The test should verify that an error message is displayed when an invalid file type is uploaded
+
+
+**Test Harness**
+
+Test Runner: Frontend and backend tests and reports on performance
+What we will use: npm test (frontend), pytest (backend)
+
+End to End Testing: Test the application from a user perspective, showing that all of the components work together.
+What we will use: Cypress
+
+Continuous Integration: Implement CI to run tests automatically on code updates.
+
+
+
+By establishing naming conventions and an extensive test harness, TellTail can be reliable and at the quality we are looking to provide. These tests give us the confidence to best help shelters and pet owners alike. 
+
+
 
 ### Building a Release ✅
 - All tasks with regards to building (and deploying) are already automated using Vercel and GitHub actions.
@@ -983,5 +1016,42 @@ We will use **GitHub Issues** to document, prioritize, and address any bugs disc
   - Check the Dog AI model with any test image(s) to ensure it is working without issues. 
   - Check for any warnings and ensure they are avoidable before deploying. 
 
+# Update - 2/21/25
+## Our Test Automation and CI Plan
+As part of our test plan, we will be using the following test-automation infrastructure:
 
+**Frontend Testing:**
+- Vitest (and @testing-library/react and @testing-library/user-event to run the tests)
+- Justification: This allows for easy integration into our Vite development server, it has ESM support, 
+- New tests can be added to the code base by creating a component in the same directory as the code you want to test and append it with .test.tsx.
+
+  _Example:_ We want to test Component.tsx, so in the same folder, we make a file called Component.test.tsx
+
+**Backend Testing:**
+- _insert_
+- Justification:
+- New tests can be added to the code base by ...
+
+**Our CI service and how the repository is linked:** For our CI service, we opted to move forward with Vercel and GitHub Actions. Vercel integrates with GitHub Actions to automatically recompile the app when any changes are made to the GitHub repo. The primary reason that we chose to use Vercel is that it automatically and seamlessly handles both Continuous Integration (on top of the tests we've already developed) and Continuous Deployment when used with GitHub actions, providing us a full CI/CD pipeline. This means that whenever we push to the TailTell repo, we can almost instantly view the changes in the real app, not just our local version.
+
+  As a part of the CI/CD pipeline, when npm run build is ran by Vercel (on pushes), npm run test is run as a part of it, which is the command for running vitest. This means if the tests fail, so will the build, and it will not push to production. The failue will be logged in the Vercel logs to help resolve the issue.
+
+**Why we chose Vercel:** We chose Vercel because it integrates seemlessly and easily with Github and we have experience using it in the past.
+
+**3 other CI services that we considered were:**
+  **1.**
+    Pros:
+    Cons:
+  **2.**
+    Pros:
+    Cons:
+  **3.**
+    Pros:
+    Cons:
+  
+**The tests that will be executed in a CI build are:**
+    - Unit tests
+    - _more_
+**Which development actions trigger a CI build:**
+Any pushes to the repository (regardless of their nature) will result in the CI system (GitHub Actions + Vercel) being triggered. This is because each push causes a build to be ran, and any npm run build command also runs npm run test (vitest).
 

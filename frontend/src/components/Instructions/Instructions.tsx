@@ -41,6 +41,19 @@ const Instructions = () => {
           <h2 className="text-2xl font-bold mb-4">3. Press "Continue" and get your results!</h2>
         </div>
       </div>
+
+      <div className="m-12">
+        <p className="text-center text-4xl py-2 text-primary decoration-tertiary">
+          For best results make sure your image:
+        </p>
+
+        <ul className="list-disc text-2xl">
+          <li>Has good lighting</li>
+          <li>Has a relatively blank background</li>
+          <li>Is of good quality</li>
+          <li>Has your whole pet in frame/focus</li>
+        </ul> 
+      </div>
     </div>
   );
 };
