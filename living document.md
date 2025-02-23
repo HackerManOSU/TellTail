@@ -440,7 +440,7 @@ TellTail’s core functionality (dog/cat breed identification, approximate age d
 - **Backend testing** uses PyTorch scripts to verify model inference correctness.
 
 **Backend Testing Approach:**
-- A PyTorch-based script authored by Raed Kabir is used to validate the cat breed classification model.
+- A PyTorch-based script used to validate the cat breed classification model.
 - The script:
   - Loads a trained ResNet50-based model.
   - Applies image preprocessing and transformations.
@@ -448,6 +448,26 @@ TellTail’s core functionality (dog/cat breed identification, approximate age d
   - Maps predictions to cat breed classes.
   - Outputs the predicted breed and confidence score.
   - Displays the image with prediction results.
+
+**Frontend Testing Approach:**
+- **Vitest and React Testing Library** are used to test the React components in the frontend, specifically focusing on user interaction, component behavior, and integration with the backend.
+
+- **Testing Components:**
+  - **DogDropField**: Tests ensure the `DogDropField` component functions as expected by validating file uploads, ONNX model inference, and UI components such as buttons and loading spinners.
+  - **Test Suite**:
+    - **Unit Tests**: Ensure individual React components render correctly and handle user interactions (e.g., file uploads, button clicks).
+    - **Integration Tests**: Validate that the components work together. For instance, testing that file drops lead to a model prediction and that results are displayed.
+
+- **Test Coverage**:
+  - The tests simulate user interactions such as dragging and dropping files, clicking the "Continue" button, and ensuring that results are processed and displayed correctly.
+  - **Example Tests**:
+    - Verifying if the dropzone correctly handles a file drop and triggers the right state changes.
+    - Checking if the "Continue" button appears after a file is uploaded and ensuring it triggers the ONNX model prediction.
+    - Testing if the loading spinner shows while the ONNX model is running inference.
+
+- **Mocking Dependencies**:
+  - **ONNX Model**: Since the ONNX model is not run directly during testing, we mock the `InferenceSession.create` method and the `run` function to simulate model behavior.
+  - **Image Processing**: We mock `createImageBitmap` to avoid the need for actual image processing in tests.
 
 **Adding a New Test:**
 - Place test files next to components with the `.test.tsx` suffix for frontend tests.

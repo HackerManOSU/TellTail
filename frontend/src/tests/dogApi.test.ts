@@ -1,3 +1,5 @@
+// Author: Troy Diaz
+// Description: This Vitest script tests if the Dog API fetches breed details correctly. The test checks whether the Dog API is able to retrieve and return accurate breed information based on the given dog name. It mocks the API call to simulate fetching breed data and verifies the response is handled as expected.
 import { fetchDogInfo } from "../components/Drop Fields/DogDropField";
 import { test, expect } from "vitest";
 

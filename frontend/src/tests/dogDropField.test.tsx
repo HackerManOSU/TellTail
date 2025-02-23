@@ -1,3 +1,6 @@
+// Author: Troy Diaz
+// Description: This Vitest script verifies the functionality of the DogDropField component, focusing on its integration with the ONNX model for breed prediction. The test ensures that the file drop feature, ONNX inference, and UI elements such as the "Continue" button and loading spinner work together seamlessly. It checks that the component handles the image input, triggers model inference, and correctly displays breed prediction results.
+
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { MemoryRouter } from 'react-router-dom';
