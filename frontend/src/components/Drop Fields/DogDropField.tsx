@@ -230,3 +230,17 @@ const DogDropField: React.FC = () => {
 };
 
 export default DogDropField;
+
+export const fetchDogInfo = async (breed: string) => {
+  const apiKey = import.meta.env.VITE_API_NINJAS_KEY;
+  const response = await fetch(`https://api.api-ninjas.com/v1/dogs?name=${breed}`, {
+    headers: { "X-Api-Key": apiKey }
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch dog information");
+  }
+
+  return await response.json();
+};
+
