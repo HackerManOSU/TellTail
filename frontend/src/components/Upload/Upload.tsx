@@ -12,7 +12,7 @@ const Upload = () => {
         {/* Cat Portion */}
         <Link to="/upload/cat" className='w-1/2 p-4 flex-1'>
           <div className="flex flex-col items-center p-4 h-full rounded-xl bg-gray-200 hover:bg-primary hover:text-white">
-            <img alt="Cat" src={cat} width="50%"></img>
+          <img alt="Cat" src={cat} className="w-70 h-70 object-cover rounded-lg" />
             <h3 className="text-2xl mt-2">Cats</h3>
           </div>
         </Link>
@@ -20,7 +20,7 @@ const Upload = () => {
         {/* Dog Portion */}
         <Link to="/upload/dog" className='w-1/2 p-4 flex-1'>
           <div className="flex flex-col items-center p-4 h-full rounded-xl bg-gray-200 hover:bg-primary hover:text-white">
-            <img alt="Dog" src={dog} width="50%"></img>
+          <img alt="Dog" src={dog} className="w-100 h-100 object-cover rounded-lg" />
             <h3 className="text-2xl mt-2">Dogs</h3>
           </div>
         </Link>

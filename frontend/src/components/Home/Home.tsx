@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import './Home.css';
-import cat1 from './scottishfold.jpg';
-import cat2 from './cat2.jpg';
-import dog1 from './goldenretriever.jpg';
+import cat1 from './home-cat-image.webp';
+import cat2 from './home-cat2-image.webp';
+import dog1 from './home-dog-image.webp';
 import profile1 from './profile.jpg';
 import { Link } from 'react-router-dom'
 
