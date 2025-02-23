@@ -426,6 +426,45 @@ TellTail’s core functionality (dog/cat breed identification, approximate age d
 
 ## Team Process Description
 
+### Automated Testing and Continuous Integration (UPDATE 2/21/25)
+
+#### Test-Automation Infrastructure
+
+**Chosen Framework:**
+- **Frontend:** Vitest for testing React and TypeScript components.
+- **Backend:** PyTorch script-based testing for cat breed classification.
+
+**Justification:**
+- **Vitest** is preferred over Jest due to its faster performance and built-in TypeScript support.
+- **React Testing Library** complements Vitest by enabling user-centric component testing.
+- **Backend testing** uses PyTorch scripts to verify model inference correctness.
+
+**Backend Testing Approach:**
+- A PyTorch-based script authored by Raed Kabir is used to validate the cat breed classification model.
+- The script:
+  - Loads a trained ResNet50-based model.
+  - Applies image preprocessing and transformations.
+  - Runs inference on a test image.
+  - Maps predictions to cat breed classes.
+  - Outputs the predicted breed and confidence score.
+  - Displays the image with prediction results.
+
+**Adding a New Test:**
+- Place test files next to components with the `.test.tsx` suffix for frontend tests.
+- Extend backend model testing by adding new validation images and checking classification accuracy.
+
+**Example frontend test:**
+```tsx
+// src/components/UploadForm.test.tsx
+import { render, screen } from '@testing-library/react';
+import UploadForm from './UploadForm';
+
+test('renders the upload button', () => {
+  render(<UploadForm />);
+  expect(screen.getByText(/Upload/i)).toBeInTheDocument();
+});
+
+
 ### Toolset
 
 **Frontend:**
