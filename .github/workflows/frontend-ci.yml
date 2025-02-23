@@ -19,8 +19,15 @@ jobs:
         with:
           node-version: '18'
 
+      - name: Set up environment variables
+        run: echo "VITE_API_NINJAS_KEY=${{ secrets.VITE_API_NINJAS_KEY }}" >> $GITHUB_ENV
+
       - name: Install dependencies
-        run: npm install
+        run: |
+          cd frontend
+          npm install
 
       - name: Run Vitest tests
-        run: npm run test
+        run: |
+          cd frontend
+          npm run test
