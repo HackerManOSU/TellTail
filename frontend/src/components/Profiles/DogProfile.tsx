@@ -5,6 +5,7 @@ import jsPDF from "jspdf";
 
 interface DogBreedInfo {
   name: string;
+  lifestage: string;
   min_life_expectancy: number;
   max_life_expectancy: number;
   min_weight_male: number;
@@ -90,6 +91,8 @@ const DogProfile: React.FC = () => {
     currentY += 10;
     pdf.text(`Origin: ${additionalData.origin || "Unknown"}`, 30, currentY);
     currentY += 8;
+    pdf.text(`Age Group: ${breedInfo.lifestage || "Unknown"}`, 30, currentY);
+    currentY += 8;
     pdf.text(`Life Expectancy: ${breedInfo.min_life_expectancy} - ${breedInfo.max_life_expectancy} years`, 30, currentY);
     currentY += 8;
     pdf.text(`Male Weight: ${breedInfo.min_weight_male} - ${breedInfo.max_weight_male} lbs`, 30, currentY);
@@ -157,6 +160,7 @@ const DogProfile: React.FC = () => {
             <h2 className="text-xl font-semibold mb-4 text-primary">Basic Information</h2>
             <div className="space-y-3">
               <div><span className="font-medium">Origin: </span>{additionalData.origin || "Unknown"}</div>
+              <div><span className="font-medium">Age Group: </span>{breedInfo.lifestage || "Unknown"}</div>
               <div><span className="font-medium">Common Health Issues: </span>{additionalData.health_issues || "No known issues"}</div>
               <div><span className="font-medium">Life Expectancy: </span>{breedInfo.min_life_expectancy} - {breedInfo.max_life_expectancy} years</div>
               <div><span className="font-medium">Male Weight: </span>{breedInfo.min_weight_male} - {breedInfo.max_weight_male} lbs</div>

@@ -101,59 +101,54 @@ const DogDropField: React.FC = () => {
   const handleContinue = async () => {
     if (!file) return;
     setIsLoading(true);
-
+  
     try {
       const inputTensor = await preprocessImage(file);
       if (!inputTensor) throw new Error("Failed to preprocess the image.");
-
+  
       ort.env.wasm.wasmPaths = "/";
-      const session = await ort.InferenceSession.create("/dog_breed_model.onnx");
-
-      const feeds: Record<string, ort.Tensor> = {
-        input: new ort.Tensor("float32", inputTensor, [1, 3, 224, 224]),
-      };
-
-      const results = await session.run(feeds);
-      const output = results[Object.keys(results)[0]];
-      const probabilities = output.data as Float32Array;
-
-      const predictedIndex = probabilities.indexOf(Math.max(...probabilities));
-      const predictedBreed = dogBreeds[predictedIndex];
-
-      setPrediction(predictedBreed);
-
+  
+      // Load Dog Breed Model
+      const breedSession = await ort.InferenceSession.create("/dog_breed_model.onnx");
+      const breedFeeds = { input: new ort.Tensor("float32", inputTensor, [1, 3, 224, 224]) };
+      const breedResults = await breedSession.run(breedFeeds);
+      const breedProbabilities = breedResults[Object.keys(breedResults)[0]].data as Float32Array;
+      const predictedBreedIndex = breedProbabilities.indexOf(Math.max(...breedProbabilities));
+      const predictedBreed = dogBreeds[predictedBreedIndex];
+  
+      // Load Dog Lifestage Model
+      const lifestageSession = await ort.InferenceSession.create("/dog_lifestage_model.onnx");
+      const lifestageResults = await lifestageSession.run(breedFeeds);
+      const lifestageProbabilities = lifestageResults[Object.keys(lifestageResults)[0]].data as Float32Array;
+      const lifestageIndex = lifestageProbabilities.indexOf(Math.max(...lifestageProbabilities));
+      const lifestageLabels = ["Young", "Adult", "Senior"];
+      const predictedLifestage = lifestageLabels[lifestageIndex];
+  
+      setPrediction(`${predictedBreed} (${predictedLifestage})`);
+  
+      // Fetch breed details
       const apiKey = import.meta.env.VITE_API_NINJAS_KEY;
-      // Fetch dog breed information
       const response = await fetch(`https://api.api-ninjas.com/v1/dogs?name=${predictedBreed}`, {
-        headers: {
-          'X-Api-Key': apiKey
-        }
+        headers: { 'X-Api-Key': apiKey }
       });
-
+  
       if (response.ok) {
         const breedData = await response.json();
-
-        // Generate a unique ID
         const uniqueId = generateProfileId();
-
+  
         const breedInfo = {
           ...breedData[0],
           name: predictedBreed,
+          lifestage: predictedLifestage,
           imageUrl: preview,
           id: uniqueId,
           timestamp: Date.now()
         };
-
-        // Store in session storage
-        const storageKey = `dog-profile-${uniqueId}`;
-        sessionStorage.setItem(storageKey, JSON.stringify(breedInfo));
-
-        // Navigate to dog profile page
+  
+        sessionStorage.setItem(`dog-profile-${uniqueId}`, JSON.stringify(breedInfo));
+  
         navigate(`/dog-profile/${uniqueId}`, {
-          state: {
-            breedInfo,
-            fromUpload: true
-          }
+          state: { breedInfo, fromUpload: true }
         });
       }
     } catch (error) {
@@ -163,6 +158,7 @@ const DogDropField: React.FC = () => {
       setIsLoading(false);
     }
   };
+  
 
 
   return (
