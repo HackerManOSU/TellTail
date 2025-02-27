@@ -149,8 +149,12 @@ const CatDropField: React.FC = () => {
       // Get our probabilities as a float32Array
       const probabilities = output.data as Float32Array;
 
+
       // Get the strongest confidence prediction by using Math.max
       const predictedIndex = probabilities.indexOf(Math.max(...probabilities));
+
+      //Print Confidence  
+      console.log(predictedIndex);
 
       // Use the index to get the predicted breed
       const predictedBreed = classNames[predictedIndex];
