@@ -23,7 +23,7 @@ const Instructions = () => {
       </div>
 
       <div>
-        <p className="text-center text-4xl py-2 text-primary decoration-tertiary">
+        <p className="text-center text-4xl py-2 text-primary decoration-primary">
           Use TailTell to identify your pets in <b>3 easy steps!</b>
         </p>
       </div>

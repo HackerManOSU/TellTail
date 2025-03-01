@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import './Home.css';
 import cat1 from './home-cat-image.webp';
 import cat2 from './home-cat2-image.webp';
 import dog1 from './home-dog-image.webp';
@@ -10,7 +9,6 @@ import dogImage from './dogimage.png';
 const Home = () => {
   const [opacity, setOpacity] = useState(1);
 
-  // Calculates opacity based on scroll position
   const handleScroll = () => {
     const scrollY = window.scrollY;
     const newOpacity = Math.max(1 - scrollY / 300, 0);
@@ -52,12 +50,12 @@ const Home = () => {
       />
 
       <div className="max-w-6xl mx-auto px-4 py-8">
-        <div className="p-8 mt-4 flex lg:flex-row items-left font-semibold h-screen flex-col fade" style={{ opacity }}>
+        <div className="p-8 mt-4 flex lg:flex-row items-left font-semibold h-screen flex-col " style={{ opacity: opacity, transition: 'opacity 0.5s ease-out' }}>
           <div className="flex flex-col items-left lg:w-1/2 pt-8">
             <p className="text-7xl text-primary">Identify Your Pets</p>
             <p className="mt-8 text-3xl font-light text-primary">Quick, Easy, Anywhere</p>
             
-            <Link to="/upload" className="flex flex-col items-center mt-8 p-1 lg:mt-20 lg:w-3/4 bg-secondary rounded-full">
+            <Link to="/upload" className="flex flex-col items-center mt-8 p-1 lg:mt-20 lg:w-3/4 bg-tertiary rounded-full">
               <p className="p-2 text-3xl text-primary">Get Started</p>
             </Link>
           </div>
@@ -74,7 +72,7 @@ const Home = () => {
             <h2 className="text-3xl font-bold mb-4 text-primary">Easily Identify Your Pets</h2>
             <p className="text-lg text-primary">Upload a picture and get results quickly</p>
 
-            <Link to="/instructions" className="flex flex-col items-center p-1 mt-5 lg:w-1/3 bg-secondary rounded-full">
+            <Link to="/instructions" className="flex flex-col items-center p-1 mt-5 lg:w-1/3 bg-tertiary rounded-full">
               <p className="p-1 text-md">Learn More</p>
             </Link>
           </div>

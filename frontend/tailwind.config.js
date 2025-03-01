@@ -28,7 +28,7 @@ export default {
           dark: '#fff',
         },
         tertiary: {
-          DEFAULT: '#664C36',
+          DEFAULT: '#CCBEB1',
           light: '#fff',
           dark: '#fff',
         },
