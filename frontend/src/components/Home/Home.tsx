@@ -11,7 +11,7 @@ const Home = () => {
 
   const handleScroll = () => {
     const scrollY = window.scrollY;
-    const newOpacity = Math.max(1 - scrollY / 300, 0);
+    const newOpacity = Math.max(1 - scrollY / 400, 0);
     setOpacity(newOpacity);
   };
 
