@@ -5,19 +5,16 @@ import React, { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 
 /* ++++++++++ PROFILES ++++++++++ */
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 /* ++++++++++ AXIOS ++++++++++ */
-import axios from 'axios';
-
-/* ++++++++++ MATERIAL-UI ++++++++++ */
-import { Table, TableBody, TableCell, TableContainer, TableRow, Paper } from "@mui/material";
+import axios from "axios";
 
 /* ++++++++++ ONNX Runtime ++++++++++ */
 import * as ort from "onnxruntime-web";
 
 /* ++++++++++ UTILITIES ++++++++++ */
-import { generateProfileId } from '../../utils/profileUtils';
+import { generateProfileId } from "../../utils/profileUtils";
 
 // Utility for image preprocessing
 const preprocessImage = async (image: File): Promise<Float32Array | null> => {
@@ -34,9 +31,7 @@ const preprocessImage = async (image: File): Promise<Float32Array | null> => {
 
   // Get ImageData and process
   const imageData = ctx?.getImageData(0, 0, 299, 299);
-
-  if (!imageData)
-    return null;
+  if (!imageData) return null;
 
   const { data } = imageData;
   const totalPixels = 299 * 299;
@@ -44,35 +39,25 @@ const preprocessImage = async (image: File): Promise<Float32Array | null> => {
 
   for (let i = 0; i < data.length; i += 4) {
     const pixelIndex = i / 4;
-    const r = (data[i] / 255.0 - 0.5) / 0.5;
-    const g = (data[i + 1] / 255.0 - 0.5) / 0.5;
-    const b = (data[i + 2] / 255.0 - 0.5) / 0.5;
-
-    // for each pixel, get the RGB data
-    inputTensor[pixelIndex] = r;
-    inputTensor[pixelIndex + totalPixels] = g;
-    inputTensor[pixelIndex + 2 * totalPixels] = b;
+    inputTensor[pixelIndex] = (data[i] / 255.0 - 0.5) / 0.5;
+    inputTensor[pixelIndex + totalPixels] = (data[i + 1] / 255.0 - 0.5) / 0.5;
+    inputTensor[pixelIndex + 2 * totalPixels] = (data[i + 2] / 255.0 - 0.5) / 0.5;
   }
 
   return inputTensor;
 };
 
-
 const CatDropField: React.FC = () => {
   const navigate = useNavigate();
 
+  // ++++++++++ STATE MANAGEMENT ++++++++++
   const [file, setFile] = useState<File | null>(null);
   const [preview, setPreview] = useState<string>("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // Used in JSX
   const [prediction, setPrediction] = useState<string | null>(null);
+  const [confidence, setConfidence] = useState<number | null>(null); // Stores confidence score
 
-  // Display prediction if available
-  React.useEffect(() => {
-    if (prediction) {
-      console.log(`Predicted breed: ${prediction}`);
-    }
-  }, [prediction]);
-
+  // ++++++++++ CAT BREED CLASSES ++++++++++
   const classNames = [
     "Abyssinian", "American Bobtail", "American Curl", "American Shorthair", "American Wirehair",
     "Applehead Siamese", "Balinese", "Bengal", "Birman", "Bombay", "British Shorthair",
@@ -88,16 +73,15 @@ const CatDropField: React.FC = () => {
     "Turkish Angora", "Turkish Van", "Tuxedo", "York Chocolate"
   ];
 
+  // ++++++++++ HANDLE FILE DROP ++++++++++
   const onDrop = useCallback((acceptedFiles: File[]) => {
     const selectedFile = acceptedFiles[0];
     setFile(selectedFile);
+    setPreview(URL.createObjectURL(selectedFile));
 
-    const previewUrl = URL.createObjectURL(selectedFile);
-    setPreview(previewUrl);
-
-    // Clear previous prediction
+    // Clear previous prediction and confidence
     setPrediction(null);
-
+    setConfidence(null);
   }, []);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -106,116 +90,75 @@ const CatDropField: React.FC = () => {
     multiple: false,
   });
 
+  // ++++++++++ RUN ONNX INFERENCE ++++++++++
+
   const handleContinue = async () => {
+    if (!file) return;
+    setIsLoading(true); // ✅ Use loading state
 
-    // If our file is NULL
-    if (!file)
-      return;
-
-    setIsLoading(true);
-
-    // Try deploying the model
     try {
-      console.log("Starting preprocessing...");
       const inputTensor = await preprocessImage(file);
+      if (!inputTensor) throw new Error("Failed to preprocess the image.");
 
-      if (!inputTensor)
-        throw new Error("Failed to preprocess the image.");
-
-      console.log("Preprocessed Tensor:", inputTensor);
-      console.log("Loading ONNX model...");
-
-      // Path to WASM files in the public/ directory
       ort.env.wasm.wasmPaths = "/";
-
-      // Actually load the model with onnxruntime-web 
       const session = await ort.InferenceSession.create("/cat_breed_model.onnx");
-      console.log("ONNX model loaded successfully.");
 
-      // Input Tensor we will feed
       const feeds: Record<string, ort.Tensor> = {
         input: new ort.Tensor("float32", inputTensor, [1, 3, 299, 299]),
       };
 
-      console.log("Running inference...");
-
-      // Run our model with the defined tensor
       const results = await session.run(feeds);
-
-      console.log("Inference Results:", results);
-
       const output = results[Object.keys(results)[0]];
 
-      // Get our probabilities as a float32Array
+      // Extract probabilities
       const probabilities = output.data as Float32Array;
-
-
-      // Get the strongest confidence prediction by using Math.max
-      const predictedIndex = probabilities.indexOf(Math.max(...probabilities));
-
-      //Print Confidence  
-      console.log(predictedIndex);
-
-      // Use the index to get the predicted breed
+      const maxConfidence = Math.max(...probabilities);
+      const predictedIndex = probabilities.indexOf(maxConfidence);
       const predictedBreed = classNames[predictedIndex];
 
-      console.log("Predicted Breed:", predictedBreed);
-
-      // Set prediction
       setPrediction(predictedBreed);
+      setConfidence(maxConfidence);
 
-      // Fetch breed information
-      const response = await axios.get(`https://api.api-ninjas.com/v1/cats?name=${predictedBreed}`, {
-        headers: {
-          'X-Api-Key': import.meta.env.VITE_API_NINJAS_KEY
-        }
-      });
+      // Fetch additional breed info if confidence is high
+      if (maxConfidence > 0.4) {
+        try {
+          const response = await axios.get(`https://api.api-ninjas.com/v1/cats?name=${predictedBreed}`, {
+            headers: { "X-Api-Key": import.meta.env.VITE_API_NINJAS_KEY }
+          });
 
-      if (response.data && response.data.length > 0) {
-        // Generate a unique ID
-        const uniqueId = generateProfileId();
+          if (response.data && response.data.length > 0) {
+            const uniqueId = generateProfileId();
+            const breedInfo = {
+              ...response.data[0],
+              name: predictedBreed,
+              imageUrl: preview,
+              id: uniqueId,
+              timestamp: Date.now()
+            };
 
-        const breedInfo = {
-          ...response.data[0],
-          name: predictedBreed,
-          imageUrl: preview,
-          id: uniqueId,
-          timestamp: Date.now()
-        };
-
-        // Store in session storage with unique key
-        const storageKey = `cat-profile-${uniqueId}`;
-        sessionStorage.setItem(storageKey, JSON.stringify(breedInfo));
-
-        // Navigate with the unique ID
-        navigate(`/cat-profile/${uniqueId}`, {
-          state: {
-            breedInfo,
-            fromUpload: true
+            sessionStorage.setItem(`cat-profile-${uniqueId}`, JSON.stringify(breedInfo));
+            navigate(`/cat-profile/${uniqueId}`, { state: { breedInfo, fromUpload: true } });
+          } else {
+            // If no breed info is found, let the user know
+            alert(`Predicted Breed: ${predictedBreed}\n\nNo additional breed information available.`);
           }
-        });
+        } catch (apiError) {
+          console.warn("API Error: Unable to fetch breed info.", apiError);
+          alert(`Predicted Breed: ${predictedBreed}\n\nNo additional breed information available.`);
+        }
       }
-    }
-
-    // Catch any errors and report an error if there is an error
-    catch (error) {
+    } catch (error) {
       console.error("Error during prediction:", error);
       alert("An error occurred during the prediction.");
-    }
-
-    finally {
+    } finally {
       setIsLoading(false);
     }
   };
 
   return (
     <div className="w-[75%] max-w-[1000px] h-[33%]">
-      <div
-        {...getRootProps()}
-        className={`p-8 border-2 border-solid rounded-lg text-center cursor-pointer h-full
-            ${isDragActive || "hover:border-primary hover:bg-primary-light"} 
-            ${isDragActive ? "border-primary bg-primary-light" : "border-gray-300"}`}
-      >
+      <div {...getRootProps()} className={`p-8 border-2 border-solid rounded-lg text-center cursor-pointer h-full 
+          ${isDragActive ? "border-primary bg-primary-light" : "border-gray-300"}`}>
         <input {...getInputProps()} />
         {preview ? (
           <div className="space-y-4">
@@ -223,57 +166,24 @@ const CatDropField: React.FC = () => {
             <p className="text-sm text-gray-500">Click or drag to change image</p>
           </div>
         ) : (
-          <div className="space-y-2 h-full flex flex-col items-center text-center justify-center">
-            <p className="text-lg">Drag and drop your pet image here</p>
-            <p className="text-sm text-gray-500">or click to select a file</p>
-          </div>
+          <p className="text-lg">Drag and drop your pet image here</p>
         )}
       </div>
 
       {file && (
         <div className="bg-gray-50 rounded-lg p-4 space-y-4">
-          <TableContainer component={Paper} elevation={0}>
-            <Table size="small">
-              <TableBody>
-                <TableRow>
-                  <TableCell component="th" sx={{ fontWeight: "bold", width: "30%" }}>
-                    File Name
-                  </TableCell>
-                  <TableCell>{file.name}</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell component="th" sx={{ fontWeight: "bold" }}>
-                    Size
-                  </TableCell>
-                  <TableCell>{(file.size / 1024).toFixed(2)} KB</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell component="th" sx={{ fontWeight: "bold" }}>
-                    Type
-                  </TableCell>
-                  <TableCell>{file.type}</TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </TableContainer>
+          {prediction && (
+            <div className="mt-4 text-center">
+              <p className="text-lg font-bold">Prediction: {prediction}</p>
+              <p className={`text-lg ${confidence! <= 0.4 ? "text-red-500" : "text-green-600"}`}>
+                Confidence: {(confidence! * 100).toFixed(2)}%
+              </p>
+              {confidence! <= 0.4 && <p className="text-red-500 text-sm">This prediction may not be accurate.</p>}
+            </div>
+          )}
 
-          <button
-            onClick={handleContinue}
-            disabled={isLoading}
-            className={`w-full py-2 px-4 rounded-md text-white
-              ${isLoading
-                ? "bg-primary cursor-not-allowed"
-                : "bg-primary hover:bg-primary-light"
-              } transition-colors`}
-          >
-            {isLoading ? (
-              <div className="flex items-center justify-center">
-                <div className="w-6 h-6 border-4 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
-                Processing...
-              </div>
-            ) : (
-              "Continue"
-            )}
+          <button onClick={handleContinue} disabled={isLoading} className="w-full py-2 px-4 rounded-md text-white bg-primary hover:bg-primary-light">
+            {isLoading ? "Processing..." : "Continue"}
           </button>
         </div>
       )}
