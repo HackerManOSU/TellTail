@@ -18,12 +18,11 @@ https://trello.com/b/bruFHEAQ/cs-362-group-15-project-board
 - [x] **Python**
 - [x] PyTorch
 - [x] Cats API
+- [x] Dogs API
 
 ### Model Backbones
 - [x] **ResNet50** 
 - [x] **EfficientNetV2** 
-
-- We are currently using two different backbones; however, we are trying to transition torwards EfficientNetV2
 
 ### Tools and Libraries
 - [x] **ESLint**
@@ -108,6 +107,6 @@ $PROJECT_ROOT
 │   ├── package-lock.json
 │   ├── package.json
 │   ├── postcss.config.js
-│   └── tailwind.config.js
+│   ├──tailwind.config.js
 
 
