@@ -95,6 +95,120 @@ The most serious challenge is ensuring the accuracy of the AI model when handlin
 - [ ] Making our website available on mobile devices
 - [ ] Syncing with national databases or adoption platforms (e.g., Petfinder) to streamline uploading identified information and updates about available pets
 
+## UPDATE 2 - 03/03/25
+## Updated Use Cases
+
+### ✅ **Identifying Breeds (CORE USE CASE - Fully Functional)**
+
+**Actors:**
+- User (Pet owner or shelter staff)
+- System (TellTail web application)
+
+**Triggers:**
+- The user uploads an image of a pet.
+
+**Preconditions:**
+- The user has access to the application.
+- The uploaded image is clear and contains a single dog or cat.
+
+**Postconditions:**
+- The system correctly identifies the pet's breed and age.
+- The system provides breed-specific information such as health risks and characteristics.
+
+**List of Steps:**
+1. The user uploads an image of a pet.
+2. The ONNX model processes the image entirely on the frontend.
+3. The system classifies the pet’s breed and age.
+4. The system displays:
+   - Basic information (origin, age group, health risks, life expectancy, weight, height).
+   - Characteristics (shedding, barking, energy levels, trainability, etc.).
+5. The user views the classification results.
+
+**Testing Details:**
+- A **golden retriever image** is used to validate the correct output:
+  - Origin: Scotland
+  - Age Group: Adult
+  - Common Health Issues: Hip dysplasia, cancer, skin allergies
+  - Life Expectancy: 10 - 12 years
+  - Characteristics: shedding (4/5), trainability (5/5), etc.
+
+**Notes:**
+- **No backend is used.** The classification is handled entirely on the frontend using ONNX runtime.
+
+---
+
+### ❌ **Multiple-Pet Detection (Not Functional)**
+
+**Actors:**
+- User (Pet owner or shelter staff)
+- System (TellTail web application)
+
+**Triggers:**
+- The user uploads an image containing more than one pet.
+
+**Preconditions:**
+- The user has access to the application.
+
+**Postconditions:**
+- **Currently, this feature does not work.**
+
+**Notes:**
+- Multiple pets in one image are **not detected separately**.
+- If this feature is attempted, the system may only classify one pet or return incorrect results.
+
+---
+
+### ✅ **Sharable Adoption Profile Generation (Fully Functional)**
+
+**Actors:**
+- Shelter Staff / Pet Owner
+- System (TellTail web application)
+
+**Triggers:**
+- The user wants to create an adoption profile after classification.
+
+**Preconditions:**
+- The pet’s breed and age have been identified.
+
+**Postconditions:**
+- A **sharable adoption profile** is generated.
+
+**List of Steps:**
+1. The user uploads an image and receives classification results.
+2. The user clicks **“Generate Adoption Profile”**.
+3. The system formats the pet’s details (breed, age, health conditions, characteristics).
+4. The system provides a **sharable link or downloadable file**.
+5. The user can share the profile via social media, email, or other channels.
+
+**Notes:**
+- This feature is **working as expected**.
+
+---
+
+### ⚠️ **Handling Non-Animal or Low-Quality Images (Not Functional)**
+
+**Actors:**
+- User (Anyone uploading an image)
+- System (TellTail web application)
+
+**Triggers:**
+- The user uploads an image that is **not a real cat or dog** (e.g., cartoon, stuffed animal, blurry image).
+
+**Preconditions:**
+- The system should ideally detect and reject invalid images.
+
+**Postconditions:**
+- **Currently, this feature does not work reliably.**
+
+**List of Steps:**
+1. The user uploads an image.
+2. The system attempts classification.
+3. If the image is **not a real pet**, the system may still return a classification instead of rejecting it.
+
+**Notes:**
+- **False positives are possible.** The system may incorrectly classify inanimate objects as pets.
+- Users should manually verify classification accuracy if results seem incorrect.
+
 # UPDATE 1 - 1/21/25
 ## Use Cases
 
