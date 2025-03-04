@@ -7,3 +7,18 @@
   line-height: 1.5;
   font-weight: 400;
 }
+
+/* Custom Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #E9D0B8;
+}
+::-webkit-scrollbar-thumb {
+  background: #664C36;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #8a6b50;
+  cursor: pointer;
+}

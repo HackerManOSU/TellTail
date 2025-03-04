@@ -48,7 +48,7 @@ const teamMembers = [
 
 const AboutUs = () => {
   return (
-    <div className="w-screen min-h-screen bg-background relative">
+    <div className="w-full min-h-screen bg-background relative">
       
       <img
         src={dogImage}
