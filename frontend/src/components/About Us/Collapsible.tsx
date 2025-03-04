@@ -13,7 +13,7 @@ const Collapsible: React.FC<CollapsibleProps> = ({ name, children }) => {
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="bg-[#E9D0B8] text-[#1b1b1b] font-semibold cursor-pointer p-[18px] w-full border-0 text-left focus:outline-none text-[15px] flex justify-between items-center"
+        className="bg-[#E9D0B8] hover:bg-[#D0B090] text-[#1b1b1b] font-semibold cursor-pointer p-[18px] w-full border-0 text-left focus:outline-none text-[15px] flex justify-between items-center transition-colors duration-200"
       >
         {name}
         <span className="text-2xl font-bold">

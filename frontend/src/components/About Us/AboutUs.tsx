@@ -100,7 +100,7 @@ const AboutUs = () => {
                 <img
                   src={member.img}
                   alt={member.name}
-                  className="w-full h-full object-cover block"
+                  className="w-full h-full object-cover block border-8 border-500 border-primary rounded-sm"
                 />
               </div>
               <Collapsible name={member.name}>
