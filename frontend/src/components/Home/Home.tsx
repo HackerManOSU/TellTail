@@ -5,6 +5,9 @@ import dog1 from './home-dog-image.webp';
 import profile1 from './profile.jpg';
 import { Link } from 'react-router-dom';
 import dogImage from './dogimage.png'; 
+import ImageCycle from './imageCycle';
+import profile2 from './profile2.jpg';
+import profile3 from './profile3.jpg'
 
 const Home = () => {
   const [opacity, setOpacity] = useState(1);
@@ -84,7 +87,9 @@ const Home = () => {
 
         <div className="flex flex-col lg:flex-row justify-between mt-12 bg-tertiary rounded-lg text-white mt-20">
           <div className="lg:w-1/2 p-4">
-            <img src={profile1} alt="profile" className="w-full object-cover rounded-lg" />
+
+            <ImageCycle profile={[profile1, profile2, profile3]} />
+
           </div>
           <div className="lg:w-1/2 p-4 flex flex-col justify-center">
             <h2 className="text-3xl font-bold mb-4 text-primary">Learn More About Your Pet</h2>
@@ -96,7 +101,6 @@ const Home = () => {
           <h2 className="text-3xl font-bold text-primary">Share With Others</h2>
           <p className="text-lg text-primary">Download your pet's profile as a PDF and share it with friends and family.</p>
         </div>
-
       </div>
     </div> 
   );
