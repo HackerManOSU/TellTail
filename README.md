@@ -8,7 +8,7 @@ https://trello.com/b/bruFHEAQ/cs-362-group-15-project-board
 
 ## Tech Stack
 
-### Front end
+### Frontend
 - [x] **Vite**
 - [x] **React**
 - [x] **TypeScript**
@@ -50,9 +50,29 @@ https://www.figma.com/proto/9pO4CqLVWCrOygnr24prP4/Untitled?node-id=0-1&t=yrwT2g
    cd TellTail/frontend
    npm install
    ```
-3. Run the app (in the "/frontend/" folder):
+
+## Running The App
+**Option 1 - Run natively:**
+1. Run the app (in the "tailtell/frontend/" folder):
    ```bash
    npm run dev
+   ```
+2. Follow the instructions provided by Vite
+
+   - Usually this involves navigating to _localhost:5173_ in your web browser of choice.
+
+
+**Option 2 - Use the web:**
+
+Navigate to https://tail-tell.vercel.app/ to use the app on the web.
+
+## Testing
+1. Make sure that the app is already installed locally (see "Installation")
+2. Run tests using Vitest test system:
+    ```bash
+   cd TellTail/frontend
+   npm run dev
+   ```
 
 ## Project Structure
 
