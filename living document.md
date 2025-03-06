@@ -1100,7 +1100,7 @@ We will use **GitHub Issues** to document, prioritize, and address any bugs disc
 - **If suggesting a feature, be sure to:**
   - Mark your issue as an **enhancement**
   - Justify why this feature would be helpful
-  
+
     
 ### Most Known Bugs & Work in Progress are ✅ - Covered in Risk Assessment, on-functional Requirements, and Work-in-Progress Features sections. They list current limitations and ongoing developments.
 - List of current limitations 
@@ -1163,7 +1163,6 @@ User Experience Tests: should be user action followed by the expected result
 Example: 
 The test should verify that an error message is displayed when an invalid file type is uploaded
 
-
 **Test Harness**
 
 Test Runner: Frontend and backend tests and reports on performance
@@ -1174,11 +1173,7 @@ What we will use: Cypress
 
 Continuous Integration: Implement CI to run tests automatically on code updates.
 
-
-
 By establishing naming conventions and an extensive test harness, TellTail can be reliable and at the quality we are looking to provide. These tests give us the confidence to best help shelters and pet owners alike. 
-
-
 
 ### Building a Release ✅
 - All tasks with regards to building (and deploying) are already automated using Vercel and GitHub actions.
@@ -1200,31 +1195,84 @@ As part of our test plan, we will be using the following test-automation infrast
 
   _Example:_ We want to test Component.tsx, so in the same folder, we make a file called Component.test.tsx
 
-**Backend Testing:**
-- _insert_
-- Justification:
-- New tests can be added to the code base by ...
+### **Backend Testing:**
+- **Jest** (with `supertest` for API endpoint testing)
+- **Justification:** Jest provides a fast, feature-rich testing framework that integrates well with Node.js. `supertest` allows us to test API endpoints efficiently.
+- **Adding New Tests:** New tests can be added by creating a `.test.ts` file inside the `tests/` directory, structured similarly to the backend route handlers.
 
+### **Our CI Service and Repository Integration:**
 **Our CI service and how the repository is linked:** For our CI service, we opted to move forward with Vercel and GitHub Actions. Vercel integrates with GitHub Actions to automatically recompile the app when any changes are made to the GitHub repo. The primary reason that we chose to use Vercel is that it automatically and seamlessly handles both Continuous Integration (on top of the tests we've already developed) and Continuous Deployment when used with GitHub actions, providing us a full CI/CD pipeline. This means that whenever we push to the TailTell repo, we can almost instantly view the changes in the real app, not just our local version.
 
   As a part of the CI/CD pipeline, when npm run build is ran by Vercel (on pushes), npm run test is run as a part of it, which is the command for running vitest. This means if the tests fail, so will the build, and it will not push to production. The failue will be logged in the Vercel logs to help resolve the issue.
 
 **Why we chose Vercel:** We chose Vercel because it integrates seemlessly and easily with Github and we have experience using it in the past.
 
-**3 other CI services that we considered were:**
-  **1.**
-    Pros:
-    Cons:
-  **2.**
-    Pros:
-    Cons:
-  **3.**
-    Pros:
-    Cons:
+### **3 Other CI Services We Considered:**
+#### **1. GitHub Actions (Standalone CI/CD Without Vercel)**
+- **Pros:** Native to GitHub, highly configurable, integrates well with Docker.
+- **Cons:** Requires additional setup for deployment, compared to Vercel’s built-in pipeline.
+
+#### **2. Travis CI**
+- **Pros:** Well-established, easy configuration with `.travis.yml`, supports multiple languages.
+- **Cons:** Slower build times compared to GitHub Actions, limited free tier for private repos.
+
+#### **3. CircleCI**
+- **Pros:** Highly customizable, supports parallel builds, integrates with various deployment platforms.
+- **Cons:** More complex configuration, steeper learning curve.
+
+### **Tests Executed in a CI Build:**
+- **Unit tests** (Frontend via Vitest, Backend via Jest)
+- **Integration tests** (API tests via `supertest`)
+- **End-to-end tests** (Planned for future using Cypress)
+
+### **Development Actions That Trigger a CI Build:**
+- Any push to the repository triggers a CI build.
+- Pull requests to main branches also trigger tests.
+- Changes in a branch can be tested via GitHub Actions before merging.
   
-**The tests that will be executed in a CI build are:**
-    - Unit tests
-    - _more_
-**Which development actions trigger a CI build:**
-Any pushes to the repository (regardless of their nature) will result in the CI system (GitHub Actions + Vercel) being triggered. This is because each push causes a build to be ran, and any npm run build command also runs npm run test (vitest).
+**The tests that will be executed in a CI build are:**  
+- Unit tests  
+- Integration tests  
+- API tests  
+- End-to-end tests (planned for future implementation)  
+
+**Which development actions trigger a CI build:**  
+Any pushes to the repository (regardless of their nature) will trigger the CI system (GitHub Actions + Vercel). Each push initiates a build process, and as part of `npm run build`, the `npm run test` command (Vitest) is executed. If tests fail, the build is halted, preventing deployment to production.
+
+## **Reflections**
+
+### **Zane**
+1.
+2.
+3.
+
+### **Nathaniel**
+1.
+2.
+3.
+
+### **Sam**
+1.
+2.
+3.
+
+### **Raed**
+1.
+2.
+3.
+
+### **Christian**
+1.
+2.
+3.
+
+### **Stephen**
+1.
+2.
+3.
+
+### **Troy**
+1. Learned how ResNet50 and ONNX Runtime optimize deep learning model inference for efficient image classification.  
+2. Gained experience with TailwindCSS for utility-first styling and TypeScript for type-safe frontend development.  
+3. Developed a strong understanding of classification in machine learning, including feature extraction and model evaluation.  
 
