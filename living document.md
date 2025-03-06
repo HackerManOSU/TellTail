@@ -1239,6 +1239,122 @@ As part of our test plan, we will be using the following test-automation infrast
 **Which development actions trigger a CI build:**  
 Any pushes to the repository (regardless of their nature) will trigger the CI system (GitHub Actions + Vercel). Each push initiates a build process, and as part of `npm run build`, the `npm run test` command (Vitest) is executed. If tests fail, the build is halted, preventing deployment to production.
 
+# 1.0 Release
+
+## Overview
+The 1.0 release of **TellTail** represents the first fully functional version of our pet classification web application. This release includes all major functionality outlined in our feature list, demonstrating substantial work, a solid user experience, and complete integration of our AI-powered classification system. 
+
+## Live Deployment
+- **Live URL:** [TellTail Web App](https://tail-tell.vercel.app/)
+- This version is publicly available and ready for customer evaluation.
+- The application provides a **polished user experience** with clear navigation and intuitive interactions.
+- Error handling ensures robustness, allowing the system to **gracefully handle invalid inputs**.
+
+---
+
+## Distributions
+
+### 1️⃣ Installed Solution
+- **URL to Live Product:** [TellTail Web App](https://tail-tell.vercel.app/)
+- The live system successfully implements:
+  - **Dog vs. Cat Classification**
+  - **Breed Identification**
+  - **Age Estimation**
+  - **Sharable Adoption Profile Generation**
+  - **Basic Health Information on Breeds**
+- **Issue Tracking:**
+  - Known bugs are documented in **GitHub Issues**: [GitHub Issues](https://github.com/HackerManOSU/TailTell/issues)
+  - Any reported problems will be tracked and resolved in future updates.
+
+### 2️⃣ Binary (Installable) Distribution
+- **Installation Package:**
+  - The application can be deployed on any server following the steps below.
+- **Installation Instructions:**
+  1. Clone the repository:
+     ```sh
+     git clone https://github.com/HackerManOSU/TailTell.git
+     cd TailTell
+     ```
+  2. Install frontend dependencies:
+     ```sh
+     cd frontend
+     npm install
+     ```
+  3. Install backend dependencies:
+     ```sh
+     cd ../backend
+     pip install -r requirements.txt
+     ```
+- **Running the Software Locally:**
+  - Start the frontend:
+    ```sh
+    npm run dev
+    ```
+  - Start the backend:
+    ```sh
+    pytest tests/
+    ```
+- **Deployment Process:**
+  - The system is automatically deployed using **Vercel & GitHub Actions**.
+  - All updates pushed to GitHub trigger automatic builds and deployments.
+- **Known Issues:**
+  - Occasional `onnxruntime-web` crashes require users to **re-upload images**.
+  - **Mobile navbar clipping issues** are being investigated.
+
+### 3️⃣ Source Distribution
+- **Source Code Repository:** [GitHub Repository](https://github.com/HackerManOSU/TailTell)
+- **Developer Documentation Includes:**
+  - System architecture and design
+  - Build process and environment setup
+  - API endpoints and integrations
+  - Test automation details
+  - Change tracking via `git log`, `git diff`
+- **Build Instructions for New Developers:**
+  - Assumes familiarity with **Git, Node.js, Python, ONNX Runtime**.
+  - All dependencies are listed in `package.json` (frontend) and `requirements.txt` (backend).
+  - Steps to build from source:
+    ```sh
+    git clone https://github.com/HackerManOSU/TailTell.git
+    cd TailTell/frontend
+    npm install
+    npm run build
+    ```
+
+---
+
+## Testing & Quality Assurance
+- **Unit Tests:**
+  - **Frontend:** `npm test` (Vitest + React Testing Library)
+  - **Backend:** `pytest tests/` (PyTorch Model Tests)
+- **Integration Tests:**
+  - API validation using `supertest`
+- **Continuous Integration (CI/CD):**
+  - **GitHub Actions + Vercel** automatically run tests before deployments.
+- **Test Coverage Reports:**
+  - Unit and integration test reports will be generated in the next version.
+
+---
+
+## Final Admin & User Documentation
+### 📖 **User Guide**
+- How to use the web app (upload images, view results, generate profiles)
+- FAQs for troubleshooting common issues
+- Bug reporting and feature suggestion process
+
+### 📖 **Admin Deployment Guide**
+- Step-by-step instructions for deploying the application on a new server
+- Ensuring necessary dependencies are installed
+- Managing Vercel deployments
+
+---
+
+## Summary of Missing Features & Future Improvements
+- **Multiple Pet Detection in a Single Image** (Upcoming v1.1)
+- **Handling Non-Animal or Low-Quality Images** (Upcoming v1.2)
+- **Expanded Breed Health Insights** (Upcoming v1.3)
+
+This release provides a **fully functional, production-ready version** of TellTail, ready for evaluation and real-world use. Further refinements and additional features will follow in subsequent updates. 🚀
+
 ## **Reflections**
 
 ### **Zane**
