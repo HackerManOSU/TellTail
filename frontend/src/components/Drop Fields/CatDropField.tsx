@@ -209,21 +209,21 @@ const CatDropField: React.FC = () => {
   };
 
   return (
-    <div className="w-[75%] max-w-[1000px] h-[33%]">
+    <div className="w-[75%] max-w-[1000px] h-[33%] lg:h-[50%]">
       <div
         {...getRootProps()}
-        className={`p-8 border-2 border-solid rounded-lg text-center cursor-pointer h-full
+        className={`pb-8 border-2 border-solid rounded-lg text-center cursor-pointer h-full
             ${isDragActive || "hover:border-primary hover:bg-primary-light"} 
             ${isDragActive ? "border-primary bg-primary-light" : "border-gray-300"}`}
       >
         <input {...getInputProps()} />
         {preview ? (
-          <div className="space-y-4">
-            <img src={preview} alt="Preview" className="max-h-48 mx-auto" />
+          <div className="space-y-2 h-full">
+            <img src={preview} alt="Preview" className="max-h-48 mx-auto h-full" />
             <p className="text-sm text-gray-500">Click or drag to change image</p>
           </div>
         ) : (
-          <div className="space-y-2 h-full flex flex-col items-center text-center justify-center">
+          <div className="space-y-2 h-full flex flex-col items-center text-center justify-center ">
             <p className="text-lg">Drag and drop your pet image here</p>
             <p className="text-sm text-gray-500">or click to select a file</p>
           </div>
@@ -277,6 +277,9 @@ const CatDropField: React.FC = () => {
           </button>
         </div>
       )}
+      
+      <h3 className='text-2xl text-primary'>*AI can make mistakes, always check important information*</h3>
+
     </div>
   );
 };

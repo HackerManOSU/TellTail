@@ -11,17 +11,16 @@ const DropPage: React.FC<DropPageProps> = ({ title }) => {
   return (
     <div className='h-[90vh] w-[100vw] bg-[#fff] text-center flex flex-col items-center'>
 
-      <div className='absolute top-[15dvh]'>
+      <div className=' top-[15dvh]'>
 
-        <h1 className='text-9xl text-primary'>Upload a {title}</h1>
+        <h1 className='text-8xl lg:text-9xl text-primary'>Upload a {title}</h1>
 
       </div>
       
-      <div className='w-full h-full flex items-center justify-center'>
+      <div className='w-full h-full flex items-top justify-center pt-10'>
         {(title == "Cat") ? <CatDropField /> : <DogDropField />}
       </div>
 
-      <h3 className='text-2xl text-primary'>*AI can make mistakes, always check important information*</h3>
     </div>
   )
 }
