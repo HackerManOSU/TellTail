@@ -9,29 +9,18 @@ https://trello.com/b/bruFHEAQ/cs-362-group-15-project-board
 ## Tech Stack
 
 ### Frontend
-- ![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
-- ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black) 
-- ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white) 
-- ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)  ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)  ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)  ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
 ### Backend
-- ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white) 
-- ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white) 
-- ![Cats API](https://img.shields.io/badge/Cats%20API-FFD700?style=for-the-badge&logo=cat&logoColor=black) 
-- ![Dogs API](https://img.shields.io/badge/Dogs%20API-8B4513?style=for-the-badge&logo=dog&logoColor=white) 
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)  ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)  ![Cats API](https://img.shields.io/badge/Cats%20API-FFD700?style=for-the-badge&logo=cat&logoColor=black)  ![Dogs API](https://img.shields.io/badge/Dogs%20API-8B4513?style=for-the-badge&logo=dog&logoColor=white) 
 
 
 ### Model Backbones
-- ![ResNet50](https://img.shields.io/badge/ResNet50-0096FF?style=for-the-badge&logo=deep-learning&logoColor=white) 
-- ![EfficientNetV2](https://img.shields.io/badge/EfficientNetV2-00C853?style=for-the-badge&logo=deep-learning&logoColor=white) 
+![ResNet50](https://img.shields.io/badge/ResNet50-0096FF?style=for-the-badge&logo=deep-learning&logoColor=white)  ![EfficientNetV2](https://img.shields.io/badge/EfficientNetV2-00C853?style=for-the-badge&logo=deep-learning&logoColor=white) 
 
 
 ### Tools and Libraries
-- ![ESLint](https://img.shields.io/badge/ESLint-4B32C3?style=for-the-badge&logo=eslint&logoColor=white) 
-- ![MaterialUI](https://img.shields.io/badge/Material%20UI-0081CB?style=for-the-badge&logo=mui&logoColor=white) 
-- ![Axios](https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white) 
-- ![dotenv](https://img.shields.io/badge/dotenv-ECD53F?style=for-the-badge&logo=.env&logoColor=black) 
-- ![ONNX Runtime](https://img.shields.io/badge/ONNX%20Runtime-005CED?style=for-the-badge&logo=onnx&logoColor=white)
+![ESLint](https://img.shields.io/badge/ESLint-4B32C3?style=for-the-badge&logo=eslint&logoColor=white)  ![MaterialUI](https://img.shields.io/badge/Material%20UI-0081CB?style=for-the-badge&logo=mui&logoColor=white)  ![Axios](https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white)  ![dotenv](https://img.shields.io/badge/dotenv-ECD53F?style=for-the-badge&logo=.env&logoColor=black)  ![ONNX Runtime](https://img.shields.io/badge/ONNX%20Runtime-005CED?style=for-the-badge&logo=onnx&logoColor=white)
 
 
 ### Diagram of TellTail
@@ -78,6 +67,7 @@ Navigate to https://tail-tell.vercel.app/ to use the app on the web.
    ```
 
 ## Project Structure
+<details>
 
 ```
 $PROJECT_ROOT
@@ -131,5 +121,6 @@ $PROJECT_ROOT
 │   ├── package.json
 │   ├── postcss.config.js
 │   ├──tailwind.config.js
-
+```
+</details>
 
