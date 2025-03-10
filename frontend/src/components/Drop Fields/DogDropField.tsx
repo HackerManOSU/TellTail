@@ -1,5 +1,5 @@
 /* ++++++++++ IMPORTS ++++++++++ */
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 
 /* ++++++++++ DROPZONE ++++++++++ */
 import { useDropzone } from "react-dropzone";
@@ -52,6 +52,14 @@ const DogDropField: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [prediction, setPrediction] = useState<string | null>(null);
 
+  // Set the background color for the entire page
+  useEffect(() => {
+    document.body.style.backgroundColor = "#E9D0B8"; // or use a class name like bg-background
+    return () => {
+      document.body.style.backgroundColor = ""; // Reset the background color when the component unmounts
+    };
+  }, []);
+
   // Display prediction if available
   React.useEffect(() => {
     if (prediction) {
@@ -101,13 +109,13 @@ const DogDropField: React.FC = () => {
   const handleContinue = async () => {
     if (!file) return;
     setIsLoading(true);
-  
+
     try {
       const inputTensor = await preprocessImage(file);
       if (!inputTensor) throw new Error("Failed to preprocess the image.");
-  
+
       ort.env.wasm.wasmPaths = "/";
-  
+
       // Load Dog Breed Model
       const breedSession = await ort.InferenceSession.create("/dog_breed_model.onnx");
       const breedFeeds = { input: new ort.Tensor("float32", inputTensor, [1, 3, 224, 224]) };
@@ -115,7 +123,7 @@ const DogDropField: React.FC = () => {
       const breedProbabilities = breedResults[Object.keys(breedResults)[0]].data as Float32Array;
       const predictedBreedIndex = breedProbabilities.indexOf(Math.max(...breedProbabilities));
       const predictedBreed = dogBreeds[predictedBreedIndex];
-  
+
       // Load Dog Lifestage Model
       const lifestageSession = await ort.InferenceSession.create("/dog_lifestage_model.onnx");
       const lifestageResults = await lifestageSession.run(breedFeeds);
@@ -123,19 +131,19 @@ const DogDropField: React.FC = () => {
       const lifestageIndex = lifestageProbabilities.indexOf(Math.max(...lifestageProbabilities));
       const lifestageLabels = ["Young", "Adult", "Senior"];
       const predictedLifestage = lifestageLabels[lifestageIndex];
-  
+
       setPrediction(`${predictedBreed} (${predictedLifestage})`);
-  
+
       // Fetch breed details
       const apiKey = import.meta.env.VITE_API_NINJAS_KEY;
       const response = await fetch(`https://api.api-ninjas.com/v1/dogs?name=${predictedBreed}`, {
         headers: { 'X-Api-Key': apiKey }
       });
-  
+
       if (response.ok) {
         const breedData = await response.json();
         const uniqueId = generateProfileId();
-  
+
         const breedInfo = {
           ...breedData[0],
           name: predictedBreed,
@@ -144,9 +152,9 @@ const DogDropField: React.FC = () => {
           id: uniqueId,
           timestamp: Date.now()
         };
-  
+
         sessionStorage.setItem(`dog-profile-${uniqueId}`, JSON.stringify(breedInfo));
-  
+
         navigate(`/dog-profile/${uniqueId}`, {
           state: { breedInfo, fromUpload: true }
         });
@@ -158,8 +166,6 @@ const DogDropField: React.FC = () => {
       setIsLoading(false);
     }
   };
-  
-
 
   return (
     <div className="w-[75%] max-w-[1000px] h-[33%] lg:h-[50%]">
@@ -176,7 +182,7 @@ const DogDropField: React.FC = () => {
             <p className="text-sm text-gray-500">Click or drag to change image</p>
           </div>
         ) : (
-          <div className="space-y-2 h-full flex flex-col items-center text-center justify-center ">
+          <div className="space-y-2 h-full flex flex-col items-center text-center justify-center">
             <p className="text-lg">Drag and drop your pet image here</p>
             <p className="text-sm text-gray-500">or click to select a file</p>
           </div>
@@ -230,26 +236,10 @@ const DogDropField: React.FC = () => {
           </button>
         </div>
       )}
-      
+
       <h3 className='text-2xl text-primary'>*AI can make mistakes, always check important information*</h3>
-
     </div>
-
   );
 };
 
 export default DogDropField;
-
-export const fetchDogInfo = async (breed: string) => {
-  const apiKey = import.meta.env.VITE_API_NINJAS_KEY;
-  const response = await fetch(`https://api.api-ninjas.com/v1/dogs?name=${breed}`, {
-    headers: { "X-Api-Key": apiKey }
-  });
-
-  if (!response.ok) {
-    throw new Error("Failed to fetch dog information");
-  }
-
-  return await response.json();
-};
-
