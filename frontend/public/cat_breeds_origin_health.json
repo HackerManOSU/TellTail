@@ -1,0 +1,227 @@
+[
+  {
+    "name": "Siamese",
+    "origin": "Thailand",
+    "health_issues": "Progressive retinal atrophy, respiratory issues, heart disease"
+  },
+  {
+    "name": "Persian",
+    "origin": "Iran (historical Persia)",
+    "health_issues": "Brachycephalic airway syndrome, polycystic kidney disease (PKD), dental issues"
+  },
+  {
+    "name": "Maine Coon",
+    "origin": "United States",
+    "health_issues": "Hypertrophic cardiomyopathy (HCM), hip dysplasia, spinal muscular atrophy"
+  },
+  {
+    "name": "Ragdoll",
+    "origin": "United States",
+    "health_issues": "Hypertrophic cardiomyopathy, bladder stones, obesity"
+  },
+  {
+    "name": "British Shorthair",
+    "origin": "England",
+    "health_issues": "Obesity, hypertrophic cardiomyopathy, dental issues"
+  },
+  {
+    "name": "Scottish Fold",
+    "origin": "Scotland",
+    "health_issues": "Osteochondrodysplasia (joint issues), arthritis, ear problems"
+  },
+  {
+    "name": "Sphynx",
+    "origin": "Canada",
+    "health_issues": "Hypertrophic cardiomyopathy, skin conditions, sunburn risk"
+  },
+  {
+    "name": "Burmese",
+    "origin": "Myanmar (Burma)",
+    "health_issues": "Cranial deformities, glaucoma, kidney problems"
+  },
+  {
+    "name": "Abyssinian",
+    "origin": "Ethiopia",
+    "health_issues": "Periodontal disease, patellar luxation, renal amyloidosis"
+  },
+  {
+    "name": "Birman",
+    "origin": "France (likely Burmese ancestry)",
+    "health_issues": "Hypertrophic cardiomyopathy, kidney disease, obesity"
+  },
+  {
+    "name": "American Shorthair",
+    "origin": "United States",
+    "health_issues": "Obesity, hypertrophic cardiomyopathy, dental problems"
+  },
+  {
+    "name": "Exotic Shorthair",
+    "origin": "United States",
+    "health_issues": "Brachycephalic syndrome, polycystic kidney disease, excessive tearing"
+  },
+  {
+    "name": "Oriental Shorthair",
+    "origin": "United Kingdom",
+    "health_issues": "Progressive retinal atrophy, dental problems, respiratory issues"
+  },
+  {
+    "name": "Devon Rex",
+    "origin": "England",
+    "health_issues": "Patellar luxation, hypertrophic cardiomyopathy, hereditary myopathy"
+  },
+  {
+    "name": "Cornish Rex",
+    "origin": "England",
+    "health_issues": "Hypertrophic cardiomyopathy, patellar luxation, skin sensitivities"
+  },
+  {
+    "name": "Russian Blue",
+    "origin": "Russia",
+    "health_issues": "Obesity, bladder stones, heart disease"
+  },
+  {
+    "name": "Norwegian Forest Cat",
+    "origin": "Norway",
+    "health_issues": "Hypertrophic cardiomyopathy, glycogen storage disease, hip dysplasia"
+  },
+  {
+    "name": "Siberian",
+    "origin": "Russia",
+    "health_issues": "Hypertrophic cardiomyopathy, polycystic kidney disease, obesity"
+  },
+  {
+    "name": "Bengal",
+    "origin": "United States",
+    "health_issues": "Hypertrophic cardiomyopathy, progressive retinal atrophy, sensitive digestion"
+  },
+  {
+    "name": "Turkish Angora",
+    "origin": "Turkey",
+    "health_issues": "Deafness (especially white/blue-eyed cats), hypertrophic cardiomyopathy, ataxia"
+  },
+  {
+    "name": "Turkish Van",
+    "origin": "Turkey",
+    "health_issues": "Hypertrophic cardiomyopathy, deafness, obesity"
+  },
+  {
+    "name": "Somali",
+    "origin": "Related to the Abyssinian",
+    "health_issues": "Periodontal disease, patellar luxation, renal amyloidosis"
+  },
+  {
+    "name": "Himalayan",
+    "origin": "Cross of Persian and Siamese",
+    "health_issues": "Brachycephalic issues, polycystic kidney disease, excessive tearing"
+  },
+  {
+    "name": "Munchkin",
+    "origin": "United States",
+    "health_issues": "Lordosis, pectus excavatum, potential joint issues"
+  },
+  {
+    "name": "Chartreux",
+    "origin": "France",
+    "health_issues": "Patellar luxation, polycystic kidney disease, urinary issues"
+  },
+  {
+    "name": "Ragamuffin",
+    "origin": "United States",
+    "health_issues": "Hypertrophic cardiomyopathy, obesity, dental problems"
+  },
+  {
+    "name": "Tonkinese",
+    "origin": "Canada (Siamese–Burmese cross)",
+    "health_issues": "Progressive retinal atrophy, asthma, urinary tract issues"
+  },
+  {
+    "name": "Balinese",
+    "origin": "United States (long-haired Siamese)",
+    "health_issues": "Progressive retinal atrophy, respiratory issues, crossed eyes"
+  },
+  {
+    "name": "Manx",
+    "origin": "Isle of Man",
+    "health_issues": "Manx syndrome (spinal issues), corneal dystrophy, arthritis"
+  },
+  {
+    "name": "Japanese Bobtail",
+    "origin": "Japan",
+    "health_issues": "Spinal issues, urinary tract problems, obesity"
+  },
+  {
+    "name": "Egyptian Mau",
+    "origin": "Egypt",
+    "health_issues": "Hypertrophic cardiomyopathy, patellar luxation, obesity"
+  },
+  {
+    "name": "American Bobtail",
+    "origin": "United States",
+    "health_issues": "Spinal problems, hypertrophic cardiomyopathy, obesity"
+  },
+  {
+    "name": "American Curl",
+    "origin": "United States",
+    "health_issues": "Ear infections, cartilage issues, obesity"
+  },
+  {
+    "name": "Ocicat",
+    "origin": "United States",
+    "health_issues": "Hypertrophic cardiomyopathy, kidney disease, obesity"
+  },
+  {
+    "name": "Singapura",
+    "origin": "Singapore",
+    "health_issues": "Pyruvate kinase deficiency, obesity, kidney problems"
+  },
+  {
+    "name": "Snowshoe",
+    "origin": "United States",
+    "health_issues": "Crossed eyes, kinked tail, dental problems"
+  },
+  {
+    "name": "LaPerm",
+    "origin": "United States",
+    "health_issues": "Hypertrophic cardiomyopathy, possible kidney disease, generally robust"
+  },
+  {
+    "name": "Selkirk Rex",
+    "origin": "United States",
+    "health_issues": "Polycystic kidney disease, hypertrophic cardiomyopathy, hip dysplasia"
+  },
+  {
+    "name": "American Wirehair",
+    "origin": "United States",
+    "health_issues": "Hypertrophic cardiomyopathy, ear infections, obesity"
+  },
+  {
+    "name": "American Curl Longhair",
+    "origin": "United States",
+    "health_issues": "Ear cartilage problems, ear infections, obesity"
+  },
+  {
+    "name": "Sam Sawet",
+    "origin": "Thailand",
+    "health_issues": "Obesity, dental issues, potential heart disease"
+  },
+  {
+    "name": "Bambino",
+    "origin": "United States",
+    "health_issues": "Spinal problems, skin infections, possible joint issues"
+  },
+  {
+    "name": "Dwelf",
+    "origin": "United States",
+    "health_issues": "Cartilage disorders, skin sensitivities, potential heart issues"
+  },
+  {
+    "name": "Napoleon Cat (Minuet)",
+    "origin": "United States",
+    "health_issues": "Joint issues, polycystic kidney disease (if Persian lineage), obesity"
+  },
+  {
+    "name": "Highlander",
+    "origin": "United States",
+    "health_issues": "Ear infections, obesity, potential joint issues"
+  }
+]
