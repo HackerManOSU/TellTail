@@ -52,11 +52,12 @@ const DogDropField: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [prediction, setPrediction] = useState<string | null>(null);
 
-  // Set the background color for the entire page
-  useEffect(() => {
-    document.body.style.backgroundColor = "#E9D0B8"; // or use a class name like bg-background
+ useEffect(() => {
+ 
+    document.body.classList.add("bg-background"); 
     return () => {
-      document.body.style.backgroundColor = ""; // Reset the background color when the component unmounts
+      
+      document.body.classList.remove("bg-background");
     };
   }, []);
 
