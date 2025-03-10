@@ -1,5 +1,5 @@
 /* ++++++++++ IMPORTS ++++++++++ */
-import React, { useCallback, useState, useEffect } from "react";
+import React, { useCallback, useState } from "react";
 
 /* ++++++++++ DROPZONE ++++++++++ */
 import { useDropzone } from "react-dropzone";
@@ -52,17 +52,10 @@ const DogDropField: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [prediction, setPrediction] = useState<string | null>(null);
 
-  useEffect(() => {
-    document.body.classList.add("bg-background"); 
-    return () => {
-      document.body.classList.remove("bg-background");
-    };
-  }, []);
-
   // Display prediction if available
   React.useEffect(() => {
     if (prediction) {
-      console.log(`Predicted breed: ${prediction}`);
+      console.log(Predicted breed: ${prediction});
     }
   }, [prediction]);
 
@@ -108,13 +101,13 @@ const DogDropField: React.FC = () => {
   const handleContinue = async () => {
     if (!file) return;
     setIsLoading(true);
-
+  
     try {
       const inputTensor = await preprocessImage(file);
       if (!inputTensor) throw new Error("Failed to preprocess the image.");
-
+  
       ort.env.wasm.wasmPaths = "/";
-
+  
       // Load Dog Breed Model
       const breedSession = await ort.InferenceSession.create("/dog_breed_model.onnx");
       const breedFeeds = { input: new ort.Tensor("float32", inputTensor, [1, 3, 224, 224]) };
@@ -122,7 +115,7 @@ const DogDropField: React.FC = () => {
       const breedProbabilities = breedResults[Object.keys(breedResults)[0]].data as Float32Array;
       const predictedBreedIndex = breedProbabilities.indexOf(Math.max(...breedProbabilities));
       const predictedBreed = dogBreeds[predictedBreedIndex];
-
+  
       // Load Dog Lifestage Model
       const lifestageSession = await ort.InferenceSession.create("/dog_lifestage_model.onnx");
       const lifestageResults = await lifestageSession.run(breedFeeds);
@@ -130,19 +123,19 @@ const DogDropField: React.FC = () => {
       const lifestageIndex = lifestageProbabilities.indexOf(Math.max(...lifestageProbabilities));
       const lifestageLabels = ["Young", "Adult", "Senior"];
       const predictedLifestage = lifestageLabels[lifestageIndex];
-
-      setPrediction(`${predictedBreed} (${predictedLifestage})`);
-
+  
+      setPrediction(${predictedBreed} (${predictedLifestage}));
+  
       // Fetch breed details
       const apiKey = import.meta.env.VITE_API_NINJAS_KEY;
-      const response = await fetch(`https://api.api-ninjas.com/v1/dogs?name=${predictedBreed}`, {
+      const response = await fetch(https://api.api-ninjas.com/v1/dogs?name=${predictedBreed}, {
         headers: { 'X-Api-Key': apiKey }
       });
-
+  
       if (response.ok) {
         const breedData = await response.json();
         const uniqueId = generateProfileId();
-
+  
         const breedInfo = {
           ...breedData[0],
           name: predictedBreed,
@@ -151,10 +144,10 @@ const DogDropField: React.FC = () => {
           id: uniqueId,
           timestamp: Date.now()
         };
-
-        sessionStorage.setItem(`dog-profile-${uniqueId}`, JSON.stringify(breedInfo));
-
-        navigate(`/dog-profile/${uniqueId}`, {
+  
+        sessionStorage.setItem(dog-profile-${uniqueId}, JSON.stringify(breedInfo));
+  
+        navigate(/dog-profile/${uniqueId}, {
           state: { breedInfo, fromUpload: true }
         });
       }
@@ -165,71 +158,83 @@ const DogDropField: React.FC = () => {
       setIsLoading(false);
     }
   };
+  
+
 
   return (
-    <div className="w-[75%] max-w-[1000px] h-[33%] lg:h-[50%] relative">
-     
-      <img
-        src="./dogimage.png"
-        alt="Dog"
-        className="absolute top-0 left-0 w-20 h-20 object-cover"
-      />
-      <img
-        src="./dogimage.png"
-        alt="Dog"
-        className="absolute top-0 right-0 w-20 h-20 object-cover"
-      />
-      <img
-        src="./dogimage.png"
-        alt="Dog"
-        className="absolute bottom-0 left-0 w-20 h-20 object-cover"
-      />
-      <img
-        src="./dogimage.png"
-        alt="Dog"
-        className="absolute bottom-0 right-0 w-20 h-20 object-cover"
-      />
-
+    <div className="w-[75%] max-w-[1000px] h-[33%] lg:h-[50%]">
       <div
         {...getRootProps()}
-        className={`pb-8 border-2 border-solid rounded-lg text-center cursor-pointer h-full
+        className={pb-8 border-2 border-solid rounded-lg text-center cursor-pointer h-full
             ${isDragActive || "hover:border-primary hover:bg-primary-light"} 
-            ${isDragActive ? "border-active" : "border-neutral"}`}
+            ${isDragActive ? "border-primary bg-primary-light" : "border-gray-300"}}
       >
         <input {...getInputProps()} />
-        <p className="mb-6 mt-4 text-xl font-medium">
-          {isDragActive ? "Drop the image here!" : "Drag and drop an image or click to select"}
-        </p>
-        <div className="mb-6 flex justify-center">{preview && <img src={preview} alt="Preview" className="w-32 h-32 object-cover rounded-full" />}</div>
-        {prediction && <div className="mt-4 font-medium">Prediction: {prediction}</div>}
+        {preview ? (
+          <div className="space-y-2 h-full">
+            <img src={preview} alt="Preview" className="max-h-48 mx-auto h-full" />
+            <p className="text-sm text-gray-500">Click or drag to change image</p>
+          </div>
+        ) : (
+          <div className="space-y-2 h-full flex flex-col items-center text-center justify-center ">
+            <p className="text-lg">Drag and drop your pet image here</p>
+            <p className="text-sm text-gray-500">or click to select a file</p>
+          </div>
+        )}
       </div>
 
-      <div className="flex justify-end mt-4">
-        <button
-          onClick={handleContinue}
-          className="bg-button px-6 py-2 rounded-xl font-semibold text-white"
-          disabled={isLoading || !file}
-        >
-          {isLoading ? "Processing..." : "Continue"}
-        </button>
-      </div>
+      {file && (
+        <div className="bg-gray-50 rounded-lg p-4 space-y-4">
+          <TableContainer component={Paper} elevation={0}>
+            <Table size="small">
+              <TableBody>
+                <TableRow>
+                  <TableCell component="th" sx={{ fontWeight: "bold", width: "30%" }}>
+                    File Name
+                  </TableCell>
+                  <TableCell>{file.name}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell component="th" sx={{ fontWeight: "bold" }}>
+                    Size
+                  </TableCell>
+                  <TableCell>{(file.size / 1024).toFixed(2)} KB</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell component="th" sx={{ fontWeight: "bold" }}>
+                    Type
+                  </TableCell>
+                  <TableCell>{file.type}</TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </TableContainer>
 
-      {/* Dog Info Table */}
-      <TableContainer component={Paper} className="mt-8">
-        <Table>
-          <TableBody>
-            <TableRow>
-              <TableCell>Name</TableCell>
-              <TableCell align="right">Breed Prediction</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Lifestage</TableCell>
-              <TableCell align="right">{prediction}</TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </TableContainer>
+          <button
+            onClick={handleContinue}
+            disabled={isLoading}
+            className={w-full py-2 px-4 rounded-md text-white
+              ${isLoading
+                ? "bg-primary cursor-not-allowed"
+                : "bg-primary hover:bg-primary-light"
+              } transition-colors}
+          >
+            {isLoading ? (
+              <div className="flex items-center justify-center">
+                <div className="w-6 h-6 border-4 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                Processing...
+              </div>
+            ) : (
+              "Continue"
+            )}
+          </button>
+        </div>
+      )}
+      
+      <h3 className='text-2xl text-primary'>*AI can make mistakes, always check important information*</h3>
+
     </div>
+
   );
 };
 
