@@ -9,20 +9,20 @@ interface DropPageProps {
 
 const DropPage: React.FC<DropPageProps> = ({ title }) => {
   return (
-    <div className='h-[90vh] w-[100vw] bg-[#fff] text-center flex flex-col items-center'>
+    <div className='min-h-screen w-[100vw] bg-background text-center flex flex-col items-center'>
 
-      <div className=' top-[15dvh]'>
-
+      <div className='mt-10'>
         <h1 className='text-8xl lg:text-9xl text-primary'>Upload a {title}</h1>
-
       </div>
       
-      <div className='w-full h-full flex items-top justify-center pt-10'>
-        {(title == "Cat") ? <CatDropField /> : <DogDropField />}
+      <div className='w-full flex items-center justify-center mt-10'>
+        <div className='border-4 border-primary rounded-lg p-8 flex items-center justify-center'>
+          {title === "Cat" ? <CatDropField /> : <DogDropField />}
+        </div>
       </div>
 
     </div>
   )
 }
 
-export default DropPage
+export default DropPage;
