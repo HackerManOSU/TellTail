@@ -52,11 +52,9 @@ const DogDropField: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [prediction, setPrediction] = useState<string | null>(null);
 
- useEffect(() => {
- 
+  useEffect(() => {
     document.body.classList.add("bg-background"); 
     return () => {
-      
       document.body.classList.remove("bg-background");
     };
   }, []);
@@ -169,76 +167,68 @@ const DogDropField: React.FC = () => {
   };
 
   return (
-    <div className="w-[75%] max-w-[1000px] h-[33%] lg:h-[50%]">
+    <div className="w-[75%] max-w-[1000px] h-[33%] lg:h-[50%] relative">
+     
+      <img
+        src="./dogimage.png"
+        alt="Dog"
+        className="absolute top-0 left-0 w-20 h-20 object-cover"
+      />
+      <img
+        src="./dogimage.png"
+        alt="Dog"
+        className="absolute top-0 right-0 w-20 h-20 object-cover"
+      />
+      <img
+        src="./dogimage.png"
+        alt="Dog"
+        className="absolute bottom-0 left-0 w-20 h-20 object-cover"
+      />
+      <img
+        src="./dogimage.png"
+        alt="Dog"
+        className="absolute bottom-0 right-0 w-20 h-20 object-cover"
+      />
+
       <div
         {...getRootProps()}
         className={`pb-8 border-2 border-solid rounded-lg text-center cursor-pointer h-full
             ${isDragActive || "hover:border-primary hover:bg-primary-light"} 
-            ${isDragActive ? "border-primary bg-primary-light" : "border-gray-300"}`}
+            ${isDragActive ? "border-active" : "border-neutral"}`}
       >
         <input {...getInputProps()} />
-        {preview ? (
-          <div className="space-y-2 h-full">
-            <img src={preview} alt="Preview" className="max-h-48 mx-auto h-full" />
-            <p className="text-sm text-gray-500">Click or drag to change image</p>
-          </div>
-        ) : (
-          <div className="space-y-2 h-full flex flex-col items-center text-center justify-center">
-            <p className="text-lg">Drag and drop your pet image here</p>
-            <p className="text-sm text-gray-500">or click to select a file</p>
-          </div>
-        )}
+        <p className="mb-6 mt-4 text-xl font-medium">
+          {isDragActive ? "Drop the image here!" : "Drag and drop an image or click to select"}
+        </p>
+        <div className="mb-6 flex justify-center">{preview && <img src={preview} alt="Preview" className="w-32 h-32 object-cover rounded-full" />}</div>
+        {prediction && <div className="mt-4 font-medium">Prediction: {prediction}</div>}
       </div>
 
-      {file && (
-        <div className="bg-gray-50 rounded-lg p-4 space-y-4">
-          <TableContainer component={Paper} elevation={0}>
-            <Table size="small">
-              <TableBody>
-                <TableRow>
-                  <TableCell component="th" sx={{ fontWeight: "bold", width: "30%" }}>
-                    File Name
-                  </TableCell>
-                  <TableCell>{file.name}</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell component="th" sx={{ fontWeight: "bold" }}>
-                    Size
-                  </TableCell>
-                  <TableCell>{(file.size / 1024).toFixed(2)} KB</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell component="th" sx={{ fontWeight: "bold" }}>
-                    Type
-                  </TableCell>
-                  <TableCell>{file.type}</TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </TableContainer>
+      <div className="flex justify-end mt-4">
+        <button
+          onClick={handleContinue}
+          className="bg-button px-6 py-2 rounded-xl font-semibold text-white"
+          disabled={isLoading || !file}
+        >
+          {isLoading ? "Processing..." : "Continue"}
+        </button>
+      </div>
 
-          <button
-            onClick={handleContinue}
-            disabled={isLoading}
-            className={`w-full py-2 px-4 rounded-md text-white
-              ${isLoading
-                ? "bg-primary cursor-not-allowed"
-                : "bg-primary hover:bg-primary-light"
-              } transition-colors`}
-          >
-            {isLoading ? (
-              <div className="flex items-center justify-center">
-                <div className="w-6 h-6 border-4 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
-                Processing...
-              </div>
-            ) : (
-              "Continue"
-            )}
-          </button>
-        </div>
-      )}
-
-      <h3 className='text-2xl text-primary'>*AI can make mistakes, always check important information*</h3>
+      {/* Dog Info Table */}
+      <TableContainer component={Paper} className="mt-8">
+        <Table>
+          <TableBody>
+            <TableRow>
+              <TableCell>Name</TableCell>
+              <TableCell align="right">Breed Prediction</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Lifestage</TableCell>
+              <TableCell align="right">{prediction}</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </TableContainer>
     </div>
   );
 };
