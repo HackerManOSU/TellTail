@@ -55,7 +55,7 @@ const DogDropField: React.FC = () => {
   // Display prediction if available
   React.useEffect(() => {
     if (prediction) {
-      console.log(Predicted breed: ${prediction});
+      console.log(`Predicted breed: ${prediction}`);
     }
   }, [prediction]);
 
@@ -124,11 +124,11 @@ const DogDropField: React.FC = () => {
       const lifestageLabels = ["Young", "Adult", "Senior"];
       const predictedLifestage = lifestageLabels[lifestageIndex];
   
-      setPrediction(${predictedBreed} (${predictedLifestage}));
+      setPrediction(`${predictedBreed} (${predictedLifestage})`);
   
       // Fetch breed details
       const apiKey = import.meta.env.VITE_API_NINJAS_KEY;
-      const response = await fetch(https://api.api-ninjas.com/v1/dogs?name=${predictedBreed}, {
+      const response = await fetch(`https://api.api-ninjas.com/v1/dogs?name=${predictedBreed}`, {
         headers: { 'X-Api-Key': apiKey }
       });
   
@@ -145,9 +145,9 @@ const DogDropField: React.FC = () => {
           timestamp: Date.now()
         };
   
-        sessionStorage.setItem(dog-profile-${uniqueId}, JSON.stringify(breedInfo));
+        sessionStorage.setItem(`dog-profile-${uniqueId}`, JSON.stringify(breedInfo));
   
-        navigate(/dog-profile/${uniqueId}, {
+        navigate(`/dog-profile/${uniqueId}`, {
           state: { breedInfo, fromUpload: true }
         });
       }
@@ -165,9 +165,9 @@ const DogDropField: React.FC = () => {
     <div className="w-[75%] max-w-[1000px] h-[33%] lg:h-[50%]">
       <div
         {...getRootProps()}
-        className={pb-8 border-2 border-solid rounded-lg text-center cursor-pointer h-full
+        className={`pb-8 border-2 border-solid rounded-lg text-center cursor-pointer h-full
             ${isDragActive || "hover:border-primary hover:bg-primary-light"} 
-            ${isDragActive ? "border-primary bg-primary-light" : "border-gray-300"}}
+            ${isDragActive ? "border-primary bg-primary-light" : "border-gray-300"}`}
       >
         <input {...getInputProps()} />
         {preview ? (
@@ -213,11 +213,11 @@ const DogDropField: React.FC = () => {
           <button
             onClick={handleContinue}
             disabled={isLoading}
-            className={w-full py-2 px-4 rounded-md text-white
+            className={`w-full py-2 px-4 rounded-md text-white
               ${isLoading
                 ? "bg-primary cursor-not-allowed"
                 : "bg-primary hover:bg-primary-light"
-              } transition-colors}
+              } transition-colors`}
           >
             {isLoading ? (
               <div className="flex items-center justify-center">
@@ -239,3 +239,16 @@ const DogDropField: React.FC = () => {
 };
 
 export default DogDropField;
+
+export const fetchDogInfo = async (breed: string) => {
+  const apiKey = import.meta.env.VITE_API_NINJAS_KEY;
+  const response = await fetch(`https://api.api-ninjas.com/v1/dogs?name=${breed}`, {
+    headers: { "X-Api-Key": apiKey }
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch dog information");
+  }
+
+  return await response.json();
+};
