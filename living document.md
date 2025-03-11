@@ -1262,9 +1262,10 @@ Any pushes to the repository (regardless of their nature) will trigger the CI sy
 3.
 
 ### **Christian**
-1.
-2.
-3.
+1. Project planning and requirements eclitation was one of the most important guiding factors for designing our product. It was super helpful looking back to have a clear vision for what we wanted to accomplish and the "use cases" that our product would be used for.
+2. Gained a better understanding of basic React concepts and scripting, as well as how to integrate TailwindCSS into frontend developement.
+3. Doing a little bit of research before deciding topics is important. Not just whether you know the high level idea, but how confident you would feel with actually implementing and programing the idea.
+4. Communication works best when there is a good mix of in-person meetings and group chat messages. I thought that we did a pretty good job at balancing the two, which helped everyone have a good idea for the sections that people were working on (especially in the early stages of the project).
 
 ### **Stephen**
 1.
