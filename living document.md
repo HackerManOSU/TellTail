@@ -1271,7 +1271,7 @@ Any pushes to the repository (regardless of their nature) will trigger the CI sy
 ### **Stephen**
 1. I learned more about using Typescript and React as I was not very familiar with them before this project. Getting experience using them was really helpful, especially in implementing and experimenting with the capabilties and seeing how I could best achieve what I was trying to do. 
 2. Getting experience working on a project with a large group. Managing communication with the group and expectations and deadlines was really important. Everyone was great at responding and communicating with each other which allowed the project to progress smoothly.
-3. Learning more about writing tests and implementing them into a projet. Seeing how useful they can be by making sure all changes do not break the code and allowing everything to continue working.
+3. Learning more about writing tests and implementing them into a projet. Seeing how they can be used to ensure all changes work and do not break the code.
 
 ### **Troy**
 1. Learned how ResNet50 and ONNX Runtime optimize deep learning model inference for efficient image classification.  
