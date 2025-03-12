@@ -1,3 +1,7 @@
+// Name: Christian DeVore
+// Description: Checks the Home page for key text elements and images to ensure the page is rendering correctly.
+// Test Type: Unit Test
+
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { describe, it, expect } from 'vitest';
