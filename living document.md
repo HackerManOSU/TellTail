@@ -1269,9 +1269,9 @@ Any pushes to the repository (regardless of their nature) will trigger the CI sy
 4. Communication works best when there is a good mix of in-person meetings and group chat messages. I thought that we did a pretty good job at balancing the two, which helped everyone have a good idea for the sections that people were working on (especially in the early stages of the project).
 
 ### **Stephen**
-1.
-2.
-3.
+1. I learned more about using Typescript and React as I was not very familiar with them before this project. Getting experience using them was really helpful, especially in implementing and experimenting with the capabilties and seeing how I could best achieve what I was trying to do. 
+2. Getting experience working on a project with a large group. Managing communication with the group and expectations and deadlines was really important. Everyone was great at responding and communicating with each other which allowed the project to progress smoothly.
+3. Learning more about writing tests and implementing them into a projet. Seeing how useful they can be by making sure all changes do not break the code and allowing everything to continue working.
 
 ### **Troy**
 1. Learned how ResNet50 and ONNX Runtime optimize deep learning model inference for efficient image classification.  
