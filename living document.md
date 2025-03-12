@@ -1252,9 +1252,10 @@ Any pushes to the repository (regardless of their nature) will trigger the CI sy
 3.
 
 ### **Sam**
-1.
-2.
-3.
+1. I gained extensive experience with TypeScript while working on the front end of the app.
+2.  I also deepened my understanding of UI design and how to align it with UX principles for a real world website. 
+3. Working on a project of this scale, alongside a large team, was a new experience that taught me lessons about collaboration and large scale development.
+
 
 ### **Raed**
 1.
