@@ -4,19 +4,6 @@ import catImage from './catimage.png';
 const Instructions = () => {
   return (
     <div className="relative bg-background text-primary min-h-[93dvh] flex flex-col items-center justify-center">
-
-
-            {/* <img src={dogImage} alt="Dog Portrait" className="absolute top-4 left-4 w-24 h-24 " />
-
-
-            <img src={catImage} alt="Cat Portrait" className="absolute top-4 right-4 w-24 h-24 " />
-
-
-            <img src={dogImage} alt="Dog Portrait" className="absolute bottom-4 right-4 w-24 h-24 " />
-
-
-            <img src={catImage} alt="Cat Portrait" className="absolute bottom-4 left-4 w-24 h-24 " /> */}
-
      
       <div className='mt-32 sm:mt-0'>
         <h1 className="text-4xl font-bold text-primary mb-6">Instructions</h1>

@@ -6,31 +6,7 @@ import dogImage from './dogimage.png';
 const Upload = () => {
   return (
     <div className="bg-background min-h-screen w-full relative">
-      
-      {/* <img
-        src={dogImage}
-        alt="Dog"
-        className="absolute top-0 left-0 w-20 h-20 object-cover"
-      />
-     
-      <img
-        src={dogImage}
-        alt="Dog"
-        className="absolute top-0 right-0 w-20 h-20 object-cover"
-      />
-      
-      <img
-        src={dogImage}
-        alt="Dog"
-        className="absolute bottom-0 left-0 w-20 h-20 object-cover"
-      />
     
-      <img
-        src={dogImage}
-        alt="Dog"
-        className="absolute bottom-0 right-0 w-20 h-20 object-cover"
-      /> */}
-
       <div className="max-w-6xl mx-auto px-4 py-20">
         
         <h2 className="py-4 text-center text-3xl font-bold border-4 border-primary rounded-xl px-6 text-primary">
