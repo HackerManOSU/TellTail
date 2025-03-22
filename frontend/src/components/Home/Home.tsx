@@ -28,7 +28,7 @@ const Home = () => {
   return (
     <div className="bg-background min-h-screen w-full relative">
      
-      <img
+      {/* <img
         src={dogImage}
         alt="Dog"
         className="absolute top-0 left-0 w-20 h-20 object-cover"
@@ -50,7 +50,7 @@ const Home = () => {
         src={dogImage}
         alt="Dog"
         className="absolute bottom-0 right-0 w-20 h-20 object-cover"
-      />
+      /> */}
 
       <div className="max-w-6xl mx-auto px-4 py-8">
         <div className="p-8 mt-4 flex lg:flex-row items-left font-semibold h-screen flex-col " style={{ opacity: opacity, transition: 'opacity 0.5s ease-out' }}>

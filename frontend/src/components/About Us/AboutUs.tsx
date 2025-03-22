@@ -50,7 +50,7 @@ const AboutUs = () => {
   return (
     <div className="w-full min-h-screen bg-background relative">
       
-      <img
+      {/* <img
         src={dogImage}
         alt="Dog"
         className="absolute top-0 left-0 w-20 h-20 object-cover"
@@ -72,7 +72,7 @@ const AboutUs = () => {
         src={dogImage}
         alt="Dog"
         className="absolute bottom-0 right-0 w-20 h-20 object-cover"
-      />
+      /> */}
 
       <div className="min-h-screen bg-backround max-w-6xl mx-auto px-4 py-8">
         <h1 className="text-4xl font-bold text-primary mb-6">About Us</h1>
