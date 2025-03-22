@@ -6,7 +6,6 @@ import christianImg from './christian.jpg';
 import samImg from './sam.png';
 import zaneImg from './zane.jpg';
 import stephenImg from './stephen.jpg';
-import dogImage from './dogimage.png'; 
 
 const teamMembers = [
   {
@@ -49,7 +48,7 @@ const teamMembers = [
 const AboutUs = () => {
   return (
     <div className="w-full min-h-screen bg-background relative">
-      
+
       <div className="min-h-screen bg-backround max-w-6xl mx-auto px-4 py-8">
         <h1 className="text-4xl font-bold text-primary mb-6">About Us</h1>
 

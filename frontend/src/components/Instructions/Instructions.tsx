@@ -1,5 +1,4 @@
-import dogImage from './dogimage.png';
-import catImage from './catimage.png';
+
 
 const Instructions = () => {
   return (

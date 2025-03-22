@@ -2,7 +2,6 @@ import React from 'react'
 
 import CatDropField from '../Drop Fields/CatDropField'
 import DogDropField from '../Drop Fields/DogDropField'
-import dogImage from './dogimage.png';
 
 interface DropPageProps {
   title: string

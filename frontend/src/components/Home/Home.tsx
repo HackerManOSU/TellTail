@@ -4,7 +4,6 @@ import cat2 from './home-cat2-image.webp';
 import dog1 from './home-dog-image.webp';
 import profile1 from './profile.jpg';
 import { Link } from 'react-router-dom';
-import dogImage from './dogimage.png'; 
 import ImageCycle from './imageCycle';
 import profile2 from './profile2.jpg';
 import profile3 from './profile3.jpg'
